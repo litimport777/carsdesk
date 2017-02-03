@@ -35,6 +35,7 @@ class CarController extends Controller
        \yii\helpers\VarDumper::dump($model);
        \yii\helpers\VarDumper::dump('<br />');
        \yii\helpers\VarDumper::dump($modelList);
+       
         //return $this->render('index', ['makes'=> $makes, 'countItemInColumns'=> $countItemInColumns , 'carsRandom'=> $carsRandom]);
      }
 
