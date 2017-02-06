@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
     'options' => ['class' => 'form-horizontal'],
 ]) ?>
     <?= $form->field($model, 'make')->dropDownList($makesSearch); ?>
-    <?= $form->field($model, 'model') ?>
+    <?= $form->field($model, 'model')->dropDownList([]); ?>
     <?= $form->field($model, 'zip') ?>
 
     <div class="form-group">
@@ -62,3 +62,31 @@ use yii\widgets\ActiveForm;
 		
     <?php endforeach;?>
 </div>
+
+
+<?php
+
+$this->registerJs('
+    $("#searchform-make").on("change", function(){
+        var make = $(this).val();
+        sendRequest(make);
+    });
+
+    function sendRequest(make){
+        $.post("/site/getmodels", {"make": make}, function(data){
+            var result = $.parseJSON(data);
+            renderModel(result);
+        });
+    };
+
+    function renderModel(result){
+        var option = "";
+
+        for (key in result){
+            option += "<option value=\"" + key + "\">" + key + "</option>";
+        }
+        $("#searchform-model").html(option);
+    }
+')
+
+?>

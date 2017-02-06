@@ -226,4 +226,16 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function actionGetmodels()
+    {
+        $request = Yii::$app->request;
+        if($request->isPost && $request->isAjax){
+            $param = $request->post('make'); 
+
+            $makeModel = new MakeModel;
+            $result = $makeModel->getModelsToFormSearchForm($param);
+            echo json_encode($result); Yii::$app->end();
+        }
+    }
 }

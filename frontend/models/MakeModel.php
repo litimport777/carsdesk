@@ -87,4 +87,10 @@ class MakeModel extends CommonCarModel
         $result =  Yii::$app->db->createCommand('SELECT make FROM {{tbl_makes}}')->queryColumn();
         return array_combine($result, $result);
     }
+
+    public function getModelsToFormSearchForm($param)
+    {
+        $result =  Yii::$app->db->createCommand('SELECT model FROM {{tbl_models}} WHERE make = :make', [':make'=>$param])->queryColumn();
+        return array_combine($result, $result);
+    }
 }
