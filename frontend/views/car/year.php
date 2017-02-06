@@ -32,6 +32,11 @@ use yii\widgets\Breadcrumbs;
 <?php $cnt++;?>
 <?php endforeach;?>
 </div>
+
+<hr />
+
+<?php echo $this->render('/_advanced_search');?>
+
 <hr />
 
 <?php echo $sort->link('price');?>

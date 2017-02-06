@@ -35,6 +35,10 @@ use yii\widgets\Breadcrumbs;
 
 <hr />
 
+<?php echo $this->render('/_advanced_search');?>
+
+<hr />
+
 <?php echo $sort->link('year') . ' | ' . $sort->link('price');?>
 
 <hr />
