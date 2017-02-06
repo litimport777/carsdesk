@@ -79,4 +79,9 @@ class YearModel extends CommonCarModel
 
         return $provider;
     }
+
+    public function getDataToBreadCrumb($alias)
+    {
+    	return Yii::$app->db->createCommand('SELECT * FROM {{tbl_models_as}} WHERE alias=:alias LIMIT 1', [':alias'=>$alias])->queryOne();
+    }
 }

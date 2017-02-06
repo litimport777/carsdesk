@@ -79,7 +79,7 @@ class CarController extends Controller
         $sort = $this->getSort();
 
 
-        $breadcrumbUrl = $modelModel->getBreadcrumbUrl($model['make']);
+        $breadcrumbUrl = $modelModel->getBreadcrumbMakeUrl($model['make']);
 
         $breadcrumbs = [
              ['label' => $model['make'], 'url'=> $breadcrumbUrl],
@@ -122,6 +122,17 @@ class CarController extends Controller
        
         $sort = $this->getSort();
 
+        $modelModel = new ModelModel();
+
+        $breadcrumbMakeUrl = $modelModel->getBreadcrumbMakeUrl($model['make']);
+        $breadcrumbModelUrl = $modelModel->getBreadcrumbModelUrl($model['model']);
+
+        $breadcrumbs = [
+             ['label' => $model['make'], 'url'=> $breadcrumbMakeUrl],
+             ['label' => $model['model'],'url'=> $breadcrumbModelUrl],
+             ['label' => $model['year_data']]
+        ];
+
        /*
        \yii\helpers\VarDumper::dump('actionYear');
        \yii\helpers\VarDumper::dump('<br />');
@@ -132,7 +143,9 @@ class CarController extends Controller
        \yii\helpers\VarDumper::dump($yearList);
        */
 
-       return $this->render('year', ['yearList'=> $yearList, 'countItemInColumns'=> $countItemInColumns, 'carsList' => $carsList, 'sort' => $sort]);
+       return $this->render('year', 
+                ['yearList'=>$yearList,'countItemInColumns'=>$countItemInColumns,'carsList'=>$carsList,'sort'=>$sort,'breadcrumbs'=>$breadcrumbs]
+            );
     }
 
 
@@ -145,7 +158,22 @@ class CarController extends Controller
             throw new  NotFoundHttpException();            
         }
 
-        return $this->render('item', ['car' => $car]);
+        $makeAlias = $make;
+        $modelAlias = $make . '-' . $model;
+        $yearAlias = $year . '-' . $make . '-' . $model;
+
+        $yearModel = new YearModel();
+        $modelData = $yearModel->getDataToBreadCrumb($yearAlias);       
+        
+       
+        $breadcrumbs = [
+             ['label' => $modelData['make'], 'url'=> $makeAlias],
+             ['label' => $modelData['model'],'url'=> $modelAlias],
+             ['label' => $modelData['year_data'], 'url'=> $yearAlias],
+             ['label' => $car['vin']]
+        ];
+
+        return $this->render('item', ['car' => $car,'breadcrumbs'=>$breadcrumbs]);
     }
 
     private function getSort()

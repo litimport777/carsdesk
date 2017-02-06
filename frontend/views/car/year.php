@@ -12,9 +12,7 @@ use yii\widgets\Breadcrumbs;
 <hr />
 
 <?php
- $this->params['breadcrumbs'] = [
-	 ['label' => 'year'],
- ];
+ $this->params['breadcrumbs'] = $breadcrumbs;
 ?>
 
 <div>

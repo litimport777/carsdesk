@@ -39,11 +39,7 @@ class ModelModel extends CommonCarModel
         return (new Query())->from('tbl_models')->where(['alias'=> $alias])->limit(1)->one();
     }
 
-    public function getBreadcrumbUrl($make)
-    {
-        return Yii::$app->db->createCommand('SELECT alias FROM {{tbl_makes}} WHERE make=:make', [':make'=>$make])->queryScalar();
-    }
-
+   
     public function getCarsModelList($make, $model)
     {
         $count = Yii::$app->db->createCommand('
@@ -86,5 +82,16 @@ class ModelModel extends CommonCarModel
         ]);
 
         return $provider;
+    }
+
+
+     public function getBreadcrumbMakeUrl($make)
+    {
+        return Yii::$app->db->createCommand('SELECT alias FROM {{tbl_makes}} WHERE make=:make', [':make'=>$make])->queryScalar();
+    }
+
+     public function getBreadcrumbModelUrl($model)
+    {
+        return Yii::$app->db->createCommand('SELECT alias FROM {{tbl_models}} WHERE model=:model', [':model'=>$model])->queryScalar();
     }
 }

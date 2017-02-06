@@ -10,9 +10,7 @@ use yii\widgets\Breadcrumbs;
 <hr />
 
 <?php
-echo Breadcrumbs::widget([
-    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-]);
+ $this->params['breadcrumbs'] = $breadcrumbs;
 ?>
 
 <hr />
