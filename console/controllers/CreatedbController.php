@@ -91,7 +91,7 @@ class CreatedbController extends Controller
        $command->createCommand("CREATE TABLE `tbl_lots_temp` 
                                 SELECT *
                                 FROM `tbl_lots` 
-                                WHERE make != ''  AND `year` != '0' AND year != ''"
+                                WHERE make != ''  AND `year` != '0' AND year != '' AND vin != ''"
                                 )->execute();
 
        $command->createCommand()->addPrimaryKey('pk_tbl_lots_temp', 'tbl_lots_temp', 'id')->execute();
@@ -262,7 +262,7 @@ class CreatedbController extends Controller
                                                 LOWER(REPLACE(REPLACE(REPLACE(make, ' ', ''), '.', ''), '-', '')) AS alias, 
                                                 COUNT(*) AS count_make 
                                                 FROM `tbl_lots_temp` 
-                                                WHERE make != ''  AND `year` != '0' AND year != ''
+                                                WHERE make != ''  AND `year` != '0' AND year != '' AND vin != ''
 
 
 
@@ -285,7 +285,7 @@ class CreatedbController extends Controller
                                                      
                                                     COUNT(*) AS count_make 
                                                     FROM `tbl_lots_temp`  
-                                                    WHERE make != '' AND model != ''  AND year != 0 AND year != '' 
+                                                    WHERE make != '' AND model != ''  AND year != 0 AND year != '' AND vin != ''
                                                     
                                                     
                                                     GROUP BY make, model HAVING count_make > 2"
@@ -310,13 +310,13 @@ class CreatedbController extends Controller
 
                                             COUNT(*) AS count_make 
                                             FROM `tbl_lots_temp`  
-                                            WHERE make != '' AND model != '' AND year != 0 AND year != ''
+                                            WHERE make != '' AND model != '' AND year != 0 AND year != '' AND vin != ''
 
 											AND id NOT IN (
 											
 												SELECT id
 												FROM `tbl_lots_temp`  
-												WHERE make != '' AND model != ''  AND year != 0 AND year != ''                                                     
+												WHERE make != '' AND model != ''  AND year != 0 AND year != '' AND vin != ''                                                    
 												GROUP BY make, model HAVING (COUNT(*) = 1 OR  COUNT(*) = 2)
 											
 											)

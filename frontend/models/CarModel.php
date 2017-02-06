@@ -18,8 +18,22 @@ class CarModel extends CommonCarModel
    		$db = Yii::$app->db;
 
    		$result = $db->cache(function ($db){
-   			return $db->createCommand('SELECT * FROM {{tbl_lots_temp}} ORDER BY RAND() LIMIT 6')->queryAll();
+   			return $db->createCommand("SELECT  price, model, make, year,  
+   														CONCAT_WS('-',
+                                                       'used',
+                                                        year,
+                                                        LOWER(REPLACE(REPLACE(REPLACE(make, ' ', ''), '.', ''), '-', '')),
+                                                        LOWER(REPLACE(REPLACE(REPLACE(model, ' ', ''), '.', ''), '-', '')),
+                                                        vin
+                                                    ) AS alias  FROM {{tbl_lots_temp}} 
+                                                    WHERE make != '' AND model != ''  AND year != 0 AND year != '' AND vin != '' 
+                                                    ORDER BY RAND() LIMIT 6")->queryAll();
    		}, 3600);
    		return $result;
+   }
+
+   public function getCar($vin)
+   {
+   		return (new Query())->from('tbl_lots_temp')->where(['vin'=> $vin])->limit(1)->one();
    }
 }

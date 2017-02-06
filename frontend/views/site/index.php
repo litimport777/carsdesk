@@ -52,6 +52,12 @@ use yii\helpers\url;
 
 <div>
     <?php foreach($carsRandom as $car): ?>
-        <h5><?php echo $car['make'];?></h5>
+    <h2>
+		<?php echo Html::a($car['make'], Url::to($car['alias'], true));?>
+	</h2>
+	<div><?= $car['model']; ?></div>
+	<div><?= $car['year']; ?></div>
+	<div><?= $car['price']; ?></div>
+		
     <?php endforeach;?>
 </div>

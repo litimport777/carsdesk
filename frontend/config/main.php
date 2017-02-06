@@ -42,10 +42,11 @@ return [
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [
+                'used-<year:\d{4}>-<make:>-<model:>-<vin>' => 'car/item',
                 '<year:\d{4}>-<make:>-<model:>' => 'car/year',
                 '<make:>-<model:>' => 'car/model',
                 '<make:>' => 'car/index',
-             ],
+              ],
         ],
         
     ],
