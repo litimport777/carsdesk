@@ -9,6 +9,7 @@ use frontend\models\MakeModel;
 use frontend\models\ModelModel;
 use frontend\models\YearModel;
 use frontend\models\CarModel;
+use frontend\models\SearchForm;
 
 /**
  * Site controller
@@ -25,6 +26,7 @@ class CarController extends Controller
        if ($model === false){
             throw new  NotFoundHttpException();            
        }
+
 
        $modelModel = new ModelModel();
        $modelList = $modelModel->getModels($model['make']);
@@ -174,6 +176,23 @@ class CarController extends Controller
         ];
 
         return $this->render('item', ['car' => $car,'breadcrumbs'=>$breadcrumbs]);
+    }
+
+    public function actionSearch()
+    {
+
+        $model = new SearchForm();
+        
+        if ($model->load(Yii::$app->request->get()) && $model->validate()) {
+            \yii\helpers\VarDumper::dump(Yii::$app->request->get());exit;
+        }
+
+
+        $breadcrumbs = [
+             ['label' => 'Search']
+        ];
+
+        return $this->render('search', ['model' => $model,'breadcrumbs'=> $breadcrumbs]);
     }
 
     private function getSort()

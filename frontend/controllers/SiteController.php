@@ -14,6 +14,7 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\MakeModel;
 USE frontend\models\CarModel;
+use frontend\models\SearchForm;
 
 /**
  * Site controller
@@ -81,9 +82,13 @@ class SiteController extends Controller
 
         $carModel = new CarModel;
         $carsRandom = $carModel->getCarsToIndexPage();
-        //var_dump($carsRandom);exit;
+        
+        $model = new SearchForm();
+        $makesSearch = $makeModel->getMakesToFormSearchForm();
 
-        return $this->render('index', ['makes'=> $makes, 'countItemInColumns'=> $countItemInColumns , 'carsRandom'=> $carsRandom]);
+        return $this->render('index', 
+                ['makes'=>$makes,'countItemInColumns'=>$countItemInColumns,'carsRandom'=>$carsRandom,'model'=>$model,'makesSearch'=>$makesSearch]
+            );
     }
 
     /**

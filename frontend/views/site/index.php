@@ -4,28 +4,29 @@
 
 use yii\helpers\html;
 use yii\helpers\url;
+use yii\widgets\ActiveForm;
 
 ?>
 <div class="site-index">
     <h1>All cars. One place. Simple Search.</h1>
 
-    <form>
+<?php
+    $form = ActiveForm::begin([
+    'id' => 'search-form',
+    'method' => 'get',
+    'action' => ['/search'],
+    'options' => ['class' => 'form-horizontal'],
+]) ?>
+    <?= $form->field($model, 'make')->dropDownList($makesSearch); ?>
+    <?= $form->field($model, 'model') ?>
+    <?= $form->field($model, 'zip') ?>
 
-        <select>
-            <option>make</option>
-        </select> 
-
-        <select>
-            <option>model</option>
-        </select> 
-
-        <select>
-            <option>zip</option>
-        </select> 
-
-        <button>search</button>
-
-    </form>
+    <div class="form-group">
+        <div class="col-lg-offset-1 col-lg-11">
+            <?= Html::submitButton('Поиск', ['class' => 'btn btn-primary']) ?>
+        </div>
+    </div>
+<?php ActiveForm::end() ?>
 
     <hr />
 
