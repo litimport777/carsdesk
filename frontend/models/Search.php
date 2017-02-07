@@ -15,7 +15,7 @@ class Search extends Model
    
    public function getResultSearch()
     {
-           var_dump($this->attributes);exit;
+           //var_dump($this->attributes);exit;
            $query = (new  Query())->from('tbl_lots_temp')->where("`year` != '0' AND year != '' AND vin != ''");
            $query->addSelect(["*", 'CONCAT_WS("-",
                                                        "used",
@@ -61,37 +61,40 @@ class Search extends Model
 
            if(isset($this->price_from) || isset($this->price_to)){
                 if(isset($this->price_from) && isset($this->price_to)){
-                
+                     $query->andWhere(['>=', 'price', str_replace(['$', 'nomax'], ['', 9999999999],static::$price_data[$this->price_from])]);
+                     $query->andWhere(['<=', 'price', str_replace(['$', 'nomax'], ['', 9999999999],static::$price_data[$this->price_to])]);
                 }
                 if(isset($this->price_from) && !isset($this->price_to)){
-                
+                     $query->andWhere(['>=', 'price', str_replace(['$', 'nomax'], ['', 9999999999],static::$price_data[$this->price_from])]);
                 }
                 if(!isset($this->price_from) && isset($this->price_to)){
-                
+                    $query->andWhere(['<=', 'price', str_replace(['$', 'nomax'], ['', 9999999999],static::$price_data[$this->price_to])]);
                 }
            }
 
            if(isset($this->meliage_from) || isset($this->meliage_to)){
                 if(isset($this->meliage_from) && isset($this->meliage_to)){
-                
+                     $query->andWhere(['>=', 'odometer', static::$meliage_data[$this->meliage_from]]);
+                     $query->andWhere(['<=', 'odometer', static::$meliage_data[$this->meliage_to]]);
                 }
                 if(isset($this->meliage_from) && !isset($this->meliage_to)){
-                
+                    $query->andWhere(['>=', 'odometer', static::$meliage_data[$this->meliage_from]]);
                 }
                 if(!isset($this->meliage_from) && isset($this->meliage_to)){
-                
+                    $query->andWhere(['<=', 'odometer', static::$meliage_data[$this->meliage_to]]);
                 }   
            }
 
            if(isset($this->year_from) || isset($this->year_to)){
                 if(isset($this->year_from) && isset($this->year_to)){
-                
+                    $query->andWhere(['>=', 'year', static::$year_data[$this->year_from]]);
+                    $query->andWhere(['<=', 'year', static::$year_data[$this->year_to]]);
                 }
                 if(isset($this->year_from) && !isset($this->year_to)){
-                
+                    $query->andWhere(['>=', 'year', static::$year_data[$this->year_from]]);
                 }
                 if(!isset($this->year_from) && isset($this->year_to)){
-                
+                    $query->andWhere(['<=', 'year', static::$year_data[$this->year_to]]);
                 }    
            }
 
