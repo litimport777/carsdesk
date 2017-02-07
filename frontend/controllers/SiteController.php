@@ -15,6 +15,7 @@ use frontend\models\ContactForm;
 use frontend\models\MakeModel;
 USE frontend\models\CarModel;
 use frontend\models\SearchForm;
+use frontend\models\AccauntForm;
 
 /**
  * Site controller
@@ -29,7 +30,7 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
+                'only' => ['logout', 'signup', 'accaunt', 'accaunt-save'],
                 'rules' => [
                     [
                         'actions' => ['signup'],
@@ -37,7 +38,7 @@ class SiteController extends Controller
                         'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'accaunt', 'accaunt-save'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -226,6 +227,37 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+    
+    public function actionAccaunt()
+    {
+        $accauntModel = new AccauntForm;
+        
+        if (Yii::$app->request->post()) {
+            if($accauntModel->load(Yii::$app->request->post()) && $accauntModel->validate()){
+                Yii::$app->db->createCommand()->update('user',
+                ['username'=>Yii::$app->request->post('AccauntForm')['username'],'email'=>Yii::$app->request->post('AccauntForm')['email']],
+                'id=:id',[':id'=>Yii::$app->user->id])->execute();
+            }
+        }
+
+        $accauntData = null;
+        $accauntData = AccauntForm::find()->where(['id'=>Yii::$app->user->id])->one();
+        
+        return $this->render('accaunt',['accauntdata'=>$accauntData]);
+    }
+
+    public function actionAccauntSave()
+    {
+        $accauntModel = new AccauntForm;
+                
+        $accauntData = null;
+        $accauntData = $accauntModel->getAccauntSaveData(Yii::$app->user->id);
+        var_dump($accauntData);exit;
+        
+        return $this->render('accaunt_save',['accauntdata'=>$accauntData]);
+    }
+
 
     public function actionGetmodels()
     {

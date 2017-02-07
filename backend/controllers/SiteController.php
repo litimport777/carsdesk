@@ -15,7 +15,9 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
-    public function behaviors()
+    
+	
+	public function behaviors()
     {
         return [
             'access' => [
@@ -25,10 +27,17 @@ class SiteController extends Controller
                         'actions' => ['login', 'error'],
                         'allow' => true,
                     ],
-                    [
-                        'actions' => ['logout', 'index'],
+					[
+                        'actions' => ['logout'],
                         'allow' => true,
-                        'roles' => ['@'],
+						'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->id === 1;
+                        }
                     ],
                 ],
             ],
