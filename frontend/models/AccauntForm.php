@@ -70,5 +70,10 @@ class AccauntForm extends ActiveRecord
                                             ON `user_car`.`tbl_lots_temp_id` = `tbl_lots_temp`.`id`
                                             WHERE `user_car`.`user_id` = :user_id", [':user_id'=>$user_id])->queryAll();
     }
+
+    public function setSaveData($param)
+    {
+        return $param;
+    }
    
 }
