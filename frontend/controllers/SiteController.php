@@ -274,7 +274,11 @@ class SiteController extends Controller
     {
         $request = Yii::$app->request;
         if($request->isPost && $request->isAjax){
-            
+            $param = $request->post('id'); 
+
+            $accauntModel = new AccauntForm;
+            $result = $accauntModel->setSaveData($param);
+            echo json_encode($result); Yii::$app->end();
         }
     }
 }

@@ -60,7 +60,9 @@ use yii\widgets\ActiveForm;
 	<div><?= $car['year']; ?></div>
 	<div><?= $car['price']; ?></div>
 
-    <div><button data-url="<?= $car['id']; ?>">SAVE</button></div>		
+    <?php if(Yii::$app->user->id):?>
+        <div><button data-url="<?= $car['id']; ?>" class="save-car">SAVE</button></div>	
+    <?php endif;?>
     <?php endforeach;?>
 </div>
 
@@ -87,6 +89,20 @@ $this->registerJs('
             option += "<option value=\"" + key + "\">" + key + "</option>";
         }
         $("#searchform-model").html(option);
+    }
+
+    $(".save-car").each(function(idx, el){
+        $(this).on("click", function(event){
+            var id = $(this).data().url;
+            sendRequestSaveData(id);
+        });
+    });
+
+    function sendRequestSaveData(id){
+        $.post("/site/save-data", {"id": id}, function(data){
+            //var result = $.parseJSON(data);
+            //renderModel(result);
+        });
     }
 ')
 
