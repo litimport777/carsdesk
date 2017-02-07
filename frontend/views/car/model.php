@@ -35,7 +35,7 @@ use yii\widgets\Breadcrumbs;
 
 <hr />
 
-<?php echo $this->render('/_advanced_search');?>
+<?php echo $this->render('/_advanced_search', ['modelAdvancedSearchForm'=>$modelAdvancedSearchForm, 'makesSearch'=>$makesSearch]);?>
 
 <hr />
 

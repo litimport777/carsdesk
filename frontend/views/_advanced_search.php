@@ -8,22 +8,64 @@ use yii\widgets\ActiveForm;
 
 ?>
 
-<?php /*
-    $form = ActiveForm::begin([
+<?php 
+    //\yii\helpers\VarDumper::dump($modelAdvancedSearchForm::getBodyData());
+	
+	$form = ActiveForm::begin([
     'id' => 'search-form',
     'method' => 'get',
     'action' => ['/search'],
     'options' => ['class' => 'form-horizontal'],
 ]) ?>
-    <?= $form->field($model, 'make')->dropDownList($makesSearch); ?>
-    <?= $form->field($model, 'model')->dropDownList([]); ?>
-    <?= $form->field($model, 'zip') ?>
+    <?= $form->field($modelAdvancedSearchForm, 'make')->dropDownList($makesSearch); ?>
+    <?= $form->field($modelAdvancedSearchForm, 'model')->dropDownList([]); ?>
+    <?= $form->field($modelAdvancedSearchForm, 'zip') ?>
+	
+	<?= $form->field($modelAdvancedSearchForm, 'body')->dropDownList($modelAdvancedSearchForm::getBodyData()); ?>
+	<?= $form->field($modelAdvancedSearchForm, 'color')->dropDownList($modelAdvancedSearchForm::getColorData()); ?>
+	<?= $form->field($modelAdvancedSearchForm, 'transmission')->dropDownList($modelAdvancedSearchForm::getTransmissionData()); ?>
+	<?= $form->field($modelAdvancedSearchForm, 'engine')->dropDownList($modelAdvancedSearchForm::getEngineData()); ?>
+	
+	<?= $form->field($modelAdvancedSearchForm, 'meliage_from')->dropDownList($modelAdvancedSearchForm::getMeliageData()); ?>
+	<?= $form->field($modelAdvancedSearchForm, 'meliage_to')->dropDownList($modelAdvancedSearchForm::getMeliageData()); ?>
+	
+	<?= $form->field($modelAdvancedSearchForm, 'year_from')->dropDownList($modelAdvancedSearchForm::getYearData()); ?>
+	<?= $form->field($modelAdvancedSearchForm, 'year_to')->dropDownList($modelAdvancedSearchForm::getYearData()); ?>
+	
+	<?= $form->field($modelAdvancedSearchForm, 'price_from')->dropDownList($modelAdvancedSearchForm::getPriceFromData()); ?>
+	<?= $form->field($modelAdvancedSearchForm, 'price_to')->dropDownList($modelAdvancedSearchForm::getPriceToData()); ?>
+	
 
     <div class="form-group">
         <div class="col-lg-offset-1 col-lg-11">
-            <?= Html::submitButton('Поиск', ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton('SEARCH', ['class' => 'btn btn-primary']) ?>
         </div>
     </div>
-<?php ActiveForm::end() */?>
+<?php ActiveForm::end() ?>
 
-advancedsearch;
+<?php
+
+$this->registerJs('
+    $("#searchadvancedform-make").on("change", function(){
+        var make = $(this).val();
+        sendRequest(make);
+    });
+
+    function sendRequest(make){
+        $.post("/site/getmodels", {"make": make}, function(data){
+            var result = $.parseJSON(data);
+            renderModel(result);
+        });
+    };
+
+    function renderModel(result){
+        var option = "";
+
+        for (key in result){
+            option += "<option value=\"" + key + "\">" + key + "</option>";
+        }
+        $("#searchadvancedform-model").html(option);
+    }
+')
+
+?>

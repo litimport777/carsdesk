@@ -10,6 +10,7 @@ use frontend\models\ModelModel;
 use frontend\models\YearModel;
 use frontend\models\CarModel;
 use frontend\models\SearchForm;
+use frontend\models\SearchAdvancedForm;
 
 /**
  * Site controller
@@ -43,6 +44,9 @@ class CarController extends Controller
              ['label' => $model['make']],
        ];
 
+       $modelAdvancedSearchForm = new SearchAdvancedForm();
+       $makesSearch = $makeModel->getMakesToFormSearchForm();
+
 
        /*
        \yii\helpers\VarDumper::dump('actionIndex');
@@ -56,7 +60,8 @@ class CarController extends Controller
 
 
         return $this->render('index', 
-            ['modelList'=>$modelList,'countItemInColumns'=>$countItemInColumns,'carsList'=>$carsList,'sort'=>$sort,'breadcrumbs'=>$breadcrumbs]
+            ['modelList'=>$modelList,'countItemInColumns'=>$countItemInColumns,'carsList'=>$carsList,'sort'=>$sort,
+            'breadcrumbs'=>$breadcrumbs, 'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch]
             );
      }
 
@@ -87,6 +92,11 @@ class CarController extends Controller
              ['label' => $model['make'], 'url'=> $breadcrumbUrl],
              ['label' => $model['model']],
         ];
+
+        $makeModel = new MakeModel();
+
+        $modelAdvancedSearchForm = new SearchAdvancedForm();
+        $makesSearch = $makeModel->getMakesToFormSearchForm();
        
        /*
        \yii\helpers\VarDumper::dump('actionModel');
@@ -100,7 +110,8 @@ class CarController extends Controller
 
 
        return $this->render('model', 
-                ['yearList'=>$yearList,'countItemInColumns'=>$countItemInColumns,'carsList'=>$carsList,'sort'=>$sort,'breadcrumbs'=>$breadcrumbs]
+                ['yearList'=>$yearList,'countItemInColumns'=>$countItemInColumns,'carsList'=>$carsList,'sort'=>$sort,
+                'breadcrumbs'=>$breadcrumbs,'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch]
             );
     }
 
@@ -135,6 +146,12 @@ class CarController extends Controller
              ['label' => $model['year_data']]
         ];
 
+        
+        $makeModel = new MakeModel();
+
+        $modelAdvancedSearchForm = new SearchAdvancedForm();
+        $makesSearch = $makeModel->getMakesToFormSearchForm();
+
        /*
        \yii\helpers\VarDumper::dump('actionYear');
        \yii\helpers\VarDumper::dump('<br />');
@@ -146,7 +163,8 @@ class CarController extends Controller
        */
 
        return $this->render('year', 
-                ['yearList'=>$yearList,'countItemInColumns'=>$countItemInColumns,'carsList'=>$carsList,'sort'=>$sort,'breadcrumbs'=>$breadcrumbs]
+                ['yearList'=>$yearList,'countItemInColumns'=>$countItemInColumns,'carsList'=>$carsList,'sort'=>$sort,
+                'breadcrumbs'=>$breadcrumbs,'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch]
             );
     }
 
