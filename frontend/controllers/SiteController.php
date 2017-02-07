@@ -253,8 +253,7 @@ class SiteController extends Controller
                 
         $accauntData = null;
         $accauntData = $accauntModel->getAccauntSaveData(Yii::$app->user->id);
-        var_dump($accauntData);exit;
-        
+
         return $this->render('accaunt_save',['accauntdata'=>$accauntData]);
     }
 
@@ -268,6 +267,14 @@ class SiteController extends Controller
             $makeModel = new MakeModel;
             $result = $makeModel->getModelsToFormSearchForm($param);
             echo json_encode($result); Yii::$app->end();
+        }
+    }
+
+    public function actionSaveData()
+    {
+        $request = Yii::$app->request;
+        if($request->isPost && $request->isAjax){
+            
         }
     }
 }

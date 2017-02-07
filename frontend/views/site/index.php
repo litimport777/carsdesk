@@ -59,7 +59,8 @@ use yii\widgets\ActiveForm;
 	<div><?= $car['model']; ?></div>
 	<div><?= $car['year']; ?></div>
 	<div><?= $car['price']; ?></div>
-		
+
+    <div><button data-url="<?= $car['id']; ?>">SAVE</button></div>		
     <?php endforeach;?>
 </div>
 

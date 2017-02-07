@@ -59,10 +59,16 @@ class AccauntForm extends ActiveRecord
 
     public function getAccauntSaveData($user_id)
     {
-        return Yii::$app->db->createCommand('SELECT * FROM {{user_car}} 
+        return Yii::$app->db->createCommand("SELECT *, CONCAT_WS('-',
+                                                       'used',
+                                                        year,
+                                                        LOWER(REPLACE(REPLACE(REPLACE(make, ' ', ''), '.', ''), '-', '')),
+                                                        LOWER(REPLACE(REPLACE(REPLACE(model, ' ', ''), '.', ''), '-', '')),
+                                                        vin
+                                                    ) AS alias FROM {{user_car}} 
                                             INNER JOIN {{tbl_lots_temp}} 
                                             ON `user_car`.`tbl_lots_temp_id` = `tbl_lots_temp`.`id`
-                                            WHERE `user_car`.`user_id` = :user_id', [':user_id'=>$user_id])->queryAll();
+                                            WHERE `user_car`.`user_id` = :user_id", [':user_id'=>$user_id])->queryAll();
     }
    
 }
