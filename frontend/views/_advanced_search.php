@@ -9,7 +9,11 @@ use yii\widgets\ActiveForm;
 ?>
 
 <?php 
-    //\yii\helpers\VarDumper::dump($modelAdvancedSearchForm::getBodyData());
+	if(isset($modelSearch)){
+		$modelsSearch = $modelSearch;
+	}else{
+		$modelsSearch = [];
+	}
 	
 	$form = ActiveForm::begin([
     'id' => 'search-form',
@@ -18,7 +22,7 @@ use yii\widgets\ActiveForm;
     'options' => ['class' => 'form-horizontal'],
 ]) ?>
     <?= $form->field($modelAdvancedSearchForm, 'make')->dropDownList($makesSearch); ?>
-    <?= $form->field($modelAdvancedSearchForm, 'model')->dropDownList([]); ?>
+    <?= $form->field($modelAdvancedSearchForm, 'model')->dropDownList($modelsSearch); ?>
     <?= $form->field($modelAdvancedSearchForm, 'zip') ?>
 	
 	<?= $form->field($modelAdvancedSearchForm, 'body')->dropDownList($modelAdvancedSearchForm::getBodyData()); ?>

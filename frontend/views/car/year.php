@@ -9,6 +9,13 @@ use yii\widgets\Breadcrumbs;
 
 ?>
 
+<?php
+$modelSearch = null;
+if(isset($modelsSearchForm)){
+	$modelSearch = $modelsSearchForm;
+}
+?>
+
 <hr />
 
 <?php
@@ -35,7 +42,8 @@ use yii\widgets\Breadcrumbs;
 
 <hr />
 
-<?php echo $this->render('/_advanced_search', ['modelAdvancedSearchForm'=>$modelAdvancedSearchForm, 'makesSearch'=>$makesSearch]);?>
+<?php echo $this->render('/_advanced_search', 
+	['modelAdvancedSearchForm'=>$modelAdvancedSearchForm, 'makesSearch'=>$makesSearch, 'modelSearch' => $modelSearch]);?>
 
 <hr />
 

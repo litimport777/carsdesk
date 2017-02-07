@@ -47,7 +47,7 @@ class CarController extends Controller
        $modelAdvancedSearchForm = new SearchAdvancedForm();
        $makesSearch = $makeModel->getMakesToFormSearchForm();
 
-
+       $modelAdvancedSearchForm->make = $model['make'];
        /*
        \yii\helpers\VarDumper::dump('actionIndex');
        \yii\helpers\VarDumper::dump('<br />');
@@ -97,6 +97,10 @@ class CarController extends Controller
 
         $modelAdvancedSearchForm = new SearchAdvancedForm();
         $makesSearch = $makeModel->getMakesToFormSearchForm();
+
+        $modelAdvancedSearchForm->make = $model['make'];
+        $modelAdvancedSearchForm->model = $model['model'];
+        $modelsSearchForm = $makeModel->getModelsToFormSearchForm($model['make']);
        
        /*
        \yii\helpers\VarDumper::dump('actionModel');
@@ -110,8 +114,8 @@ class CarController extends Controller
 
 
        return $this->render('model', 
-                ['yearList'=>$yearList,'countItemInColumns'=>$countItemInColumns,'carsList'=>$carsList,'sort'=>$sort,
-                'breadcrumbs'=>$breadcrumbs,'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch]
+                ['yearList'=>$yearList,'countItemInColumns'=>$countItemInColumns,'carsList'=>$carsList,'sort'=>$sort,'breadcrumbs'=>$breadcrumbs,
+                'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch,'modelsSearchForm'=>$modelsSearchForm]
             );
     }
 
@@ -140,6 +144,7 @@ class CarController extends Controller
         $breadcrumbMakeUrl = $modelModel->getBreadcrumbMakeUrl($model['make']);
         $breadcrumbModelUrl = $modelModel->getBreadcrumbModelUrl($model['model']);
 
+        
         $breadcrumbs = [
              ['label' => $model['make'], 'url'=> $breadcrumbMakeUrl],
              ['label' => $model['model'],'url'=> $breadcrumbModelUrl],
@@ -150,6 +155,11 @@ class CarController extends Controller
         $makeModel = new MakeModel();
 
         $modelAdvancedSearchForm = new SearchAdvancedForm();
+
+        $modelAdvancedSearchForm->make = $model['make'];
+        $modelAdvancedSearchForm->model = $model['model'];
+
+        $modelsSearchForm = $makeModel->getModelsToFormSearchForm($model['make']);
         $makesSearch = $makeModel->getMakesToFormSearchForm();
 
        /*
@@ -163,8 +173,8 @@ class CarController extends Controller
        */
 
        return $this->render('year', 
-                ['yearList'=>$yearList,'countItemInColumns'=>$countItemInColumns,'carsList'=>$carsList,'sort'=>$sort,
-                'breadcrumbs'=>$breadcrumbs,'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch]
+                ['yearList'=>$yearList,'countItemInColumns'=>$countItemInColumns,'carsList'=>$carsList,'sort'=>$sort,'breadcrumbs'=>$breadcrumbs,
+                'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch,'modelsSearchForm'=>$modelsSearchForm]
             );
     }
 
