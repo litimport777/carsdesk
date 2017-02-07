@@ -3,11 +3,13 @@ namespace frontend\models;
 
 use yii\base\Model;
 use common\models\User;
+use frontend\models\Search;
+use yii\db\Query;
 
 /**
  * Signup form
  */
-class SearchAdvancedForm extends Model
+class SearchAdvancedForm extends Search
 {
     public $make;
     public $model;
@@ -29,7 +31,7 @@ class SearchAdvancedForm extends Model
 
 
 
-    private static $meliage_data = [
+    protected static $meliage_data = [
                0 => 0,
                10000 => 10000,
                20000 => 20000,
@@ -44,7 +46,7 @@ class SearchAdvancedForm extends Model
             ];
 
 
-    private static $year_data = [];
+    protected static $year_data = [];
     /*
     private static $year_data = [
                     2016,
@@ -108,7 +110,7 @@ class SearchAdvancedForm extends Model
 
         
        
-    private static $price_data = [ 
+    protected static $price_data = [ 
                   0 => '$0',
                1000 => '$1000',
                2000 => '$2000',
@@ -156,13 +158,13 @@ class SearchAdvancedForm extends Model
 
     //
 
-    private static $body_data = [
+    protected static $body_data = [
         0 => 'ANY',
         1 => 'STANDARD CAB',
         2 => 'CREW CAB',
     ];
 
-    private static $color_data = [
+    protected static $color_data = [
         0 => 'ANY',
         1 => 'BEIGE',
         2 => 'BLACK',
@@ -183,14 +185,14 @@ class SearchAdvancedForm extends Model
     ];
 
 
-    private static $transmission_data = [
+    protected static $transmission_data = [
             0 => 'ANY',
             1 => 'AUTOMATIC',
             2 => 'MANUAL',
     ];
 
 
-    private static $engine_data = [
+    protected static $engine_data = [
             0 => 'ANY',
             1 => 'DIESEL',
             2 => 'GAS',
@@ -235,6 +237,17 @@ class SearchAdvancedForm extends Model
             ['price_from', 'compare', 'compareAttribute' => 'price_to', 'operator' => '<=', 'type' => 'number'],
             ['meliage_from', 'compare', 'compareAttribute' => 'meliage_to', 'operator' => '<=', 'type' => 'number'],
             ['year_from', 'compare', 'compareAttribute' => 'year_to', 'operator' => '>=', 'type' => 'number'],
+
+             [['model', 'zip'], 'default', 'value'=>null],
+
+            [
+                ['model','zip','body','color','transmission','engine','price_from','price_to','meliage_from','meliage_to','year_from','year_to'],
+                'filter','filter'=> function($value){
+                    if ($value == '0')
+                        return null;
+                    else return $value;
+                }
+            ],
          ];
     }
 
@@ -283,5 +296,5 @@ class SearchAdvancedForm extends Model
         return self::$price_data;
     }
 
-  
+
 }

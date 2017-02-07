@@ -60,18 +60,16 @@ class YearModel extends CommonCarModel
                 'attributes' => [
                         
                         'year' => [
-                            'asc' => ['year' => SORT_ASC], // от А до Я
-                            'desc' => ['year' => SORT_DESC], // от Я до А
-                            'default' => SORT_DESC, // сортировка по умолчанию
-                            'label' => 'Заголовок', // название
-                        ],
+                            'asc' => ['year' => SORT_ASC], 
+                            'desc' => ['year' => SORT_DESC], 
+                            'default' => SORT_DESC, 
+                         ],
 
                         'price' => [
-                            'asc' => ['price' => SORT_ASC], // от А до Я
-                            'desc' => ['price' => SORT_DESC], // от Я до А
-                            'default' => SORT_DESC, // сортировка по умолчанию
-                            'label' => 'Цена', // название
-                        ],
+                            'asc' => ['price' => SORT_ASC], 
+                            'desc' => ['price' => SORT_DESC], 
+                            'default' => SORT_DESC, 
+                         ],
 
                     ],
                 ],

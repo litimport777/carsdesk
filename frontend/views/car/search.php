@@ -5,6 +5,7 @@
 use yii\helpers\html;
 use yii\helpers\url;
 use yii\widgets\Breadcrumbs;
+use yii\widgets\ListView;
 
 ?>
 <hr />
@@ -14,3 +15,19 @@ use yii\widgets\Breadcrumbs;
 ?>
 
 <hr />
+
+<?php if(isset($result)):?>
+
+<?php echo $sort->link('year') . ' | ' . $sort->link('price');?>
+
+<hr />
+
+
+<?php
+echo ListView::widget([
+	'dataProvider' => $result,
+	'itemView' => '/_item',
+]);
+?>
+
+<?php endif;?>

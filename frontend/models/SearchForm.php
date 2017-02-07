@@ -3,11 +3,13 @@ namespace frontend\models;
 
 use yii\base\Model;
 use common\models\User;
+use frontend\models\Search;
+use yii\db\Query;
 
 /**
  * Signup form
  */
-class SearchForm extends Model
+class SearchForm extends Search
 {
     public $make;
     public $model;
@@ -21,7 +23,18 @@ class SearchForm extends Model
     {
         return [
             ['make', 'required'],
-            [['model', 'zip'], 'safe']
+            [['make', 'model', 'zip'], 'string'],
+
+            [['model', 'zip'], 'default', 'value'=>null],
+
+            [
+                ['model','zip'],'filter','filter'=> function($value){
+                    if ($value == '0')
+                        return null;
+                    else return $value;
+                }
+            ],
+
          ];
     }
 

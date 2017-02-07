@@ -199,18 +199,30 @@ class CarController extends Controller
     public function actionSearch()
     {
 
-        $model = new SearchForm();
-        
-        if ($model->load(Yii::$app->request->get()) && $model->validate()) {
-            \yii\helpers\VarDumper::dump(Yii::$app->request->get());exit;
+        $result = null;
+
+        if (Yii::$app->request->get('SearchAdvancedForm')) {
+            $modelSearch = new SearchAdvancedForm();
+            if($modelSearch->load(Yii::$app->request->get()) && $modelSearch->validate()){
+                $result = $modelSearch->getResultSearch();
+            }
         }
+
+        if (Yii::$app->request->get('SearchForm')) {
+            $modelSearch = new SearchForm();
+            if($modelSearch->load(Yii::$app->request->get()) && $modelSearch->validate()){
+                $result = $modelSearch->getResultSearch();
+             }
+        }
+
+        $sort = $this->getSort();
 
 
         $breadcrumbs = [
              ['label' => 'Search']
         ];
 
-        return $this->render('search', ['model' => $model,'breadcrumbs'=> $breadcrumbs]);
+        return $this->render('search', ['result' => $result,'breadcrumbs'=> $breadcrumbs,'sort'=>$sort]);
     }
 
     private function getSort()
@@ -220,17 +232,17 @@ class CarController extends Controller
             'attributes' => [
                 
                 'year' => [
-                        'asc' => ['year' => SORT_ASC], // от А до Я
-                        'desc' => ['year' => SORT_DESC], // от Я до А
-                        'default' => SORT_DESC, // сортировка по умолчанию
-                        'label' => 'Год', // название
+                        'asc' => ['year' => SORT_ASC],
+                        'desc' => ['year' => SORT_DESC],
+                        'default' => SORT_DESC,
+                        'label' => 'YEAR',
                     ],
 
-                 'price' => [
-                            'asc' => ['price' => SORT_ASC], // от А до Я
-                            'desc' => ['price' => SORT_DESC], // от Я до А
-                            'default' => SORT_DESC, // сортировка по умолчанию
-                            'label' => 'Цена', // название
+                'price' => [
+                        'asc' => ['price' => SORT_ASC],
+                        'desc' => ['price' => SORT_DESC],
+                        'default' => SORT_DESC,
+                        'label' => 'PRICE',
                         ],
                     
             ],
