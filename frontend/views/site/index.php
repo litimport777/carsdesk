@@ -8,29 +8,26 @@ use yii\widgets\ActiveForm;
 
 
 ?>
-<div class="site-index">
-    <h1>All cars. One place. Simple Search.</h1>
+<div id="tabs-1">
 
 <?php
     $form = ActiveForm::begin([
     'id' => 'search-form',
     'method' => 'get',
     'action' => ['/search'],
-    'options' => ['class' => 'form-horizontal'],
+    'options' => ['class' => 'bookingForm1 wow fadeIn'],
 ]) ?>
-    <?= $form->field($model, 'make')->dropDownList($makesSearch); ?>
-    <?= $form->field($model, 'model')->dropDownList([]); ?>
+    <?= $form->field($model, 'make')->dropDownList($makesSearch, ['class'=>'tmSelect auto']); ?>
+    <?= $form->field($model, 'model')->dropDownList([], ['class'=>'tmSelect auto']); ?>
     <?= $form->field($model, 'zip') ?>
 
     <div class="form-group">
         <div class="col-lg-offset-1 col-lg-11">
-            <?= Html::submitButton('SEARCH', ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton('SEARCH', ['class' => 'btn-big']) ?>
         </div>
     </div>
 <?php ActiveForm::end() ?>
-
-    <hr />
-
+    
 </div>
 
 <div>

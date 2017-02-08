@@ -38,7 +38,7 @@ $this->registerJs('
             var result = $.parseJSON(data);
             if(result == true){
                 var current =$("[data-url=" + id + "]");
-                console.log(current.parent().remove());
+                current.parent().remove();
             }
         });
     }

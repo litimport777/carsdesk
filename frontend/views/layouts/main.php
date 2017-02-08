@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
@@ -11,6 +12,7 @@ use frontend\assets\AppAsset;
 use common\widgets\Alert;
 
 AppAsset::register($this);
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -25,48 +27,70 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => 'My Company',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
-    ];
-    if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-    } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>';
-    }
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => $menuItems,
-    ]);
-    NavBar::end();
-    ?>
+<header id="header">
+  <div class="info wow fadeIn" data-wow-duration="1s" data-wow-delay=".2s">
+    <div class="width-wrapper">
+      <h1>
+        <a href="<?= Yii::$app->homeUrl;?>">
+          <span class="wrapper"><i class="fa fa-car"></i><strong>Car</strong>Sell</span>
+        </a>
+      </h1>
+	  
+      <div class="authorization-block">
+        <div class="authorization">
+          <a class="create" href="#">Create an account</a>
+          <span class="divider"></span>
+		  <?php if(!Yii::$app->user->isGuest):?>
+			  <?php echo Html::beginForm(['/site/logout'], 'post');?>
+					<?= Html::submitButton(
+						'Logout (' . Yii::$app->user->identity->username . ')',
+						['class' => 'logout-form']
+					);?>		  
+			  <?php echo Html::endForm();?>
+		  <?php else:?>
+				<a class="login" href="<?php echo Url::to(['/site/login']);?>">Login</a>
+		  <?php endif;?>
+        </div>
+        <a class="add btn-big" href="#"><span class="plus">+</span>Add advertisement</a>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <div id="stuck_container">
+    <div class="width-wrapper">
+      <nav>
+        <ul class="sf-menu">
+          <li class="current"><a href="<?= Yii::$app->homeUrl;?>">Home</a></li>
+          <li><a href="<?php echo Url::to('/search');?>">Find a car</a>
+          <li><a href="index-2.html">New cars</a></li>
+			<?php if(!Yii::$app->user->isGuest):?>
+			  <li><a href="<?php echo Url::to(['site/accaunt']);?>">Accaunt</a></li>
+			  <li><a href="<?php echo Url::to(['site/accaunt-save']);?>">WatchList</a></li>
+			<?php endif;?>  
+         </ul>
+      </nav>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+ </header>
 
-    <div class="container">
+
+
+<section id="content">
+  <div class="width-wrapper width-wrapper__inset1">
+    <div class="wrapper1">
+      <div class="container">
+        <div class="row">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
-    </div>
-</div>
+		</div>
+	  </div>
+  </div>
+</section>
+
 
 <footer class="footer">
     <div class="container">
