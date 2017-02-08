@@ -7,6 +7,7 @@ use yii\helpers\url;
 use yii\widgets\ActiveForm;
 
 ?>
+<div id="tabs-1">
 
 <?php 
 	if(isset($modelSearch)){
@@ -19,33 +20,89 @@ use yii\widgets\ActiveForm;
     'id' => 'search-form',
     'method' => 'get',
     'action' => ['/search'],
-    'options' => ['class' => 'form-horizontal'],
+    'options' => ['class' => 'bookingForm1 wow fadeIn'],
 ]) ?>
-    <?= $form->field($modelAdvancedSearchForm, 'make')->dropDownList($makesSearch); ?>
-    <?= $form->field($modelAdvancedSearchForm, 'model')->dropDownList($modelsSearch); ?>
-    <?= $form->field($modelAdvancedSearchForm, 'zip') ?>
 	
-	<?= $form->field($modelAdvancedSearchForm, 'body')->dropDownList($modelAdvancedSearchForm::getBodyData()); ?>
-	<?= $form->field($modelAdvancedSearchForm, 'color')->dropDownList($modelAdvancedSearchForm::getColorData()); ?>
-	<?= $form->field($modelAdvancedSearchForm, 'transmission')->dropDownList($modelAdvancedSearchForm::getTransmissionData()); ?>
-	<?= $form->field($modelAdvancedSearchForm, 'engine')->dropDownList($modelAdvancedSearchForm::getEngineData()); ?>
+	<div class="grid_12">
 	
-	<?= $form->field($modelAdvancedSearchForm, 'meliage_from')->dropDownList($modelAdvancedSearchForm::getMeliageData()); ?>
-	<?= $form->field($modelAdvancedSearchForm, 'meliage_to')->dropDownList($modelAdvancedSearchForm::getMeliageData()); ?>
+		<div class="grid_3">
+			<?= $form->field($modelAdvancedSearchForm, 'make')->dropDownList($makesSearch, ['class'=>'tmSelect auto']); ?>
+		</div>
+		
+		<div class="grid_3">	
+			<?= $form->field($modelAdvancedSearchForm, 'model')->dropDownList($modelsSearch, ['class'=>'tmSelect auto']); ?>
+		</div>	
+		
+		<div class="grid_2">	
+			<?= $form->field($modelAdvancedSearchForm, 'body')->dropDownList($modelAdvancedSearchForm::getBodyData(), ['class'=>'tmSelect auto']); ?>
+		</div>	
+		
+		<div class="grid_2">	
+			<?= $form->field($modelAdvancedSearchForm, 'color')->dropDownList($modelAdvancedSearchForm::getColorData(), ['class'=>'tmSelect auto']); ?>
+		</div>
+		
+	</div>
 	
-	<?= $form->field($modelAdvancedSearchForm, 'year_from')->dropDownList($modelAdvancedSearchForm::getYearData()); ?>
-	<?= $form->field($modelAdvancedSearchForm, 'year_to')->dropDownList($modelAdvancedSearchForm::getYearData()); ?>
+	<div class="grid_12">
 	
-	<?= $form->field($modelAdvancedSearchForm, 'price_from')->dropDownList($modelAdvancedSearchForm::getPriceFromData()); ?>
-	<?= $form->field($modelAdvancedSearchForm, 'price_to')->dropDownList($modelAdvancedSearchForm::getPriceToData()); ?>
+		<div class="grid_1">
+			<?= $form->field($modelAdvancedSearchForm,'year_from')->dropDownList($modelAdvancedSearchForm::getYearData(),['class'=>'tmSelect auto']);?>
+		</div>
+		
+		<div class="grid_1">	
+			<?= $form->field($modelAdvancedSearchForm,'year_to')->dropDownList($modelAdvancedSearchForm::getYearData(),['class'=>'tmSelect auto']);?>
+		</div>
 	
+		<div class="grid_2">
+			<?= $form->field($modelAdvancedSearchForm,'meliage_from')->dropDownList($modelAdvancedSearchForm::getMeliageData(),['class'=>'tmSelect auto']);?>
+		</div>	
+		
+		<div class="grid_2">	
+			<?= $form->field($modelAdvancedSearchForm,'meliage_to')->dropDownList($modelAdvancedSearchForm::getMeliageData(),['class'=>'tmSelect auto']);?>
+		</div>	
+						
+		<div class="grid_2">
+			<?= $form->field($modelAdvancedSearchForm,'price_from')->dropDownList($modelAdvancedSearchForm::getPriceFromData(),['class'=>'tmSelect auto']);?>
+		</div>
+		
+		<div class="grid_2">	
+			<?= $form->field($modelAdvancedSearchForm,'price_to')->dropDownList($modelAdvancedSearchForm::getPriceToData(),['class'=>'tmSelect auto']);?>
+		</div>
+		
+	</div>
+	
+	<div class="grid_12">
+	
+		<div class="grid_3">
+			<?= $form->field($modelAdvancedSearchForm,'transmission')->dropDownList($modelAdvancedSearchForm::getTransmissionData(),['class'=>'tmSelect auto']);?>
+		</div>
+		
+		<div class="grid_3">	
+			<?= $form->field($modelAdvancedSearchForm,'engine')->dropDownList($modelAdvancedSearchForm::getEngineData(),['class'=>'tmSelect auto']);?>
+		</div>
+		
+		<div class="grid_4">	
+			<?= $form->field($modelAdvancedSearchForm,'zip');?>
+		</div>
+		
+	</div>
 
-    <div class="form-group">
-        <div class="col-lg-offset-1 col-lg-11">
-            <?= Html::submitButton('SEARCH', ['class' => 'btn btn-primary']) ?>
-        </div>
+    <div class="grid_12">
+	
+		<div class="grid_3">
+		</div>
+		
+		<div class="grid_4">
+			<?= Html::submitButton('SEARCH', ['class' => 'btn-big btn-search-main-page']) ?>
+		</div>
+		
+		<div class="grid_3">
+		</div>
+		
     </div>
 <?php ActiveForm::end() ?>
+
+</div>
 
 <?php
 
