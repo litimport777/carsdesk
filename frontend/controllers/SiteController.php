@@ -253,7 +253,7 @@ class SiteController extends Controller
                 
         $accauntData = null;
         $accauntData = $accauntModel->getAccauntSaveData(Yii::$app->user->id);
-        
+
         return $this->render('accaunt_save',['accauntdata'=>$accauntData]);
     }
 
@@ -278,6 +278,18 @@ class SiteController extends Controller
 
             $accauntModel = new AccauntForm;
             $result = $accauntModel->setSaveData($param);
+            echo json_encode((bool)$result); Yii::$app->end();
+        }
+    }
+
+    public function actionDeleteData()
+    {
+        $request = Yii::$app->request;
+        if($request->isPost && $request->isAjax){
+            $param = $request->post('id'); 
+
+            $accauntModel = new AccauntForm;
+            $result = $accauntModel->deleteData($param);
             echo json_encode((bool)$result); Yii::$app->end();
         }
     }

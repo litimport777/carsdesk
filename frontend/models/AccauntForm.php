@@ -86,5 +86,15 @@ class AccauntForm extends ActiveRecord
         
         return $result;
     }
+
+    public function deleteData($auto)
+    {
+        $userId = Yii::$app->user->id;
+        $autoId = $auto;
+
+        $result = Yii::$app->db->createCommand()->delete('user_car', ['user_id'=> $userId,'tbl_lots_temp_id'=> $autoId])->execute();
+
+        return $result;
+    }
    
 }
