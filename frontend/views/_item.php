@@ -9,4 +9,15 @@ use yii\helpers\Url;
 	<div><?= $model['model']; ?></div>
 	<div><?= $model['year']; ?></div>
 	<div><?= $model['price']; ?></div>
+	<br />
+	<div><?= $model['tbl_lots_temp_id']; ?></div>
+	<div>
+		<?php if(!$model['tbl_lots_temp_id']):?>
+			<button data-url="<?= $model['id']; ?>" class="save-car">SAVE</button>
+			<span style="display: none">success</span>
+		<?php else:?>
+			<span>success</span>
+		<?php endif;?>
+		
+	</div>
 </div>

@@ -48,14 +48,23 @@ class ModelModel extends CommonCarModel
 
                       
         $provider = new SqlDataProvider([
-            'sql' => "SELECT price, model, make, year,  CONCAT_WS('-',
+            'sql' => "SELECT `tbl_lots_temp`.`id`, price, model, make, year, tbl_lots_temp_id,
+                                                        CONCAT_WS('-',
                                                        'used',
                                                         year,
                                                         LOWER(REPLACE(REPLACE(REPLACE(make, ' ', ''), '.', ''), '-', '')),
                                                         LOWER(REPLACE(REPLACE(REPLACE(model, ' ', ''), '.', ''), '-', '')),
                                                         vin
-                                                    ) AS alias  FROM {{tbl_lots_temp}} WHERE make=:make AND model=:model",
-            'params' => [':make' => $make, ':model' => $model],
+                                                    ) AS alias  FROM {{tbl_lots_temp}} 
+
+
+                                                    LEFT JOIN {{user_car}}   
+                                                    ON `tbl_lots_temp`.`id` = `user_car`.`tbl_lots_temp_id` 
+                                                    AND `user_car`.`user_id` = :user_id
+
+
+                                                    WHERE make=:make AND model=:model",
+            'params' => [':make' => $make, ':model' => $model, ':user_id' => Yii::$app->user->id],
             'totalCount' => $count,
             'pagination' => [
                 'pageSize' => 40,

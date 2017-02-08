@@ -17,13 +17,16 @@ class Search extends Model
     {
            //var_dump($this->attributes);exit;
            $query = (new  Query())->from('tbl_lots_temp')->where("`year` != '0' AND year != '' AND vin != ''");
-           $query->addSelect(["*", 'CONCAT_WS("-",
+           $query->addSelect(["`tbl_lots_temp`.`id`", "price", "model", "make", "year", "tbl_lots_temp_id", 'CONCAT_WS("-",
                                                        "used",
                                                         year,
                                                         LOWER(REPLACE(REPLACE(REPLACE(make, " ", ""), ".", ""), "-", "")),
                                                         LOWER(REPLACE(REPLACE(REPLACE(model, " ", ""), ".", ""), "-", "")),
                                                         vin
                                                     ) AS alias ']);
+
+           $query->leftJoin('user_car', '`tbl_lots_temp`.`id` = `user_car`.`tbl_lots_temp_id` AND `user_car`.`user_id` = :user_id',
+                                                     [':user_id' => Yii::$app->user->id]);
 
            if(isset($this->make)){
                 $query->andWhere(['make'=> $this->make]);

@@ -70,6 +70,24 @@ $this->registerJs('
         }
         $("#searchadvancedform-model").html(option);
     }
+	
+	$(".save-car").each(function(idx, el){
+        $(this).on("click", function(event){
+            var id = $(this).data().url;
+            sendRequestSaveData(id);
+        });
+    });
+
+    function sendRequestSaveData(id){
+        $.post("/site/save-data", {"id": id}, function(data){
+            var result = $.parseJSON(data);
+            if(result == true){
+                var current =$("[data-url=" + id + "]");
+                current.next().show();
+                current.hide();
+            }
+        });
+    }
 ')
 
 ?>

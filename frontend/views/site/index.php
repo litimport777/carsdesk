@@ -6,6 +6,7 @@ use yii\helpers\html;
 use yii\helpers\url;
 use yii\widgets\ActiveForm;
 
+
 ?>
 <div class="site-index">
     <h1>All cars. One place. Simple Search.</h1>
@@ -59,10 +60,20 @@ use yii\widgets\ActiveForm;
 	<div><?= $car['model']; ?></div>
 	<div><?= $car['year']; ?></div>
 	<div><?= $car['price']; ?></div>
+	
+	<br />
+	<div><?= $car['tbl_lots_temp_id']; ?></div>
 
-    <?php if(Yii::$app->user->id):?>
-        <div><button data-url="<?= $car['id']; ?>" class="save-car">SAVE</button><span style="display: none">success</span></div>
-    <?php endif;?>
+    <div>
+		<?php if(!$car['tbl_lots_temp_id']):?>
+			<button data-url="<?= $car['id']; ?>" class="save-car">SAVE</button>
+			<span style="display: none">success</span>
+		<?php else:?>
+			<span>success</span>
+		<?php endif;?>
+		
+	</div>
+	
     <?php endforeach;?>
 </div>
 
