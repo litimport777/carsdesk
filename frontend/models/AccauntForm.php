@@ -71,9 +71,20 @@ class AccauntForm extends ActiveRecord
                                             WHERE `user_car`.`user_id` = :user_id", [':user_id'=>$user_id])->queryAll();
     }
 
-    public function setSaveData($param)
+    public function setSaveData($auto)
     {
-        return $param;
+        $userId = Yii::$app->user->id;
+        $autoId = $auto;
+        $resultSelect = Yii::$app->db->createCommand("SELECT id FROM {{user_car}} WHERE user_id= :user_id AND tbl_lots_temp_id= :tbl_lots_temp_id LIMIT 1",
+            [':user_id'=> $userId,':tbl_lots_temp_id'=>$autoId])->queryScalar();
+
+        if(!$resultSelect){
+            $result = Yii::$app->db->createCommand()->insert('user_car', ['user_id'=> $userId,'tbl_lots_temp_id'=>$autoId])->execute();
+        } else {
+            $result = 1;
+        }
+        
+        return $result;
     }
    
 }

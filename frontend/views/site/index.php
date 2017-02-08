@@ -61,7 +61,7 @@ use yii\widgets\ActiveForm;
 	<div><?= $car['price']; ?></div>
 
     <?php if(Yii::$app->user->id):?>
-        <div><button data-url="<?= $car['id']; ?>" class="save-car">SAVE</button></div>	
+        <div><button data-url="<?= $car['id']; ?>" class="save-car">SAVE</button><span style="display: none">success</span></div>
     <?php endif;?>
     <?php endforeach;?>
 </div>
@@ -100,8 +100,12 @@ $this->registerJs('
 
     function sendRequestSaveData(id){
         $.post("/site/save-data", {"id": id}, function(data){
-            //var result = $.parseJSON(data);
-            //renderModel(result);
+            var result = $.parseJSON(data);
+            if(result == true){
+                var current =$("[data-url=" + id + "]");
+                current.next().show();
+                current.hide();
+            }
         });
     }
 ')

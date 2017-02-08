@@ -278,7 +278,7 @@ class SiteController extends Controller
 
             $accauntModel = new AccauntForm;
             $result = $accauntModel->setSaveData($param);
-            echo json_encode($result); Yii::$app->end();
+            echo json_encode((bool)$result); Yii::$app->end();
         }
     }
 }
