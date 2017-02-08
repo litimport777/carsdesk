@@ -24,10 +24,13 @@ class YearModel extends CommonCarModel
                             ->queryAll();
     }
 
-    public function getCountItemInColumn()
+    public function getCountItemInColumn($make, $model)
     {
 
-        $countIems = Yii::$app->db->createCommand('SELECT COUNT(*) FROM {{tbl_models_as}}')->queryScalar();
+        $countIems = Yii::$app->db->createCommand('SELECT COUNT(*) 
+        										  FROM {{tbl_models_as}} 
+        										  WHERE make = :make AND model = :model'
+        										, [':make'=>$make, ':model'=> $model])->queryScalar();
         return ceil($countIems/self::COUNT_COLUMN);
     }
 

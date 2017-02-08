@@ -17,35 +17,46 @@ use yii\widgets\ActiveForm;
     'action' => ['/search'],
     'options' => ['class' => 'bookingForm1 wow fadeIn'],
 ]) ?>
-    <?= $form->field($model, 'make')->dropDownList($makesSearch, ['class'=>'tmSelect auto']); ?>
-    <?= $form->field($model, 'model')->dropDownList([], ['class'=>'tmSelect auto']); ?>
-    <?= $form->field($model, 'zip') ?>
+	<div class="grid_3">
+		<?= $form->field($model, 'make')->dropDownList($makesSearch, ['class'=>'tmSelect auto']); ?>
+	</div>
+	
+	<div class="grid_3">
+		<?= $form->field($model, 'model')->dropDownList([], ['class'=>'tmSelect auto']); ?>
+	</div>
+	
+	<div class="grid_3">
+		<?= $form->field($model, 'zip') ?>
+	</div>
 
-    <div class="form-group">
-        <div class="col-lg-offset-1 col-lg-11">
-            <?= Html::submitButton('SEARCH', ['class' => 'btn-big']) ?>
-        </div>
-    </div>
+    <div class="grid_3">
+        <?= Html::submitButton('SEARCH', ['class' => 'btn-big btn-search-main-page']) ?>
+     </div>
 <?php ActiveForm::end() ?>
     
 </div>
 
-<div>
+<div class="clearfix"></div>
+<br />
+
+<div class="grid_12 main-page-list-model">
 <?php $cnt = 1;?>
 <?php $cntItems = count($makes);?>
 
 <?php foreach ($makes as $make):?>
     <?php if((($cnt - 1) % $countItemInColumns == 0) || ($cnt == 1)):?>
-        <div>
+        <div class="grid_2">
     <?php endif;?>
-
-    <?php echo Html::a($make['make'], Url::to($make['alias'], true));?>
-
+		<div>
+			<?php echo Html::a($make['make'], Url::to($make['alias'], true));?>
+		</div>
     <?php if(($cnt % $countItemInColumns == 0) || ($cnt == $cntItems)):?>
-        </div>
+        
+		</div>
     <?php endif;?>
 <?php $cnt++;?>
 <?php endforeach;?>
+	
 </div>
 
 

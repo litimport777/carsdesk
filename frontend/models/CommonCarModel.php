@@ -11,6 +11,6 @@ use yii\base\Model;
 class CommonCarModel extends Model
 {
     
-    const COUNT_COLUMN = 10;
+    const COUNT_COLUMN = 5;
 
 }

@@ -32,7 +32,8 @@ class CarController extends Controller
        $modelModel = new ModelModel();
        $modelList = $modelModel->getModels($model['make']);
 
-       $countItemInColumns = $modelModel->getCountItemInColumn();
+       $countItemInColumns = $modelModel->getCountItemInColumn($model['make']);
+       //var_dump($countItemInColumns);exit;
 
        //
        $carsList = $makeModel->getCarsMakeList($model['make']);
@@ -77,7 +78,7 @@ class CarController extends Controller
         $yearModel = new YearModel();
         $yearList = $yearModel->getYearsList($model['make'], $model['model']);
 
-        $countItemInColumns = $yearModel->getCountItemInColumn();
+        $countItemInColumns = $yearModel->getCountItemInColumn($model['make'], $model['model']);
 
         //
         $carsList = $modelModel->getCarsModelList($model['make'], $model['model']);
@@ -131,7 +132,7 @@ class CarController extends Controller
         $yearModel = new YearModel();
         $yearList = $yearModel->getYearsList($model['make'], $model['model']);
 
-        $countItemInColumns = $yearModel->getCountItemInColumn();
+        $countItemInColumns = $yearModel->getCountItemInColumn($model['make'], $model['model']);
 
         //
         $carsList = $yearModel->getCarsYearList($model['make'], $model['model'], $model['year_data']);
@@ -197,9 +198,9 @@ class CarController extends Controller
         
        
         $breadcrumbs = [
-             ['label' => $modelData['make'], 'url'=> $makeAlias],
-             ['label' => $modelData['model'],'url'=> $modelAlias],
-             ['label' => $modelData['year_data'], 'url'=> $yearAlias],
+             ['label' => $modelData['make'], 'url'=> '/' . $makeAlias],
+             ['label' => $modelData['model'],'url'=> '/' . $modelAlias],
+             ['label' => $modelData['year_data'], 'url'=> '/' . $yearAlias],
              ['label' => $car['vin']]
         ];
 

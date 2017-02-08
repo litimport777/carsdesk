@@ -1269,6 +1269,29 @@ nav {
 .logout-form:hover{
 	cursor: pointer;
 }
+.btn-search-main-page{
+	position: relative;
+    top: 20px;
+}
+.btn-search-main-page:hover{
+	cursor: pointer;
+}
+.main-page-list-model a{
+	font-size: 0.75em;
+}
+.main-page-list-model .grid_2{
+	width: 200px;
+}
+.breadcrumb li {
+	display: inline-block;
+	position: relative;
+    z-index: 99;
+	font-size: 1.1em;
+}
+ul.breadcrumb{
+	text-align: center;
+	padding-bottom: 20px !important;
+}
 /*========================================================
                     FOOTER styles
 =========================================================*/

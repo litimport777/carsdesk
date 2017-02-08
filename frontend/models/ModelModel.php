@@ -26,10 +26,13 @@ class ModelModel extends CommonCarModel
                             ->queryAll();
     }
 
-    public function getCountItemInColumn()
+    public function getCountItemInColumn($make)
     {
 
-        $countIems = Yii::$app->db->createCommand('SELECT COUNT(*) FROM {{tbl_models}}')->queryScalar();
+        $countIems = Yii::$app->db->createCommand('SELECT COUNT(*) 
+                                                  FROM {{tbl_models}}
+                                                  WHERE make = :make AND count_make > :count_make', 
+                        [':make'=>$make, ':count_make'=> self::COUNT_MAKE_MODEL])->queryScalar();
         return ceil($countIems/self::COUNT_COLUMN);
     }
 
