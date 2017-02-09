@@ -34,8 +34,9 @@ use yii\widgets\Breadcrumbs;
 
 <?php echo $this->render('/_advanced_search', ['modelAdvancedSearchForm'=>$modelAdvancedSearchForm, 'makesSearch'=>$makesSearch]);?>
 
-
-<?php echo $sort->link('year') . ' | ' . $sort->link('price');?>
+<div class="grid_12 model-sort">
+	<?php echo $sort->link('year') . ' | ' . $sort->link('price');?>
+</div>
 
 	
 <?php echo $this->render('/_item', ['carsList'=>$carsList, 'pages'=>$pages]);?>

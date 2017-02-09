@@ -43,10 +43,11 @@ if(isset($modelsSearchForm)){
 <?php echo $this->render('/_advanced_search', 
 	['modelAdvancedSearchForm'=>$modelAdvancedSearchForm, 'makesSearch'=>$makesSearch, 'modelSearch' => $modelSearch]);?>
 
-<hr />
 
-<?php echo $sort->link('year') . ' | ' . $sort->link('price');?>
-<hr />
+<div class="grid_12 model-sort">
+	<?php echo $sort->link('year') . ' | ' . $sort->link('price');?>
+</div>
+
 
 	
 <?php echo $this->render('/_item', ['carsList'=>$carsList, 'pages'=>$pages]);?>

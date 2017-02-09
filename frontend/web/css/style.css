@@ -1296,6 +1296,13 @@ ul.breadcrumb{
 	text-align: center;
 	padding-bottom: 20px !important;
 }
+
+.model-sort{
+	margin-top: 40px !important;
+    margin-bottom: -30px !important;
+	position: relative;
+    z-index: 99;
+}
 /*========================================================
                     FOOTER styles
 =========================================================*/

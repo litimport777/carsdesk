@@ -18,9 +18,9 @@ use yii\widgets\Breadcrumbs;
 
 <?php if(isset($result)):?>
 
-<?php echo $sort->link('year') . ' | ' . $sort->link('price');?>
-
-<hr />
+<div class="grid_12 model-sort">
+	<?php echo $sort->link('year') . ' | ' . $sort->link('price');?>
+</div>
 
 
 	
