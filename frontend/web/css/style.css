@@ -147,13 +147,17 @@ h6 {
   border-top: 1px solid #808080;
   border-left: 1px solid #808080;
 }
+/*
 .btn-big:hover {
   color: #8ad329;
 }
+*/
+/*
 .btn-big:hover .plus {
   background: #ffffff;
   color: #8ad329;
 }
+*/
 .btn-big .plus {
   display: inline-block;
   font: 700 37px/32px "Lato", sans-serif;
