@@ -17,6 +17,8 @@ use yii\widgets\ActiveForm;
 	<div><?= $value['model']; ?></div>
 	<div><?= $value['year']; ?></div>
 	<div><?= $value['price']; ?></div>
+	
+	<?php echo Html::img($this->context->getImageUrl(1, $value['hash'], $value['images_date'], true));?>
 	<br/>
 	<button data-url="<?= $value['tbl_lots_temp_id']; ?>" class="delete-car">DELETE</button>
 </div>
