@@ -20,7 +20,7 @@ use frontend\models\AccauntForm;
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends CommonController
 {
     /**
      * @inheritdoc

@@ -6,7 +6,6 @@ use yii\helpers\html;
 use yii\helpers\url;
 use yii\widgets\ActiveForm;
 
-
 ?>
 <div id="tabs-1">
 
@@ -71,6 +70,8 @@ use yii\widgets\ActiveForm;
 	
 	<br />
 	<div><?= $car['tbl_lots_temp_id']; ?></div>
+	
+	<?php echo Html::img($this->context->getImageUrl(1, $car['hash'], $car['images_date'], true));?>
 
     <div>
 		<?php if(!$car['tbl_lots_temp_id']):?>

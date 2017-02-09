@@ -9,6 +9,10 @@ use yii\helpers\Url;
 	<div><?= $model['model']; ?></div>
 	<div><?= $model['year']; ?></div>
 	<div><?= $model['price']; ?></div>
+	
+	
+	
+	<?php echo Html::img($this->context->getImageUrl(1, $model['hash'], $model['images_date'], true));?>
 	<br />
 	<div><?= $model['tbl_lots_temp_id']; ?></div>
 	<div>

@@ -15,7 +15,7 @@ use frontend\models\SearchAdvancedForm;
 /**
  * Site controller
  */
-class CarController extends Controller
+class CarController extends CommonController
 {
     
 

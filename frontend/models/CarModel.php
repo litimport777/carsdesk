@@ -17,8 +17,9 @@ class CarModel extends CommonCarModel
    {
    		$db = Yii::$app->db;
 
-   		$result = $db->cache(function ($db){
-   			return $db->createCommand("SELECT  `tbl_lots_temp`.`id`, price, model, make, year, tbl_lots_temp_id, 
+
+   		//$result = $db->cache(function ($db){
+   			return $db->createCommand("SELECT  `tbl_lots_temp`.`id`, price, model, make, year, hash, images_date, tbl_lots_temp_id, 
 													CONCAT_WS('-',
                                                    'used',
                                                     year,
@@ -34,8 +35,8 @@ class CarModel extends CommonCarModel
 
                                                     WHERE make != '' AND model != ''  AND year != 0 AND year != '' AND vin != '' 
                                                     ORDER BY RAND() LIMIT 6", [':user_id' => Yii::$app->user->id])->queryAll();
-   		}, 3600);
-   		return $result;
+   		//}, 3600);
+   		//return $result;
    }
 
    public function getCar($vin)

@@ -17,7 +17,8 @@ class Search extends Model
     {
            //var_dump($this->attributes);exit;
            $query = (new  Query())->from('tbl_lots_temp')->where("`year` != '0' AND year != '' AND vin != ''");
-           $query->addSelect(["`tbl_lots_temp`.`id`", "price", "model", "make", "year", "tbl_lots_temp_id", 'CONCAT_WS("-",
+           $query->addSelect(["`tbl_lots_temp`.`id`", "price", "model", "make", "year", "tbl_lots_temp_id", "hash", "images_date",
+                                                       'CONCAT_WS("-",
                                                        "used",
                                                         year,
                                                         LOWER(REPLACE(REPLACE(REPLACE(make, " ", ""), ".", ""), "-", "")),
