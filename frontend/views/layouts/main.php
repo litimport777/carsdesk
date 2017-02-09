@@ -96,7 +96,6 @@ AppAsset::register($this);
   </div>
 </section>
 
-
 <!--========================================================
                           FOOTER
 =========================================================-->
@@ -105,57 +104,30 @@ AppAsset::register($this);
     <div class="wrapper4">
       <div class="container">
         <div class="row">
-          <div class="grid_3">
-            <div class="box2">
-              <h5>Cars for sale</h5>
-              <ul class="list1">
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s"><a href="#">Used cars for sale</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s"><a href="#">Second hand cars for sale</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s"><a href="#">New cars for sale</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s"><a href="#">Special Offers</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s"><a href="#">Compare Cars</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="grid_3">
-            <div class="box2">
-              <h5>Car research</h5>
-              <ul class="list1">
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s"><a href="#">Research Cars</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s"><a href="#">Car Valuations</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s"><a href="#">Car Finance</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s"><a href="#">Car Insurance</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s"><a href="#">Car Comparisons</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.6s"><a href="#">Car Facts</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.7s"><a href="#">History Reports</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="grid_3">
-            <div class="box2">
-              <h5>News & Reviews</h5>
-              <ul class="list1">
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s"><a href="#">Car News</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s"><a href="#">Car Reviews</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s"><a href="#">Car Videos</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s"><a href="#">Car Advice</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s"><a href="#">New Car Calendar</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="grid_3">
-            <div class="box2">
-              <h5>Categories</h5>
-              <ul class="list1">
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s"><a href="#">New cars</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s"><a href="#">Bikes</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s"><a href="#">Boats</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s"><a href="#">Trucks</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s"><a href="#">Caravans</a></li>
-                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.6s"><a href="#">Machinery</a></li>
-              </ul>
-            </div>
-          </div>
+		
+		
+		<?php $cnt = 1;?>
+		<?php $countItemInColumns = $this->context->countItemInColumnsCityData;?>
+		<?php $dataStatistic = $this->context->getStatisticToCity();?>
+		<?php $cntItems = count($dataStatistic);?>
+
+		<?php foreach ($dataStatistic as $value):?>
+			<?php if((($cnt - 1) % $countItemInColumns == 0) || ($cnt == 1)):?>
+				<div class="grid_3">
+					<div class="box2">
+						<ul class="list1">
+			<?php endif;?>
+							<li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+								<?php echo Html::a($value['city'] . ' (' . $value['cnt'] . ')', '#', ['onclick'=>'return false']);?>
+							</li>
+			<?php if(($cnt % $countItemInColumns == 0) || ($cnt == $cntItems)):?>
+						</ul>
+					</div>
+				</div>
+			<?php endif;?>
+		<?php $cnt++;?>
+		<?php endforeach;?>
+                  
         </div>
       </div>
     </div>

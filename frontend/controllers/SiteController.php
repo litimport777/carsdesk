@@ -13,7 +13,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\MakeModel;
-USE frontend\models\CarModel;
+use frontend\models\CarModel;
 use frontend\models\SearchForm;
 use frontend\models\AccauntForm;
 
