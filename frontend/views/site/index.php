@@ -58,34 +58,97 @@ use yii\widgets\ActiveForm;
 	
 </div>
 
-
-<div>
-    <?php foreach($carsRandom as $car): ?>
-    <h2>
-		<?php echo Html::a($car['make'], Url::to($car['alias'], true));?>
-	</h2>
-	<div><?= $car['model']; ?></div>
-	<div><?= $car['year']; ?></div>
-	<div><?= $car['price']; ?></div>
-	
-	<br />
-	<div><?= $car['tbl_lots_temp_id']; ?></div>
-	
-	<?php echo Html::img($this->context->getImageUrl(1, $car['hash'], $car['images_date'], true));?>
-
-    <div>
-		<?php if(!$car['tbl_lots_temp_id']):?>
-			<button data-url="<?= $car['id']; ?>" class="save-car">SAVE</button>
-			<span style="display: none">success</span>
-		<?php else:?>
-			<span>success</span>
-		<?php endif;?>
-		
-	</div>
-	
-    <?php endforeach;?>
+<?php //var_dump($carsRandom);?>
+<div class="wrapper2 grid_12">
+	<div class="border-wrapper1 wrapper3">
+        <div class="row">	
+			<?php for($i = 0; $i <= 2; $i++): ?>
+				<div class="grid_4">
+					<div class="box1">
+					
+						<h4 class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+							<?php echo Html::a($carsRandom[$i]['make'] . ' ' . $carsRandom[$i]['model'], Url::to($carsRandom[$i]['alias'], true));?>
+						</h4>
+						
+						<?php echo Html::img($this->context->getImageUrl(1, $carsRandom[$i]['hash'], $carsRandom[$i]['images_date'], true),
+							['class' => 'wow fadeIn']);?>
+						<div class="info wow fadeIn" data-wow-duration="1s" data-wow-delay=".2s">
+						
+							<span class="first">Mileage: <span class="highlighted"><?= $carsRandom[$i]['odometer']?> km</span></span>
+							<span class="second">Year: <span class="highlighted"><?= $carsRandom[$i]['year']; ?></span></span>
+							<div class="clearfix"></div>
+						
+						</div>
+						
+						<div class="info2 wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s">
+							<div class="price">
+							  <span class="first">Price:</span>
+							  <span class="second">$<?= $carsRandom[$i]['price']; ?></span>
+							</div>
+							<a class="btn-default" href="#" onclick="return false">
+							  <?php if(!$carsRandom[$i]['tbl_lots_temp_id']):?>
+									<span  data-url="<?= $carsRandom[$i]['id']; ?>" class="save-car">SAVE</span>
+									<span style="display: none">SUCCESS</span>
+							  <?php else:?>
+									<span>SUCCESS</span>
+							  <?php endif;?>
+							</a>
+							<div class="clearfix"></div>
+                        </div>						
+						
+					</div>
+				</div>
+			<?php endfor;?>
+		</div>
+    </div>
 </div>
 
+<div class="wrapper2 grid_12">
+	<div class="border-wrapper1 wrapper3">
+        <div class="row">	
+			<?php for($i = 3; $i <= 5; $i++): ?>
+				<div class="grid_4">
+					<div class="box1">
+					
+						<h4 class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+							<?php echo Html::a($carsRandom[$i]['make'] . ' ' . $carsRandom[$i]['model'], Url::to($carsRandom[$i]['alias'], true));?>
+						</h4>
+						
+						<?php echo Html::img($this->context->getImageUrl(1, $carsRandom[$i]['hash'], $carsRandom[$i]['images_date'], true),
+							['class' => 'wow fadeIn']);?>
+						<div class="info wow fadeIn" data-wow-duration="1s" data-wow-delay=".2s">
+						
+							<span class="first">Mileage: <span class="highlighted"><?= $carsRandom[$i]['odometer']?> km</span></span>
+							<span class="second">Year: <span class="highlighted"><?= $carsRandom[$i]['year']; ?></span></span>
+							<div class="clearfix"></div>
+						
+						</div>
+						
+						<div class="info2 wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s">
+							<div class="price">
+							  <span class="first">Price:</span>
+							  <span class="second">$<?= $carsRandom[$i]['price']; ?></span>
+							</div>
+							<a class="btn-default" href="#" onclick="return false">
+							  <?php if(!$carsRandom[$i]['tbl_lots_temp_id']):?>
+									<span  data-url="<?= $carsRandom[$i]['id']; ?>" class="save-car">SAVE</span>
+									<span style="display: none">SUCCESS</span>
+							  <?php else:?>
+									<span>SUCCESS</span>
+							  <?php endif;?>
+							</a>
+							<div class="clearfix"></div>
+                        </div>
+											
+					</div>
+				</div>
+			<?php endfor;?>
+		</div>
+    </div>
+</div>
+
+
+ 
 
 <?php
 
