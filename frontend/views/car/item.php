@@ -21,4 +21,20 @@ use yii\widgets\Breadcrumbs;
 <div><?= $car['year']; ?></div>
 <div><?= $car['price']; ?></div>
 
+<div>
+	<?php for($i = 1; $i <= $car['count_images']; $i++): ?>
+
+		<?php echo Html::img($this->context->getImageUrl($i, $car['hash'], $car['images_date'], true));?>
+		
+	<?php endfor;?>
+</div>
+
+<div>
+	<?php for($i = 1; $i <= $car['count_images']; $i++): ?>
+
+		<?php echo Html::img($this->context->getImageUrl($i, $car['hash'], $car['images_date'], false));?>
+		
+	<?php endfor;?>
+</div>
+
 
