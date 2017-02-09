@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\data\Sort;
+use yii\data\Pagination;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use frontend\models\MakeModel;
@@ -18,6 +19,10 @@ use frontend\models\SearchAdvancedForm;
 class CarController extends CommonController
 {
     
+
+    public $modelCounter = 1;
+    public $countItemInColumns = 3;
+
 
     public function actionIndex($make)
     {
@@ -49,6 +54,10 @@ class CarController extends CommonController
        $makesSearch = $makeModel->getMakesToFormSearchForm();
 
        $modelAdvancedSearchForm->make = $model['make'];
+
+
+       $pages = new Pagination(['totalCount' => $carsList->totalCount, 'pageSize' => 30]);
+
        /*
        \yii\helpers\VarDumper::dump('actionIndex');
        \yii\helpers\VarDumper::dump('<br />');
@@ -62,7 +71,7 @@ class CarController extends CommonController
 
         return $this->render('index', 
             ['modelList'=>$modelList,'countItemInColumns'=>$countItemInColumns,'carsList'=>$carsList,'sort'=>$sort,
-            'breadcrumbs'=>$breadcrumbs, 'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch]
+            'pages'=>$pages,'breadcrumbs'=>$breadcrumbs, 'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch]
             );
      }
 
@@ -102,6 +111,10 @@ class CarController extends CommonController
         $modelAdvancedSearchForm->make = $model['make'];
         $modelAdvancedSearchForm->model = $model['model'];
         $modelsSearchForm = $makeModel->getModelsToFormSearchForm($model['make']);
+
+
+        $pages = new Pagination(['totalCount' => $carsList->totalCount, 'pageSize' => 30]);
+
        
        /*
        \yii\helpers\VarDumper::dump('actionModel');
@@ -116,7 +129,7 @@ class CarController extends CommonController
 
        return $this->render('model', 
                 ['yearList'=>$yearList,'countItemInColumns'=>$countItemInColumns,'carsList'=>$carsList,'sort'=>$sort,'breadcrumbs'=>$breadcrumbs,
-                'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch,'modelsSearchForm'=>$modelsSearchForm]
+                'pages'=>$pages,'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch,'modelsSearchForm'=>$modelsSearchForm]
             );
     }
 
@@ -163,6 +176,10 @@ class CarController extends CommonController
         $modelsSearchForm = $makeModel->getModelsToFormSearchForm($model['make']);
         $makesSearch = $makeModel->getMakesToFormSearchForm();
 
+
+        $pages = new Pagination(['totalCount' => $carsList->totalCount, 'pageSize' => 30]);
+
+
        /*
        \yii\helpers\VarDumper::dump('actionYear');
        \yii\helpers\VarDumper::dump('<br />');
@@ -175,7 +192,7 @@ class CarController extends CommonController
 
        return $this->render('year', 
                 ['yearList'=>$yearList,'countItemInColumns'=>$countItemInColumns,'carsList'=>$carsList,'sort'=>$sort,'breadcrumbs'=>$breadcrumbs,
-                'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch,'modelsSearchForm'=>$modelsSearchForm]
+                'pages'=>$pages,'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch,'modelsSearchForm'=>$modelsSearchForm]
             );
     }
 
@@ -242,10 +259,13 @@ class CarController extends CommonController
         $modelAdvancedSearchForm->make = Yii::$app->request->get('SearchAdvancedForm')['make'];
         $modelAdvancedSearchForm->model = Yii::$app->request->get('SearchAdvancedForm')['model'];
         $modelsSearchForm = $makeModel->getModelsToFormSearchForm(Yii::$app->request->get('SearchAdvancedForm')['make']);
-        
 
+
+        $pages = new Pagination(['totalCount' => $result->totalCount, 'pageSize' => 30]);
+
+    
         return $this->render('search', ['result' => $result,'breadcrumbs'=> $breadcrumbs,'sort'=>$sort,
-            'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch,'modelsSearchForm'=>$modelsSearchForm]);
+            'pages'=>$pages,'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch,'modelsSearchForm'=>$modelsSearchForm]);
     }
 
     private function getSort()

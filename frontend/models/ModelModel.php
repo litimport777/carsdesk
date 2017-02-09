@@ -51,7 +51,7 @@ class ModelModel extends CommonCarModel
 
                       
         $provider = new SqlDataProvider([
-            'sql' => "SELECT `tbl_lots_temp`.`id`, price, model, make, year, hash, images_date, tbl_lots_temp_id,
+            'sql' => "SELECT `tbl_lots_temp`.`id`, price, model, make, year, odometer, hash, images_date, tbl_lots_temp_id,
                                                         CONCAT_WS('-',
                                                        'used',
                                                         year,
@@ -70,7 +70,7 @@ class ModelModel extends CommonCarModel
             'params' => [':make' => $make, ':model' => $model, ':user_id' => Yii::$app->user->id],
             'totalCount' => $count,
             'pagination' => [
-                'pageSize' => 40,
+                'pageSize' => 30,
             ],
             'sort' => [
                 'attributes' => [

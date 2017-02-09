@@ -4,7 +4,6 @@
 
 use yii\helpers\html;
 use yii\helpers\url;
-use yii\widgets\ListView;
 use yii\widgets\Breadcrumbs;
 
 ?>
@@ -49,10 +48,7 @@ if(isset($modelsSearchForm)){
 <?php echo $sort->link('year') . ' | ' . $sort->link('price');?>
 <hr />
 
-<?php
-echo ListView::widget([
-    'dataProvider' => $carsList,
-    'itemView' => '/_item',
-]);
-?>
+	
+<?php echo $this->render('/_item', ['carsList'=>$carsList, 'pages'=>$pages]);?>
+
 

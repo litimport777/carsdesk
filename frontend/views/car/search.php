@@ -5,7 +5,6 @@
 use yii\helpers\html;
 use yii\helpers\url;
 use yii\widgets\Breadcrumbs;
-use yii\widgets\ListView;
 
 ?>
 <hr />
@@ -24,12 +23,9 @@ use yii\widgets\ListView;
 <hr />
 
 
-<?php
-echo ListView::widget([
-	'dataProvider' => $result,
-	'itemView' => '/_item',
-]);
-?>
+	
+<?php echo $this->render('/_item', ['carsList'=>$result, 'pages'=>$pages]);?>
+
 
 <?php endif;?>
 
