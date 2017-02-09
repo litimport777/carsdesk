@@ -61,7 +61,7 @@ AppAsset::register($this);
       <nav>
         <ul class="sf-menu">
           <li class="current"><a href="<?= Yii::$app->homeUrl;?>">Home</a></li>
-          <li><a href="<?php echo Url::to('/search');?>">Find a car</a>
+          <li><a href="/car/search">Find a car</a>
           <li><a href="index-2.html">New cars</a></li>
 			<?php if(!Yii::$app->user->isGuest):?>
 			  <li><a href="<?php echo Url::to(['site/accaunt']);?>">Accaunt</a></li>

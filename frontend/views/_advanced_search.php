@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
 	$form = ActiveForm::begin([
     'id' => 'search-form',
     'method' => 'get',
-    'action' => ['/search'],
+    'action' => ['/car/search'],
     'options' => ['class' => 'bookingForm1 wow fadeIn'],
 ]) ?>
 	

@@ -233,7 +233,19 @@ class CarController extends Controller
              ['label' => 'Search']
         ];
 
-        return $this->render('search', ['result' => $result,'breadcrumbs'=> $breadcrumbs,'sort'=>$sort]);
+
+        $makeModel = new MakeModel();
+
+        $modelAdvancedSearchForm = new SearchAdvancedForm();
+        $makesSearch = $makeModel->getMakesToFormSearchForm();
+
+        $modelAdvancedSearchForm->make = Yii::$app->request->get('SearchAdvancedForm')['make'];
+        $modelAdvancedSearchForm->model = Yii::$app->request->get('SearchAdvancedForm')['model'];
+        $modelsSearchForm = $makeModel->getModelsToFormSearchForm(Yii::$app->request->get('SearchAdvancedForm')['make']);
+        
+
+        return $this->render('search', ['result' => $result,'breadcrumbs'=> $breadcrumbs,'sort'=>$sort,
+            'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch,'modelsSearchForm'=>$modelsSearchForm]);
     }
 
     private function getSort()

@@ -14,7 +14,8 @@ use yii\widgets\ListView;
  $this->params['breadcrumbs'] = $breadcrumbs;
 ?>
 
-<hr />
+<?php echo $this->render('/_advanced_search', 
+	['modelAdvancedSearchForm'=>$modelAdvancedSearchForm, 'makesSearch'=>$makesSearch,'modelSearch'=>$modelsSearchForm]);?>
 
 <?php if(isset($result)):?>
 
