@@ -64,7 +64,7 @@ class YearModel extends CommonCarModel
             'params' => [':make' => $make, ':model' => $model, ':year' => $year, ':user_id' => Yii::$app->user->id],
             'totalCount' => $count,
             'pagination' => [
-                'pageSize' => 30,
+                'pageSize' => Yii::$app->params['frontendCatalogPageSize'],
             ],
             'sort' => [
                 'attributes' => [

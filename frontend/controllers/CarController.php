@@ -56,7 +56,7 @@ class CarController extends CommonController
        $modelAdvancedSearchForm->make = $model['make'];
 
 
-       $pages = new Pagination(['totalCount' => $carsList->totalCount, 'pageSize' => 30]);
+       $pages = new Pagination(['totalCount' => $carsList->totalCount, 'pageSize' => Yii::$app->params['frontendCatalogPageSize']]);
 
        /*
        \yii\helpers\VarDumper::dump('actionIndex');
@@ -113,7 +113,7 @@ class CarController extends CommonController
         $modelsSearchForm = $makeModel->getModelsToFormSearchForm($model['make']);
 
 
-        $pages = new Pagination(['totalCount' => $carsList->totalCount, 'pageSize' => 30]);
+        $pages = new Pagination(['totalCount' => $carsList->totalCount, 'pageSize' => Yii::$app->params['frontendCatalogPageSize']]);
 
        
        /*
@@ -177,7 +177,7 @@ class CarController extends CommonController
         $makesSearch = $makeModel->getMakesToFormSearchForm();
 
 
-        $pages = new Pagination(['totalCount' => $carsList->totalCount, 'pageSize' => 30]);
+        $pages = new Pagination(['totalCount' => $carsList->totalCount, 'pageSize' => Yii::$app->params['frontendCatalogPageSize']]);
 
 
        /*
@@ -261,7 +261,7 @@ class CarController extends CommonController
         $modelsSearchForm = $makeModel->getModelsToFormSearchForm(Yii::$app->request->get('SearchAdvancedForm')['make']);
 
 
-        $pages = new Pagination(['totalCount' => $result->totalCount, 'pageSize' => 30]);
+        $pages = new Pagination(['totalCount' => $result->totalCount, 'pageSize' => Yii::$app->params['frontendCatalogPageSize']]);
 
     
         return $this->render('search', ['result' => $result,'breadcrumbs'=> $breadcrumbs,'sort'=>$sort,

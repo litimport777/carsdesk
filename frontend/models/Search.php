@@ -108,7 +108,7 @@ class Search extends Model
            $provider = new ActiveDataProvider([
                 'query' => $query,
                 'pagination' => [
-                    'pageSize' => 30,
+                    'pageSize' => Yii::$app->params['frontendCatalogPageSize'],
                 ],
                 'sort' => [
                         'attributes' => [

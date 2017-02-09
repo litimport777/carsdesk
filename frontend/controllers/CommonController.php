@@ -10,8 +10,8 @@ use frontend\models\CarModel;
 class CommonController extends Controller
 {
 	protected $images_server = 1;
-	protected $hash = 'acdfb94ae167046ff1aea7419abb248c';
-	protected $images_date = '2017-01-27 16:56:37';
+	//protected $hash = 'acdfb94ae167046ff1aea7419abb248c';
+	//protected $images_date = '2017-01-27 16:56:37';
 
 	public $countItemInColumnsCityData = 5;
 

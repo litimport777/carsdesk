@@ -64,7 +64,7 @@ class MakeModel extends CommonCarModel
             'params' => [':make' => $make, ':user_id' => Yii::$app->user->id],
             'totalCount' => $count,
             'pagination' => [
-                'pageSize' => 30,
+                'pageSize' => Yii::$app->params['frontendCatalogPageSize'],
             ],
             'sort' => [
                 'attributes' => [
