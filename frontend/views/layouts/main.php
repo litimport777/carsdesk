@@ -8,6 +8,7 @@ use yii\helpers\Url;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
+use yii\bootstrap\Modal;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 
@@ -32,26 +33,26 @@ AppAsset::register($this);
     <div class="width-wrapper">
       <h1>
         <a href="<?= Yii::$app->homeUrl;?>">
-          <span class="wrapper"><i class="fa fa-car"></i><strong>Car</strong>Sell</span>
+          <span class="wrapper logo-wrapper"><i class="fa fa-car"></i><strong>Car</strong>Sell</span>
         </a>
       </h1>
 	  
       <div class="authorization-block">
         <div class="authorization">
-          <a class="create" href="<?php echo Url::to(['signup']);?>">Create an account</a>
+          <a class="create" id="signup" href="<?php echo Url::to(['signup']);?>">Create an account</a>
           <span class="divider"></span>
 		  <?php if(!Yii::$app->user->isGuest):?>
-			  <?php echo Html::beginForm(['/site/logout'], 'post');?>
+			  <?php echo Html::beginForm(['/site/logout'], 'post', ['id'=>'form-logout']);?>
 					<?= Html::submitButton(
 						'Logout (' . Yii::$app->user->identity->username . ')',
 						['class' => 'logout-form']
 					);?>		  
 			  <?php echo Html::endForm();?>
 		  <?php else:?>
-				<a class="login" href="<?php echo Url::to(['/site/login']);?>">Login</a>
+				<a class="login" id="login" href="<?php echo Url::to(['/site/login']);?>">Login</a>
 		  <?php endif;?>
         </div>
-        <span class="add btn-big" href="#"><span class="plus"></span>CAR SELL</span>
+        <!--<span class="add btn-big" href="#"><span class="plus"></span>CAR SELL</span>-->
       </div>
     </div>
     <div class="clearfix"></div>
@@ -148,7 +149,16 @@ AppAsset::register($this);
 </footer>
 
 
+<?php //$this->render('/_registration');?>
+
+
 <?php $this->endBody() ?>
 </body>
+
+
+
 </html>
 <?php $this->endPage() ?>
+
+
+

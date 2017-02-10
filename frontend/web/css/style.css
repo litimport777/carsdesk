@@ -1317,6 +1317,24 @@ ul.breadcrumb{
 .accaunt-save-data{
 	min-height: 200px;
 }
+.logo-wrapper{
+	font-size: 0.8em;
+}
+#form-logout{
+	display: inline;
+}
+.item-page{
+	margin-left: -40px;
+}
+
+.information-item-pape{
+	margin-top: -1px;
+}
+
+.information-item-pape-value{
+	position: relative;
+    top: 5px;
+}
 /*========================================================
                     FOOTER styles
 =========================================================*/
