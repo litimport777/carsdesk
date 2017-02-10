@@ -15,6 +15,12 @@ use common\widgets\Alert;
 AppAsset::register($this);
 
 ?>
+
+<?php
+$action = Yii::$app->controller->action->id;
+$controller = Yii::$app->controller->id;
+?>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
@@ -39,7 +45,9 @@ AppAsset::register($this);
 	  
       <div class="authorization-block">
         <div class="authorization">
-          <a class="create" id="signup" href="<?php echo Url::to(['signup']);?>">Create an account</a>
+		  <?php if(Yii::$app->user->isGuest):?>
+				<a class="create" id="signup" href="<?php echo Url::to(['signup']);?>">Create an account</a>
+		  <?php endif;?>
           <span class="divider"></span>
 		  <?php if(!Yii::$app->user->isGuest):?>
 			  <?php echo Html::beginForm(['/site/logout'], 'post', ['id'=>'form-logout']);?>
@@ -61,12 +69,16 @@ AppAsset::register($this);
     <div class="width-wrapper">
       <nav>
         <ul class="sf-menu">
-          <li class="current"><a href="<?= Yii::$app->homeUrl;?>">Home</a></li>
-          <li><a href="/car/search">Find a car</a>
-          <li><a href="index-2.html">New cars</a></li>
+          <li class="<?= ($controller == 'site' && $action == 'index') ?'current' :'';?>"><a href="<?= Yii::$app->homeUrl;?>">Home</a></li>
+          <li class="<?= ($controller == 'car') ?'current' :'';?>">
+			  <a href="/car/search">
+				Find a car
+			  </a>
+		  </li>
+          <li class="<?= ($controller == 'site' && $action == 'news') ?'current' :'';?>"><a href="index-2.html">New cars</a></li>
 			<?php //if(!Yii::$app->user->isGuest):?>
-			  <li><a href="<?php echo Url::to(['site/accaunt']);?>">Accaunt</a></li>
-			  <li><a href="<?php echo Url::to(['site/accaunt-save']);?>">WatchList</a></li>
+			  <li class="<?= ($controller == 'site' && $action == 'accaunt') ?'current' :'';?>"><a href="<?php echo Url::to(['site/accaunt']);?>">Accaunt</a></li>
+			  <li class="<?= ($controller == 'site' && $action == 'accaunt-save') ?'current' :'';?>"><a href="<?php echo Url::to(['site/accaunt-save']);?>">WatchList</a></li>
 			<?php //endif;?>  
          </ul>
       </nav>

@@ -269,7 +269,7 @@ h6 {
   padding-top: 10px;
 }
 .wrapper2 {
-  padding: 30px 0 61px;
+  padding: 30px 0 6px;
 }
 .wrapper3 {
   padding-bottom: 26px;
@@ -1328,12 +1328,57 @@ ul.breadcrumb{
 }
 
 .information-item-pape{
-	margin-top: -1px;
+	//margin-top: -1px;
 }
 
 .information-item-pape-value{
 	position: relative;
     top: 5px;
+}
+
+.save-icon{
+	width: 10%;
+	height: 10%;
+}
+
+.item-left{
+	width: 42%;
+    float: left;
+}
+
+.item-right{
+	width: 58%;
+    float: right;
+}
+.icon-item-save-container{
+	position: relative;
+    top: -70px;
+    left: 20px;
+}
+.save-car{
+	cursor: pointer;
+}
+
+.btn-item-link{
+	margin-top: 3px;
+}
+
+.btn-item-link {
+  display: inline-block;
+  font: 400 15px/32px "Lato", sans-serif;
+  color: #303030;
+  text-align: center;
+  padding: 1px 60px;
+  border-radius: 3px;
+  border: 1px solid #e3e3e3;
+  background: url(../images/gradient4.png) repeat-x center bottom #ffffff;
+}
+.btn-item-link:hover {
+  -webkit-box-shadow: 1px 1px 1px 0px #5b8d1a;
+  box-shadow: 1px 1px 1px 0px #5b8d1a;
+  background: url(../images/gradient1.png) repeat-x center bottom #8ad329;
+  border: 1px solid transparent;
+  color: #ffffff;
 }
 /*========================================================
                     FOOTER styles

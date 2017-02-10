@@ -7,10 +7,35 @@ use yii\helpers\url;
 use yii\widgets\Breadcrumbs;
 use dosamigos\gallery\Gallery;
 
+
+use edofre\sliderpro\models\Slide;
+use edofre\sliderpro\models\slides\Caption;
+use edofre\sliderpro\models\slides\Image;
+use edofre\sliderpro\models\slides\Layer;
+
+
+//var_dump($car);
+
+//$data = Yii::$app->db->createCommand('SELECT additional FROM {{tbl_lot_descriptions}} WHERE id = :id', [':id'=>$car['id']])->queryScalar();
+//$result = gzinflate($data);
+//echo (unserialize($result));
 ?>
 
 
-
+<?php
+	$slides = [];
+	$thumbnails = [];
+	for($i = 1; $i <= $car['count_images'];$i++){
+		$slides[($i - 1)] = 
+			 new Slide([
+				'items' => [
+					new Image(['src' => $this->context->getImageUrl($i, $car['hash'], $car['images_date'], false)]),
+				],
+			]);
+		
+		$thumbnails[($i - 1)] =  new \edofre\sliderpro\models\Thumbnail(['tag' => 'img', 'htmlOptions' => ['src' => $this->context->getImageUrl($i, $car['hash'], $car['images_date'], true)]]);
+	}	
+?>
 	
 
 <?php
@@ -27,27 +52,26 @@ use dosamigos\gallery\Gallery;
               <h2><?= $car['make']; ?> <?= $car['model'];?></h2>
     </div>
 		
-	<?php
-		$items = [];
-		for($i = 1; $i <= $car['count_images'];$i++){
-			$items[($i - 1)] = [
-				'url' => $this->context->getImageUrl($i, $car['hash'], $car['images_date'], false),
-				'src' => $this->context->getImageUrl($i, $car['hash'], $car['images_date'], false),
-				'thumbnail' => $this->context->getImageUrl($i, $car['hash'], $car['images_date'], false),
-			];
-		}	
-	?>
-	
 	<div class="grid_12">
 		<div class="grid_6">
-			<?= dosamigos\gallery\Carousel::widget([
-				'items' => $items,
-				'clientEvents' => [
-					'onslide' => 'function(index, slide) {
-						console.log(slide);
-					}'
+			
+			<?= \edofre\sliderpro\SliderPro::widget([
+				'id'            => 'my-slider',
+				'slides'        => $slides,
+				'thumbnails'    => $thumbnails,
+				'sliderOptions' => [
+					'width'  => 960,
+					'height' => 500,
+					'arrows' => true,
+					'init'   => new \yii\web\JsExpression("
+						function() {
+							console.log('slider is initialized');
+						}
+					"),
 				],
-			]);?>
+			]);
+			?>
+			
 		</div>
 		
 		<div class="grid_5 item-page">
