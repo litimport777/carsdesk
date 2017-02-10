@@ -87,7 +87,7 @@ use yii\widgets\ActiveForm;
 		
 	</div>
 
-    <div class="grid_12">
+    <div class="grid_12 advancedSearchButton">
 	
 		<div class="grid_3">
 		</div>

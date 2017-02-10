@@ -1303,6 +1303,17 @@ ul.breadcrumb{
 	position: relative;
     z-index: 99;
 }
+.pagination li{
+	display: inline-block;
+}
+.pagination-wraper{
+	text-align: center;
+	margin-top: -40px;
+	font-size: 1.5em;
+}
+.advancedSearchButton{
+	margin-bottom: 30px;
+}
 /*========================================================
                     FOOTER styles
 =========================================================*/

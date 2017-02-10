@@ -228,11 +228,13 @@ class CarController extends CommonController
     {
 
         $result = null;
+        $paginationFlag = false;
 
         if (Yii::$app->request->get('SearchAdvancedForm')) {
             $modelSearch = new SearchAdvancedForm();
             if($modelSearch->load(Yii::$app->request->get()) && $modelSearch->validate()){
                 $result = $modelSearch->getResultSearch();
+                $paginationFlag = true;
             }
         }
 
@@ -240,6 +242,7 @@ class CarController extends CommonController
             $modelSearch = new SearchForm();
             if($modelSearch->load(Yii::$app->request->get()) && $modelSearch->validate()){
                 $result = $modelSearch->getResultSearch();
+                $paginationFlag = true;
              }
         }
 
@@ -257,11 +260,15 @@ class CarController extends CommonController
         $makesSearch = $makeModel->getMakesToFormSearchForm();
 
         $modelAdvancedSearchForm->make = Yii::$app->request->get('SearchAdvancedForm')['make'];
-        $modelAdvancedSearchForm->model = Yii::$app->request->get('SearchAdvancedForm')['model'];
+        if(isset(Yii::$app->request->get('SearchAdvancedForm')['model'])){
+            $modelAdvancedSearchForm->model = Yii::$app->request->get('SearchAdvancedForm')['model'];
+        }
         $modelsSearchForm = $makeModel->getModelsToFormSearchForm(Yii::$app->request->get('SearchAdvancedForm')['make']);
 
-
-        $pages = new Pagination(['totalCount' => $result->totalCount, 'pageSize' => Yii::$app->params['frontendCatalogPageSize']]);
+        $pages = null;
+        if($paginationFlag){
+            $pages = new Pagination(['totalCount' => $result->totalCount, 'pageSize' => Yii::$app->params['frontendCatalogPageSize']]);
+        }
 
     
         return $this->render('search', ['result' => $result,'breadcrumbs'=> $breadcrumbs,'sort'=>$sort,

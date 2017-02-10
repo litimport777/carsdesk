@@ -68,12 +68,15 @@ use yii\widgets\LinkPager;
 
 <?php endforeach;?>
 
+<div class="grid_12 pagination-wraper">
+
 <?php
 
 echo LinkPager::widget([
     'pagination' => $pages,
 ]);
 ?>
+</div>
 
 
 
