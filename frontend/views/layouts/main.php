@@ -38,7 +38,7 @@ AppAsset::register($this);
 	  
       <div class="authorization-block">
         <div class="authorization">
-          <a class="create" href="#">Create an account</a>
+          <a class="create" href="<?php echo Url::to(['signup']);?>">Create an account</a>
           <span class="divider"></span>
 		  <?php if(!Yii::$app->user->isGuest):?>
 			  <?php echo Html::beginForm(['/site/logout'], 'post');?>
@@ -63,10 +63,10 @@ AppAsset::register($this);
           <li class="current"><a href="<?= Yii::$app->homeUrl;?>">Home</a></li>
           <li><a href="/car/search">Find a car</a>
           <li><a href="index-2.html">New cars</a></li>
-			<?php if(!Yii::$app->user->isGuest):?>
+			<?php //if(!Yii::$app->user->isGuest):?>
 			  <li><a href="<?php echo Url::to(['site/accaunt']);?>">Accaunt</a></li>
 			  <li><a href="<?php echo Url::to(['site/accaunt-save']);?>">WatchList</a></li>
-			<?php endif;?>  
+			<?php //endif;?>  
          </ul>
       </nav>
       <div class="clearfix"></div>

@@ -10,26 +10,41 @@ use yii\bootstrap\ActiveForm;
 $this->title = 'Signup';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-signup">
+<div class="grid_12">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Please fill out the following fields to signup:</p>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+   
+            <?php $form = ActiveForm::begin(['id' => 'form-signup', 'options' => ['class' => 'bookingForm1 wow fadeIn'],]); ?>
+				
+				<div class="grid_12">
+					<?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+				</div>
+				
+				<div class="grid_12">
+					<?= $form->field($model, 'email') ?>
+				</div>
+				
+				<div class="grid_12">
+					<?= $form->field($model, 'password')->passwordInput() ?>
+				</div>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-                <?= $form->field($model, 'email') ?>
-
-                <?= $form->field($model, 'password')->passwordInput() ?>
-
-                <div class="form-group">
-                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+               				
+				<div class="grid_12 advancedSearchButton">
+					
+					<div class="grid_3">
+					</div>
+					
+					<div class="grid_4">
+						<?= Html::submitButton('Signup', ['class' => 'btn-big btn-search-main-page', 'name' => 'login-button']) ?>
+					</div>
+						
+					<div class="grid_3">
+					</div>
+					
                 </div>
 
             <?php ActiveForm::end(); ?>
-        </div>
-    </div>
+        
 </div>

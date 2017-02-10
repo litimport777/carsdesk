@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 ?>
 
 
-<div class="grid_12 main-page-list-model">
+<div class="grid_12 accaunt-save-data main-page-list-model">
 
 <?php $cnt = 1;?>
 <?php $cntItems = count($accauntdata);?>
