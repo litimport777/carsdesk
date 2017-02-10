@@ -235,9 +235,13 @@ class SiteController extends CommonController
         
         if (Yii::$app->request->post()) {
             if($accauntModel->load(Yii::$app->request->post()) && $accauntModel->validate()){
+                
+                //\yii\helpers\VarDumper::dump(Yii::$app->request->post());Yii::$app->end();
                 Yii::$app->db->createCommand()->update('user',
                 ['username'=>Yii::$app->request->post('AccauntForm')['username'],'email'=>Yii::$app->request->post('AccauntForm')['email']],
                 'id=:id',[':id'=>Yii::$app->user->id])->execute();
+            }else {
+                $this->redirect('/accaunt');
             }
         }
 

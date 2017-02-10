@@ -31,8 +31,8 @@ class AccauntForm extends ActiveRecord
             //[['status', 'created_at', 'updated_at'], 'integer'],
             //[['username', 'email'], 'string', 'max' => 255],
             //[['auth_key'], 'string', 'max' => 32],
-            [['username'], 'unique'],
-            [['email'], 'unique'],
+            [['username'], 'unique', 'message' => 'username need unique'],
+            [['email'], 'unique', 'message' => 'email need unique'],
             //[['password_reset_token'], 'unique'],
         ];
     }
