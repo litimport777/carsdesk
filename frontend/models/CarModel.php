@@ -13,6 +13,8 @@ use frontend\models\CommonCarModel;
 class CarModel extends CommonCarModel
 {
     
+   const COUNT_COLUMNS_IN_ITEM_VIEW = 3;
+
    public function getCarsToIndexPage()
    {
    		$db = Yii::$app->db;
@@ -59,7 +61,7 @@ class CarModel extends CommonCarModel
 
    		$text = $dataSql["additional"];
 		$result = unserialize(gzinflate($text));
-
+		//var_dump($result);exit;
    		if(is_array($result)){
    			return $result;
    		}else{

@@ -14,7 +14,7 @@ use edofre\sliderpro\models\slides\Image;
 use edofre\sliderpro\models\slides\Layer;
 
 
-var_dump($additional);
+//var_dump($additional);exit;
 /*
 $data = (new \yii\db\Query())->select('id, additional')->from('tbl_lot_descriptions');
 $temp_array = [];
@@ -269,19 +269,30 @@ PHP_EOL . var_dump($max) . ' ' . var_dump($temp_keys_array[$max]);exit;
 							</div>
 						</div>
 	
-	
-	
-						
+											
 						<div class="grid_12">
 		
-							<div class="grid_6">
-								test;
-							</div>		
-							
-							<div class="grid_5">
-								test;
-							</div>	
+						<?php $cnt = 1;?>
+						<?php $cntItems = count($additional);?>
 						
+						<?php if($additional):?>
+							<?php foreach ($additional as $make):?>
+								<?php if((($cnt - 1) % $countItemInColumns == 0) || ($cnt == 1)):?>
+									<div class="grid_3">
+								<?php endif;?>
+									
+									
+										test<br />
+										
+								<?php if(($cnt % $countItemInColumns == 0) || ($cnt == $cntItems)):?>
+									
+									</div>
+									
+								<?php endif;?>
+								<?php $cnt++;?>
+							<?php endforeach;?>
+						<?php endif;?>
+													
 						</div>
 
 	
