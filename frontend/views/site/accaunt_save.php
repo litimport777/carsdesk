@@ -15,7 +15,9 @@ use yii\widgets\ActiveForm;
 <?php $cntItems = count($accauntdata);?>
 <?php $countItemInColumns = 3;?>
 
-
+	<div class="heading1 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+              <h2>WATHLIST</h2>
+    </div>
 
 
 <?php foreach ($accauntdata as $model):?>

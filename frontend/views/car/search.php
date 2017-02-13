@@ -7,11 +7,15 @@ use yii\helpers\url;
 use yii\widgets\Breadcrumbs;
 
 ?>
-<hr />
 
 <?php
  $this->params['breadcrumbs'] = $breadcrumbs;
 ?>
+<br />
+
+<div class="heading1 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+    <h2>FIND A CAR</h2>
+</div>
 
 <?php echo $this->render('/_advanced_search', 
 	['modelAdvancedSearchForm'=>$modelAdvancedSearchForm, 'makesSearch'=>$makesSearch,'modelSearch'=>$modelsSearchForm]);?>

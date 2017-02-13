@@ -10,6 +10,11 @@ use yii\widgets\ActiveForm;
 
 <div class="grid_12">
 
+	<div class="heading1 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+              <h2>ACCAUNT</h2>
+    </div>
+
+
 <?php
     $form = ActiveForm::begin([
     'id' => 'accaunt-form',
