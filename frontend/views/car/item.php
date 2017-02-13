@@ -81,7 +81,7 @@ use edofre\sliderpro\models\slides\Layer;
 			<span class="icon-item-item-save-container" href="#" onclick="return false">
 			  <?php if(!$car['tbl_lots_temp_id']):?>
 					<span class="save-car" data-url="<?= $car['id']; ?>">
-						<img src="/img/w128h128139396832520.png"  class="save-car save-icon" />
+						<img src="/img/w128h128139396832520.png"  class="save-icon" />
 						<span class="save-icon-text">save</span>
 					</span>
 					<img src="/img/package_fovourite.png" style="display: none" class="save-icon" />
@@ -273,6 +273,7 @@ use edofre\sliderpro\models\slides\Layer;
 $this->registerJs('
     	
 	$(".save-car").on("click", function(event){
+		event.stopPropagation();
 		var id = $(this).data().url;
 		sendRequestSaveData(id);
 	});

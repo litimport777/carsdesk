@@ -94,7 +94,7 @@ use yii\widgets\ActiveForm;
 							<span class="icon-item-save-container" href="#" onclick="return false">
 							  <?php if(!$carsRandom[$i]['tbl_lots_temp_id']):?>
 									<span class="save-car" data-url="<?= $carsRandom[$i]['id']; ?>">
-										<img src="/img/w128h128139396832520.png"  class="save-car save-icon" />
+										<img src="/img/w128h128139396832520.png"  class="save-icon" />
 										<span class="save-icon-text">save</span>
 									</span>
 									<img src="/img/package_fovourite.png" style="display: none" class="save-icon" />
@@ -144,7 +144,7 @@ use yii\widgets\ActiveForm;
 							<span class="icon-item-save-container" href="#" onclick="return false">
 							  <?php if(!$carsRandom[$i]['tbl_lots_temp_id']):?>
 									<span class="save-car" data-url="<?= $carsRandom[$i]['id']; ?>">
-										<img src="/img/w128h128139396832520.png"  class="save-car save-icon" />
+										<img src="/img/w128h128139396832520.png"  class="save-icon" />
 										<span class="save-icon-text">save</span>
 									</span>
 									<img src="/img/package_fovourite.png" style="display: none" class="save-icon" />

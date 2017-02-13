@@ -52,7 +52,7 @@ use yii\widgets\LinkPager;
 				<span class="icon-item-save-container" href="#" onclick="return false">
 				  <?php if(!$model['tbl_lots_temp_id']):?>
 						<span class="save-car" data-url="<?= $model['id']; ?>">
-							<img src="/img/w128h128139396832520.png"  class="save-car save-icon" />
+							<img src="/img/w128h128139396832520.png"  class="save-icon" />
 							<span class="save-icon-text">save</span>
 						</span>
 						<img src="/img/package_fovourite.png" style="display: none" class="save-icon" />

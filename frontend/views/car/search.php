@@ -37,7 +37,7 @@ use yii\widgets\Breadcrumbs;
 
 $this->registerJs('
 
-	$(".save-car").each(function(idx, el){
+	/*$(".save-car").each(function(idx, el){
         $(this).on("click", function(event){
             var id = $(this).data().url;
             sendRequestSaveData(id);
@@ -53,7 +53,7 @@ $this->registerJs('
                 current.hide();
             }
         });
-    }
+    }*/
 
 ');
 ?>
