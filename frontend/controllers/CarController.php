@@ -206,6 +206,9 @@ class CarController extends CommonController
             throw new  NotFoundHttpException();            
         }
 
+        $additional = '';
+        $additional = $carModel->getAdditional($car['id']);
+
         $makeAlias = $make;
         $modelAlias = $make . '-' . $model;
         $yearAlias = $year . '-' . $make . '-' . $model;
@@ -221,7 +224,7 @@ class CarController extends CommonController
              ['label' => $car['vin']]
         ];
 
-        return $this->render('item', ['car' => $car,'breadcrumbs'=>$breadcrumbs]);
+        return $this->render('item', ['car' => $car,'additional'=>$additional,'breadcrumbs'=>$breadcrumbs]);
     }
 
     public function actionSearch()

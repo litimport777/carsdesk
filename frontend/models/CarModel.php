@@ -43,10 +43,28 @@ class CarModel extends CommonCarModel
    {
    		return (new Query())->from('tbl_lots_temp')
    							->addSelect(['tbl_lots_temp.id','price','model','make','year','odometer','hash','images_date',
-   								'tbl_lots_temp_id','vin','count_images','fuel','transmission','exterior_color','class','category','city','state'])
+   								'tbl_lots_temp_id','vin','count_images','fuel','transmission','exterior_color','class','category','city','state','car_id'])
    							->leftJoin('user_car', '`tbl_lots_temp`.`id` = `user_car`.`tbl_lots_temp_id` AND `user_car`.`user_id` = :user_id',
    							[':user_id' => Yii::$app->user->id])
    							->where(['vin'=> $vin])->limit(1)->one();
+   }
+
+   public function getAdditional($carId)
+   {
+   		$dataSql = (new \yii\db\Query())->select('additional')->from('tbl_lot_descriptions')->where(['id'=>$carId])->limit(1)->one();
+
+   		if(! $dataSql) {
+   			return false;
+   		}
+
+   		$text = $dataSql["additional"];
+		$result = unserialize(gzinflate($text));
+
+   		if(is_array($result)){
+   			return $result;
+   		}else{
+   			return false;
+   		}
    }
 
    public function getStatisticToCity()

@@ -14,11 +14,29 @@ use edofre\sliderpro\models\slides\Image;
 use edofre\sliderpro\models\slides\Layer;
 
 
-//var_dump($car);
+var_dump($additional);
+/*
+$data = (new \yii\db\Query())->select('id, additional')->from('tbl_lot_descriptions');
+$temp_array = [];
+$temp_keys_array = [];
+if ($data){
+	foreach($data->each() as $value){
+		if($value){
+			$result = gzinflate($value['additional']);
+			$item = count(unserialize($result));
+			$temp_array[] = $item;
+			$temp_keys_array[$item] = $value['id'];
+			print '--' . PHP_EOL;
+		}
+	}
+}
+$max = max($temp_array);
+$dataSql = (new \yii\db\Query())->select('additional')->from('tbl_lot_descriptions')->where(['id'=>$temp_keys_array[$max]])->limit(1)->one();
+$text = $dataSql["additional"];
+var_dump(unserialize(gzinflate($text)));
+PHP_EOL . var_dump($max) . ' ' . var_dump($temp_keys_array[$max]);exit;
 
-//$data = Yii::$app->db->createCommand('SELECT additional FROM {{tbl_lot_descriptions}} WHERE id = :id', [':id'=>$car['id']])->queryScalar();
-//$result = gzinflate($data);
-//echo (unserialize($result));
+*/
 ?>
 
 
@@ -52,210 +70,219 @@ use edofre\sliderpro\models\slides\Layer;
               <h2><?= $car['make']; ?> <?= $car['model'];?></h2>
     </div>
 		
-	<div class="grid_12">
-		<div class="grid_6">
-			
-			<?= \edofre\sliderpro\SliderPro::widget([
-				'id'            => 'my-slider',
-				'slides'        => $slides,
-				'thumbnails'    => $thumbnails,
-				'sliderOptions' => [
-					'width'  => 960,
-					'height' => 500,
-					'arrows' => true,
-					'init'   => new \yii\web\JsExpression("
-						function() {
-							console.log('slider is initialized');
-						}
-					"),
-				],
-			]);
-			?>
-			
-		</div>
-		
-		<div class="grid_5 item-page">
-		
-		
-		<div class="grid_12">
-			<span class="icon-item-item-save-container" href="#" onclick="return false">
-			  <?php if(!$car['tbl_lots_temp_id']):?>
-					<span class="save-car" data-url="<?= $car['id']; ?>">
-						<img src="/img/w128h128139396832520.png"  class="save-icon" />
-						<span class="save-icon-text">save</span>
-					</span>
-					<img src="/img/package_fovourite.png" style="display: none" class="save-icon" />
-			  <?php else:?>
-					<img src="/img/package_fovourite.png" class="save-icon" />
-			  <?php endif;?>
-			</span>
-		</div>
-		
-			<?php //if($car['vin']):?>
-				<div class="grid_12">
-					<div class="grid_1">
-						<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
-						style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
-							vin
-						</h4>
-					</div>
-					<div class="grid_4 information-item-pape-value">
-						<?= $car['vin']; ?>
-					</div>
-				</div>
-			<?php //endif;?>
-				
-			<?php //if($car['price']):?>	
-				<div class="grid_12 information-item-pape">
-					<div class="grid_1">
-						<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
-						style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
-							price
-						</h4>
-					</div>
-					<div class="grid_4 information-item-pape-value">
-						<?= $car['price']; ?>
-					</div>
-				</div>
-			<?php //endif;?>
-			
-			<?php //if($car['odometer']):?>	
-				<div class="grid_12 information-item-pape">
-					<div class="grid_1">
-						<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
-						style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
-							mileage
-						</h4>
-					</div>
-					<div class="grid_4 information-item-pape-value">
-						<?= $car['odometer']; ?>
-					</div>
-				</div>
-			<?php //endif;?>
-			
-			<?php //if($car['year']):?>
-				<div class="grid_12 information-item-pape">
-					<div class="grid_1">
-						<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
-						style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
-							year
-						</h4>
-					</div>
-					<div class="grid_4 information-item-pape-value">
-						<?= $car['year']; ?>
-					</div>
-				</div>
-			<?php //endif;?>
-			
-			<?php //if($car['fuel']):?>
-				<div class="grid_12 information-item-pape">
-					<div class="grid_1">
-						<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
-						style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
-							fuel
-						</h4>
-					</div>
-					<div class="grid_4 information-item-pape-value">
-						<?= $car['fuel']; ?>
-					</div>
-				</div>
-			<?php //endif;?>
-			
-			<?php //if($car['transmission']):?>
-				<div class="grid_12 information-item-pape">
-					<div class="grid_1">
-						<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
-						style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
-							transmission
-						</h4>
-					</div>
-					<div class="grid_4 information-item-pape-value">
-						<?= $car['transmission']; ?>
-					</div>
-				</div>
-			<?php //endif;?>
+						<div class="grid_12">
+							<div class="grid_6">
+								
+								<?= \edofre\sliderpro\SliderPro::widget([
+									'id'            => 'my-slider',
+									'slides'        => $slides,
+									'thumbnails'    => $thumbnails,
+									'sliderOptions' => [
+										'width'  => 960,
+										'height' => 500,
+										'arrows' => true,
+										'init'   => new \yii\web\JsExpression("
+											function() {
+												console.log('slider is initialized');
+											}
+										"),
+									],
+								]);
+								?>
+								
+							</div>
+							
+							<div class="grid_5 item-page">
+							
+							
+							<div class="grid_12">
+								<span class="icon-item-item-save-container" href="#" onclick="return false">
+								  <?php if(!$car['tbl_lots_temp_id']):?>
+										<span class="save-car" data-url="<?= $car['id']; ?>">
+											<img src="/img/w128h128139396832520.png"  class="save-icon" />
+											<span class="save-icon-text">save</span>
+										</span>
+										<img src="/img/package_fovourite.png" style="display: none" class="save-icon" />
+								  <?php else:?>
+										<img src="/img/package_fovourite.png" class="save-icon" />
+								  <?php endif;?>
+								</span>
+							</div>
+							
+								<?php //if($car['vin']):?>
+									<div class="grid_12">
+										<div class="grid_1">
+											<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
+											style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
+												vin
+											</h4>
+										</div>
+										<div class="grid_4 information-item-pape-value">
+											<?= $car['vin']; ?>
+										</div>
+									</div>
+								<?php //endif;?>
 									
-			<?php //if($car['exterior_color']):?>
-				<div class="grid_12 information-item-pape">
-					<div class="grid_1">
-						<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
-						style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
-							color
-						</h4>
-					</div>
-					<div class="grid_4 information-item-pape-value">
-						<?= $car['exterior_color']; ?>
-					</div>
-				</div>
-			<?php //endif;?>
-			
-			
-			<?php //if($car['class']):?>
-				<div class="grid_12 information-item-pape">
-					<div class="grid_1">
-						<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
-						style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
-							class
-						</h4>
-					</div>
-					<div class="grid_4 information-item-pape-value">
-						<?= $car['class']; ?>
-					</div>
-				</div>
-			<?php //endif;?>
-			
-			
-			<?php //if($car['category']):?>
-				<div class="grid_12 information-item-pape">
-					<div class="grid_1">
-						<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
-						style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
-							category
-						</h4>
-					</div>
-					<div class="grid_4 information-item-pape-value">
-						<?= $car['category']; ?>
-					</div>
-				</div>
-			<?php //endif;?>
-			
-			<?php //if($car['city']):?>
-				<div class="grid_12 information-item-pape">
-					<div class="grid_1">
-						<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
-						style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
-							city
-						</h4>
-					</div>
-					<div class="grid_4 information-item-pape-value">
-						<?= $car['city']; ?>
-					</div>
-				</div>
-			<?php //endif;?>
-			
-			<?php //if($car['state']):?>
-				<div class="grid_12 information-item-pape">
-					<div class="grid_1">
-						<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
-						style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
-							state
-						</h4>
-					</div>
-					<div class="grid_4 information-item-pape-value">
-						<?= $car['state']; ?>
-					</div>
-				</div>
-			<?php //endif;?>
-			
-			
-			
-			
-			
-			
-			
-		</div>
-	</div>
+								<?php //if($car['price']):?>	
+									<div class="grid_12 information-item-pape">
+										<div class="grid_1">
+											<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
+											style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
+												price
+											</h4>
+										</div>
+										<div class="grid_4 information-item-pape-value">
+											<?= $car['price']; ?>
+										</div>
+									</div>
+								<?php //endif;?>
+								
+								<?php //if($car['odometer']):?>	
+									<div class="grid_12 information-item-pape">
+										<div class="grid_1">
+											<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
+											style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
+												mileage
+											</h4>
+										</div>
+										<div class="grid_4 information-item-pape-value">
+											<?= $car['odometer']; ?>
+										</div>
+									</div>
+								<?php //endif;?>
+								
+								<?php //if($car['year']):?>
+									<div class="grid_12 information-item-pape">
+										<div class="grid_1">
+											<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
+											style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
+												year
+											</h4>
+										</div>
+										<div class="grid_4 information-item-pape-value">
+											<?= $car['year']; ?>
+										</div>
+									</div>
+								<?php //endif;?>
+								
+								<?php //if($car['fuel']):?>
+									<div class="grid_12 information-item-pape">
+										<div class="grid_1">
+											<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
+											style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
+												fuel
+											</h4>
+										</div>
+										<div class="grid_4 information-item-pape-value">
+											<?= $car['fuel']; ?>
+										</div>
+									</div>
+								<?php //endif;?>
+								
+								<?php //if($car['transmission']):?>
+									<div class="grid_12 information-item-pape">
+										<div class="grid_1">
+											<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
+											style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
+												transmission
+											</h4>
+										</div>
+										<div class="grid_4 information-item-pape-value">
+											<?= $car['transmission']; ?>
+										</div>
+									</div>
+								<?php //endif;?>
+														
+								<?php //if($car['exterior_color']):?>
+									<div class="grid_12 information-item-pape">
+										<div class="grid_1">
+											<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
+											style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
+												color
+											</h4>
+										</div>
+										<div class="grid_4 information-item-pape-value">
+											<?= $car['exterior_color']; ?>
+										</div>
+									</div>
+								<?php //endif;?>
+								
+								
+								<?php //if($car['class']):?>
+									<div class="grid_12 information-item-pape">
+										<div class="grid_1">
+											<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
+											style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
+												class
+											</h4>
+										</div>
+										<div class="grid_4 information-item-pape-value">
+											<?= $car['class']; ?>
+										</div>
+									</div>
+								<?php //endif;?>
+								
+								
+								<?php //if($car['category']):?>
+									<div class="grid_12 information-item-pape">
+										<div class="grid_1">
+											<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
+											style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
+												category
+											</h4>
+										</div>
+										<div class="grid_4 information-item-pape-value">
+											<?= $car['category']; ?>
+										</div>
+									</div>
+								<?php //endif;?>
+								
+								<?php //if($car['city']):?>
+									<div class="grid_12 information-item-pape">
+										<div class="grid_1">
+											<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
+											style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
+												city
+											</h4>
+										</div>
+										<div class="grid_4 information-item-pape-value">
+											<?= $car['city']; ?>
+										</div>
+									</div>
+								<?php //endif;?>
+								
+								<?php //if($car['state']):?>
+									<div class="grid_12 information-item-pape">
+										<div class="grid_1">
+											<h4 class="wow fadeIn animated" data-wow-duration="1s" data-wow-delay="0.1s" 
+											style="visibility: visible; animation-duration: 1s; animation-delay: 0.1s; animation-name: fadeIn;"> 
+												state
+											</h4>
+										</div>
+										<div class="grid_4 information-item-pape-value">
+											<?= $car['state']; ?>
+										</div>
+									</div>
+								<?php //endif;?>
+															
+								
+							</div>
+						</div>
 	
+	
+	
+						
+						<div class="grid_12">
+		
+							<div class="grid_6">
+								test;
+							</div>		
+							
+							<div class="grid_5">
+								test;
+							</div>	
+						
+						</div>
 
 	
 	
