@@ -71,6 +71,7 @@ h4 {
 @media (max-width: 1199px) {
   h4 {
     font-size: 16px;
+	margin-top: 20px;
   }
 }
 h5 {
@@ -269,7 +270,7 @@ h6 {
   padding-top: 10px;
 }
 .wrapper2 {
-  padding: 30px 0 6px;
+  //padding: 30px 0 6px;
 }
 .wrapper3 {
   padding-bottom: 26px;
@@ -1299,9 +1300,13 @@ ul.breadcrumb{
 
 .model-sort{
 	margin-top: 40px !important;
-    margin-bottom: -30px !important;
+    margin-bottom: 10px !important;
 	position: relative;
     z-index: 99;
+	font-size: 1.6em;
+}
+.model-sort a{
+	//color: #8ad329;
 }
 .pagination li{
 	display: inline-block;
@@ -1309,9 +1314,11 @@ ul.breadcrumb{
 }
 .pagination-wraper{
 	text-align: center;
-    margin-top: -30px;
+    /* margin-top: 20px; */
     font-size: 1.5em;
-    padding: 20px 0;
+    /* padding: 10px 0; */
+    position: relative;
+    top: 15px;
 }
 .advancedSearchButton{
 	margin-bottom: 30px;
@@ -1336,6 +1343,10 @@ ul.breadcrumb{
 .information-item-pape-value{
 	position: relative;
     top: 5px;
+}
+
+.main-page-grid{
+	//margin-bottom: 20px;
 }
 
 .item-image-position{
@@ -1371,7 +1382,27 @@ ul.breadcrumb{
 	width: 14%;
     height: 14%;
 }
+.delete-car{
+	position: absolute;
+	left: 0;
+	padding: 0 37px;
+    //left: -20px;
+}
+.deleteSaveAuto a{
+	font-size: 1.05em !important;
+}
 
+.deleteSaveAuto{
+	height: 180px;
+}
+
+.delete-item-image-position{
+	height: 100px;
+}
+
+.deleteHeightcatalog {
+	height: 80px;
+}
 .btn-item-link{
 	margin-top: 3px;
 }
@@ -1398,6 +1429,7 @@ ul.breadcrumb{
 =========================================================*/
 #footer {
   background: #f7f7f7;
+  margin-top: 30px;
 }
 #footer .privacy-block {
   font: 300 14px/33px "Lato", sans-serif;

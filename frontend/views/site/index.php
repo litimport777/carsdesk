@@ -65,7 +65,7 @@ use yii\widgets\ActiveForm;
 	<div class="border-wrapper1 wrapper3">
         <div class="row">	
 			<?php for($i = 0; $i <= 2; $i++): ?>
-				<div class="grid_4">
+				<div class="grid_4 main-page-grid">
 					
 					<h4 class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
 						<?php echo Html::a(ucwords(strtolower(substr($carsRandom[$i]['make'] . ' ' . $carsRandom[$i]['model'], 0, 30))), Url::to($carsRandom[$i]['alias'], true));?>
@@ -114,7 +114,7 @@ use yii\widgets\ActiveForm;
 	<div class="border-wrapper1 wrapper3">
         <div class="row">	
 			<?php for($i = 3; $i <= 5; $i++): ?>
-				<div class="grid_4">
+				<div class="grid_4 main-page-grid">
 					
 					<h4 class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
 						<?php echo Html::a(ucwords(strtolower(substr($carsRandom[$i]['make'] . ' ' . $carsRandom[$i]['model'], 0, 30))), Url::to($carsRandom[$i]['alias'], true));?>

@@ -16,6 +16,8 @@ use yii\widgets\ActiveForm;
 <?php $countItemInColumns = 3;?>
 
 
+
+
 <?php foreach ($accauntdata as $model):?>
     <?php if((($cnt - 1) % $countItemInColumns == 0) || ($cnt == 1)):?>
         <div class="grid_12">
@@ -26,29 +28,41 @@ use yii\widgets\ActiveForm;
 				<div class="box1">
 				
 					<h4 class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
-						<?php echo Html::a($model['make'] . ' ' . $model['model'], Url::to($model['alias'], true));?>
+						<?php echo Html::a(ucwords(strtolower(substr($model['make'] . ' ' . $model['model'], 0, 30))), Url::to($model['alias'], true));?>
 					</h4>
 					
-					<?php echo Html::img($this->context->getImageUrl(1, $model['hash'], $model['images_date'], true),
-						['class' => 'wow fadeIn']);?>
-					<div class="info wow fadeIn" data-wow-duration="1s" data-wow-delay=".2s">
+					<div class="deleteHeightcatalog">
 					
-						<span class="first">Mileage: <span class="highlighted"><?= $model['odometer']?> km</span></span>
-						<span class="second">Year: <span class="highlighted"><?= $model['year']; ?></span></span>
-						<div class="clearfix"></div>
-					
-					</div>
-					
-					<div class="info2 wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s">
-						<div class="price">
-						  <span class="first">Price:</span>
-						  <span class="second">$<?= $model['price']; ?></span>
+						<div class="item-left">
+						
+							<?php echo Html::img($this->context->getImageUrl(1, $model['hash'], $model['images_date'], true),
+								['class' => 'wow fadeIn']);?>
+						</div>	
+						
+						
+						<div class="item-right">
+							
+							<div class="info wow fadeIn" data-wow-duration="1s" data-wow-delay=".2s">
+							
+								<span class="">Mileage: <span class="highlighted"><?= $model['odometer']?> km</span></span><br />
+								<span class="">Year: <span class="highlighted"><?= $model['year']; ?></span></span><br />
+								<span class="">Price:</span> <span class="">$<?= $model['price']; ?></span><br />
+														
+							</div>
+							
 						</div>
-						<a class="btn-default delete-car" href="#" onclick="return false" data-url="<?= $model['tbl_lots_temp_id']; ?>">
-							DELETE
-						</a>
-						<div class="clearfix"></div>
+					
 					</div>
+					
+										
+					
+						<div class="info2 wow fadeIn delete-item-image-position item-image-position" data-wow-duration="1s" data-wow-delay=".3s">
+							<a class="btn-default delete-car" href="#" onclick="return false" data-url="<?= $model['tbl_lots_temp_id']; ?>">
+								DELETE
+							</a>
+							<div class="clearfix"></div>
+						</div>
+					
 										
 				</div>
 			</div>
