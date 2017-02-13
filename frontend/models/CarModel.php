@@ -15,6 +15,32 @@ class CarModel extends CommonCarModel
     
    const COUNT_COLUMNS_IN_ITEM_VIEW = 3;
 
+	public static $parametrAutoName = [
+				   	  "cab_type"=>"cab type",
+					  "engine_make"=>"engine make",
+					  "engine_size"=>"engine size",
+					  "weight"=>"weight",
+					  "front_tire_size"=>"front tire size",
+					  "rear_tire_size"=>"rear tire size",
+					  "fuel_tank_size"=>"fuel tank size",
+					  "max_torque"=>"max torque",
+					  "horsepower"=>"horsepower",
+					  "max_horsepower"=>"max horsepower",
+					  "max_rpm"=>"max rpm",
+					  "transmission_make"=>"transmission make",
+					  "transmission_speed"=>"transmission speed",
+					  "axles"=>"axles",
+					  "rear_axles"=>"rear axles",
+					  "suspension"=>"suspension",
+					  "wheelbase"=>"wheelbase",
+					  "front_axle"=>"front axle",
+					  "rear_axle"=>"rear axle",
+					  "number_of_rear_axles"=>"number of rear axles",
+					  "brake_type"=>"brake type",
+   				];
+	   
+
+
    public function getCarsToIndexPage()
    {
    		$db = Yii::$app->db;
@@ -67,6 +93,17 @@ class CarModel extends CommonCarModel
    		}else{
    			return false;
    		}
+   }
+
+   public function getAdditionalDiff($additional)
+   {
+	   	$newAdditional = [];
+	   	foreach($additional as $key => $value){
+	   	  	if(isset(self::$parametrAutoName[$key])){
+					$newAdditional[$key] = $value;
+			}
+		}
+		return $newAdditional;  	  
    }
 
    public function getStatisticToCity()

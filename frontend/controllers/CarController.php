@@ -211,8 +211,11 @@ class CarController extends CommonController
 
 
         $countItemInColumns = null;
+        $paramNames = null;
         if($additional){
+            $additional = $carModel->getAdditionalDiff($additional);
             $countItemInColumns = ceil(count($additional)/CarModel::COUNT_COLUMNS_IN_ITEM_VIEW);
+            $paramNames = $carModel::$parametrAutoName;
         }
 
         
@@ -231,7 +234,8 @@ class CarController extends CommonController
              ['label' => $car['vin']]
         ];
 
-        return $this->render('item', ['car' => $car,'additional'=>$additional,'countItemInColumns'=>$countItemInColumns,'breadcrumbs'=>$breadcrumbs]);
+        return $this->render('item', 
+            ['car'=>$car,'additional'=>$additional,'countItemInColumns'=>$countItemInColumns,'paramNames'=>$paramNames,'breadcrumbs'=>$breadcrumbs]);
     }
 
     public function actionSearch()

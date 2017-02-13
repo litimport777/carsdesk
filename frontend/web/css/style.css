@@ -1412,11 +1412,18 @@ ul.breadcrumb{
     left: 22px;
 }
 .icon-item-item-save-container .save-car{
-	width: 3%;
+	width: 25px;
 }
 
-.icon-item-item-save-container .save-icon{
-	width: 3%;
+.icon-item-item-save-container .save-icon, .save-item-icon{
+	width: 25px;
+}
+
+.item_column_doplist .grid_2{
+	width: 130px;
+}
+.item_parametr_strong{
+	font-weight:bold;
 }
 
 .btn-item-link {

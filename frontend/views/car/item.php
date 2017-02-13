@@ -14,7 +14,8 @@ use edofre\sliderpro\models\slides\Image;
 use edofre\sliderpro\models\slides\Layer;
 
 
-//var_dump($additional);exit;
+//var_dump($paramNames);
+//var_dump($additional);
 /*
 $data = (new \yii\db\Query())->select('id, additional')->from('tbl_lot_descriptions');
 $temp_array = [];
@@ -102,7 +103,7 @@ PHP_EOL . var_dump($max) . ' ' . var_dump($temp_keys_array[$max]);exit;
 											<img src="/img/w128h128139396832520.png"  class="save-icon" />
 											<span class="save-icon-text">save</span>
 										</span>
-										<img src="/img/package_fovourite.png" style="display: none" class="save-icon" />
+										<img src="/img/package_fovourite.png" style="display: none" class="save-item-icon" />
 								  <?php else:?>
 										<img src="/img/package_fovourite.png" class="save-icon" />
 								  <?php endif;?>
@@ -270,20 +271,39 @@ PHP_EOL . var_dump($max) . ' ' . var_dump($temp_keys_array[$max]);exit;
 						</div>
 	
 											
-						<div class="grid_12">
+						
+
+	
+	
+	
+					</div>
+					
+					
+					
+					<div class="grid_12">
 		
 						<?php $cnt = 1;?>
 						<?php $cntItems = count($additional);?>
 						
 						<?php if($additional):?>
-							<?php foreach ($additional as $make):?>
+							<?php foreach ($additional as $key => $make):?>
 								<?php if((($cnt - 1) % $countItemInColumns == 0) || ($cnt == 1)):?>
 									<div class="grid_3">
 								<?php endif;?>
-									
-									
-										test<br />
-										
+										<?php //echo $key;?>
+										<?php if(isset($paramNames[$key])):?>
+											<div class="grid_6 item_column_doplist">
+												<div class="grid_2">
+													<strong class="item_parametr_strong">
+														<?php echo ucwords(strtolower($paramNames[$key]));?>
+													</strong>
+												</div>
+												<div class="grid_2">
+													<?php echo $make;?>
+												</div>
+											</div>	
+										<?php endif;?>
+																				
 								<?php if(($cnt % $countItemInColumns == 0) || ($cnt == $cntItems)):?>
 									
 									</div>
@@ -294,12 +314,12 @@ PHP_EOL . var_dump($max) . ' ' . var_dump($temp_keys_array[$max]);exit;
 						<?php endif;?>
 													
 						</div>
-
-	
-	
-	
-					</div>
+					
+					
 				</div>
+				
+				
+				
 			</div>
 		</div>
 	</div>
