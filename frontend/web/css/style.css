@@ -1305,11 +1305,13 @@ ul.breadcrumb{
 }
 .pagination li{
 	display: inline-block;
+	padding: 0 1px;
 }
 .pagination-wraper{
 	text-align: center;
-	margin-top: -40px;
-	font-size: 1.5em;
+    margin-top: -30px;
+    font-size: 1.5em;
+    padding: 20px 0;
 }
 .advancedSearchButton{
 	margin-bottom: 30px;
@@ -1336,9 +1338,18 @@ ul.breadcrumb{
     top: 5px;
 }
 
+.item-image-position{
+	position: relative;
+}
+
 .save-icon{
-	width: 10%;
-	height: 10%;
+	width: 15%;
+	height: 15%;
+}
+.save-icon-text{
+	font-size: 0.9em;
+	position: relative;
+	left: -2px;
 }
 
 .item-left{
@@ -1351,12 +1362,14 @@ ul.breadcrumb{
     float: right;
 }
 .icon-item-save-container{
-	position: relative;
-    top: -70px;
-    left: 20px;
+	position: absolute;
+    top: 40px;
+    left: 0px;
 }
 .save-car{
 	cursor: pointer;
+	width: 14%;
+    height: 14%;
 }
 
 .btn-item-link{

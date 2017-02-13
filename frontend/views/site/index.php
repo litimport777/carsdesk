@@ -58,45 +58,52 @@ use yii\widgets\ActiveForm;
 	
 </div>
 
+
+
 <?php //var_dump($carsRandom);?>
 <div class="wrapper2 grid_12">
 	<div class="border-wrapper1 wrapper3">
         <div class="row">	
 			<?php for($i = 0; $i <= 2; $i++): ?>
 				<div class="grid_4">
-					<div class="box1">
 					
-						<h4 class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
-							<?php echo Html::a($carsRandom[$i]['make'] . ' ' . $carsRandom[$i]['model'], Url::to($carsRandom[$i]['alias'], true));?>
-						</h4>
-						
+					<h4 class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+						<?php echo Html::a(ucwords(strtolower(substr($carsRandom[$i]['make'] . ' ' . $carsRandom[$i]['model'], 0, 30))), Url::to($carsRandom[$i]['alias'], true));?>
+					</h4>
+					<div class="item-left">
 						<?php echo Html::img($this->context->getImageUrl(1, $carsRandom[$i]['hash'], $carsRandom[$i]['images_date'], true),
-							['class' => 'wow fadeIn']);?>
+						['class' => 'wow fadeIn']);?>
+					</div>
+		
+					<div class="item-right">
 						<div class="info wow fadeIn" data-wow-duration="1s" data-wow-delay=".2s">
-						
-							<span class="first">Mileage: <span class="highlighted"><?= $carsRandom[$i]['odometer']?> km</span></span>
-							<span class="second">Year: <span class="highlighted"><?= $carsRandom[$i]['year']; ?></span></span>
-							<div class="clearfix"></div>
-						
+					
+							<span class="first">Mileage: <span class="highlighted"><?= $carsRandom[$i]['odometer']?> km</span></span><br />
+							<span class="second">Year: <span class="highlighted"><?= $carsRandom[$i]['year']; ?></span></span><br />
+							<span class="first">Price:</span> <span class="second">$<?= $carsRandom[$i]['price']; ?></span>
+																
 						</div>
 						
-						<div class="info2 wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s">
-							<div class="price">
-							  <span class="first">Price:</span>
-							  <span class="second">$<?= $carsRandom[$i]['price']; ?></span>
-							</div>
-							<a class="btn-default" href="#" onclick="return false">
-							  <?php if(!$carsRandom[$i]['tbl_lots_temp_id']):?>
-									<span  data-url="<?= $carsRandom[$i]['id']; ?>" class="save-car">SAVE</span>
-									<span style="display: none">SUCCESS</span>
-							  <?php else:?>
-									<span>SUCCESS</span>
-							  <?php endif;?>
-							</a>
-							<div class="clearfix"></div>
-                        </div>						
-						
 					</div>
+		
+					<div class="clearfix"></div>
+					
+					<div class="info2 wow fadeIn item-image-position" data-wow-duration="1s" data-wow-delay=".3s">
+							<?php echo Html::a('MORE', Url::to($carsRandom[$i]['alias'], true), ['class' =>'btn btn-big btn-item-link']);?>
+							
+							<span class="icon-item-save-container" href="#" onclick="return false">
+							  <?php if(!$carsRandom[$i]['tbl_lots_temp_id']):?>
+									<span class="save-car" data-url="<?= $carsRandom[$i]['id']; ?>">
+										<img src="/img/w128h128139396832520.png"  class="save-car save-icon" />
+										<span class="save-icon-text">save</span>
+									</span>
+									<img src="/img/package_fovourite.png" style="display: none" class="save-icon" />
+							  <?php else:?>
+									<img src="/img/package_fovourite.png" class="save-icon" />
+							  <?php endif;?>
+							</span>
+					</div>		
+					
 				</div>
 			<?php endfor;?>
 		</div>
@@ -108,39 +115,45 @@ use yii\widgets\ActiveForm;
         <div class="row">	
 			<?php for($i = 3; $i <= 5; $i++): ?>
 				<div class="grid_4">
-					<div class="box1">
 					
-						<h4 class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
-							<?php echo Html::a($carsRandom[$i]['make'] . ' ' . $carsRandom[$i]['model'], Url::to($carsRandom[$i]['alias'], true));?>
-						</h4>
-						
+					<h4 class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+						<?php echo Html::a(ucwords(strtolower(substr($carsRandom[$i]['make'] . ' ' . $carsRandom[$i]['model'], 0, 30))), Url::to($carsRandom[$i]['alias'], true));?>
+					</h4>
+					<div class="item-left">
 						<?php echo Html::img($this->context->getImageUrl(1, $carsRandom[$i]['hash'], $carsRandom[$i]['images_date'], true),
-							['class' => 'wow fadeIn']);?>
+						['class' => 'wow fadeIn']);?>
+					</div>
+		
+					<div class="item-right">
 						<div class="info wow fadeIn" data-wow-duration="1s" data-wow-delay=".2s">
-						
-							<span class="first">Mileage: <span class="highlighted"><?= $carsRandom[$i]['odometer']?> km</span></span>
-							<span class="second">Year: <span class="highlighted"><?= $carsRandom[$i]['year']; ?></span></span>
-							<div class="clearfix"></div>
-						
+					
+							<span class="first">Mileage: <span class="highlighted"><?= $carsRandom[$i]['odometer']?> km</span></span><br />
+							<span class="second">Year: <span class="highlighted"><?= $carsRandom[$i]['year']; ?></span></span><br />
+							<span class="first">Price:</span> <span class="second">$<?= $carsRandom[$i]['price']; ?></span>
+							
+																
 						</div>
 						
-						<div class="info2 wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s">
-							<div class="price">
-							  <span class="first">Price:</span>
-							  <span class="second">$<?= $carsRandom[$i]['price']; ?></span>
-							</div>
-							<a class="btn-default" href="#" onclick="return false">
-							  <?php if(!$carsRandom[$i]['tbl_lots_temp_id']):?>
-									<span  data-url="<?= $carsRandom[$i]['id']; ?>" class="save-car">SAVE</span>
-									<span style="display: none">SUCCESS</span>
-							  <?php else:?>
-									<span>SUCCESS</span>
-							  <?php endif;?>
-							</a>
-							<div class="clearfix"></div>
-                        </div>
-											
 					</div>
+		
+					<div class="clearfix"></div>
+					
+					<div class="info2 wow fadeIn item-image-position" data-wow-duration="1s" data-wow-delay=".3s">
+							<?php echo Html::a('MORE', Url::to($carsRandom[$i]['alias'], true), ['class' =>'btn btn-big btn-item-link']);?>
+							
+							<span class="icon-item-save-container" href="#" onclick="return false">
+							  <?php if(!$carsRandom[$i]['tbl_lots_temp_id']):?>
+									<span class="save-car" data-url="<?= $carsRandom[$i]['id']; ?>">
+										<img src="/img/w128h128139396832520.png"  class="save-car save-icon" />
+										<span class="save-icon-text">save</span>
+									</span>
+									<img src="/img/package_fovourite.png" style="display: none" class="save-icon" />
+							  <?php else:?>
+									<img src="/img/package_fovourite.png" class="save-icon" />
+							  <?php endif;?>
+							</span>
+					</div>		
+					
 				</div>
 			<?php endfor;?>
 		</div>

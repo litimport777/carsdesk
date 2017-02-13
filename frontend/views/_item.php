@@ -24,7 +24,7 @@ use yii\widgets\LinkPager;
 	
 	
 		<h4 class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
-			<?php echo Html::a($model['make'] . ' ' . $model['model'], Url::to($model['alias'], true));?>
+			<?php echo Html::a(ucwords(strtolower(substr($model['make'] . ' ' . $model['model'], 0, 30))), Url::to($model['alias'], true));?>
 		</h4>
 		<div class="item-left">
 			<?php echo Html::img($this->context->getImageUrl(1, $model['hash'], $model['images_date'], true),
@@ -38,6 +38,17 @@ use yii\widgets\LinkPager;
 				<span class="second">Year: <span class="highlighted"><?= $model['year']; ?></span></span><br />
 				<span class="first">Price:</span> <span class="second">$<?= $model['price']; ?></span>
 				
+				
+						
+			</div>
+			
+		</div>
+		
+		<div class="clearfix"></div>
+		
+		<div class="info2 wow fadeIn item-image-position" data-wow-duration="1s" data-wow-delay=".3s">
+				<?php echo Html::a('MORE', Url::to($model['alias'], true), ['class' =>'btn btn-big btn-item-link']);?>
+				
 				<span class="icon-item-save-container" href="#" onclick="return false">
 				  <?php if(!$model['tbl_lots_temp_id']):?>
 						<span class="save-car" data-url="<?= $model['id']; ?>">
@@ -49,15 +60,6 @@ use yii\widgets\LinkPager;
 						<img src="/img/package_fovourite.png" class="save-icon" />
 				  <?php endif;?>
 				</span>
-						
-			</div>
-			
-		</div>
-		
-		<div class="clearfix"></div>
-		
-		<div class="info2 wow fadeIn" data-wow-duration="1s" data-wow-delay=".3s">
-				<?php echo Html::a('MORE', Url::to($model['alias'], true), ['class' =>'btn btn-big btn-item-link']);?>
 		</div>			
 	
 </div>
