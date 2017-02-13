@@ -280,7 +280,7 @@ PHP_EOL . var_dump($max) . ' ' . var_dump($temp_keys_array[$max]);exit;
 					
 					
 					
-					<div class="grid_12">
+					<div class="grid_12 item_dopolnitelnie_params">
 		
 						<?php $cnt = 1;?>
 						<?php $cntItems = count($additional);?>
@@ -314,11 +314,23 @@ PHP_EOL . var_dump($max) . ' ' . var_dump($temp_keys_array[$max]);exit;
 						<?php endif;?>
 													
 						</div>
-					
-					
+						
+						
+						<?php if(isset($description)):?>
+							<div class="grid_12 item_description">
+								<div class="item_parametr_description">
+									<strong class="item_parametr_strong">
+										Description
+									</strong>
+								</div>
+								<?php echo $description;?>
+							</div>
+						<?php endif;?>
+				
+				
 				</div>
 				
-				
+								
 				
 			</div>
 		</div>

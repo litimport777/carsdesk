@@ -1426,6 +1426,21 @@ ul.breadcrumb{
 	font-weight:bold;
 }
 
+.item_description{
+	//text-align:center;
+	margin-top: 30px;
+    margin-left: 0px;
+	padding-left: 100px;
+}
+
+.item_dopolnitelnie_params{
+	margin-top: 30px;
+}
+
+.item_parametr_description{
+	text-align: center;
+}
+
 .btn-item-link {
   display: inline-block;
   font: 400 15px/32px "Lato", sans-serif;
