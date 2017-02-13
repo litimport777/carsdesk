@@ -76,6 +76,21 @@ use edofre\sliderpro\models\slides\Layer;
 		
 		<div class="grid_5 item-page">
 		
+		
+		<div class="grid_12">
+			<span class="icon-item-item-save-container" href="#" onclick="return false">
+			  <?php if(!$car['tbl_lots_temp_id']):?>
+					<span class="save-car" data-url="<?= $car['id']; ?>">
+						<img src="/img/w128h128139396832520.png"  class="save-car save-icon" />
+						<span class="save-icon-text">save</span>
+					</span>
+					<img src="/img/package_fovourite.png" style="display: none" class="save-icon" />
+			  <?php else:?>
+					<img src="/img/package_fovourite.png" class="save-icon" />
+			  <?php endif;?>
+			</span>
+		</div>
+		
 			<?php //if($car['vin']):?>
 				<div class="grid_12">
 					<div class="grid_1">
@@ -251,5 +266,29 @@ use edofre\sliderpro\models\slides\Layer;
 		</div>
 	</div>
 </section>
+
+
+<?php
+
+$this->registerJs('
+    	
+	$(".save-car").on("click", function(event){
+		var id = $(this).data().url;
+		sendRequestSaveData(id);
+	});
+
+    function sendRequestSaveData(id){
+        $.post("/site/save-data", {"id": id}, function(data){
+            var result = $.parseJSON(data);
+            if(result == true){
+                var current =$("[data-url=" + id + "]");
+                current.next().show();
+                current.hide();
+            }
+        });
+    }
+')
+
+?>
 
 

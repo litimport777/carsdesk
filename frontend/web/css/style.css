@@ -1406,6 +1406,18 @@ ul.breadcrumb{
 .btn-item-link{
 	margin-top: 3px;
 }
+.icon-item-item-save-container
+{
+	position: relative;
+    left: 22px;
+}
+.icon-item-item-save-container .save-car{
+	width: 3%;
+}
+
+.icon-item-item-save-container .save-icon{
+	width: 3%;
+}
 
 .btn-item-link {
   display: inline-block;
