@@ -31,14 +31,14 @@ use yii\widgets\Breadcrumbs;
 					
 					<div class="grid_11 news-item-index-page">
 						<h4 class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
-							<?php echo Html::a($value['name'], '#');?>
+							<?php echo Html::a($value['name'], Url::to(['news/' . $value['id']]));?>
 						</h4>
 						<div class="news-index-left">
 							<?php echo Html::a(Html::img(Yii::$app->urlManagerBackend->createUrl('/uploads/' . $value['img']), 
-										['class' => 'wow fadeIn img-news-index-page', 'width' => '60%', 'height' => '60%']), '#');?>
+										['class' => 'wow fadeIn img-news-index-page', 'width' => '60%', 'height' => '60%']), Url::to(['news/' . $value['id']]));?>
 						</div>
 						<div class="news-index-right">
-							<?php echo Html::a(mb_substr($value['data'], 0, 260) . '...', '#');?>
+							<?php echo Html::a(mb_substr($value['data'], 0, 260) . '...', Url::to(['news/' . $value['id']]));?>
 						</div>
 						<div class="clearfix"></div>
 					</div>

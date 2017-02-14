@@ -1364,12 +1364,12 @@ ul.breadcrumb{
 }
 
 .item-left{
-	width: 42%;
+	width: 30%;
     float: left;
 }
 
 .item-right{
-	width: 58%;
+	width: 70%;
     float: right;
 }
 .icon-item-save-container{
@@ -1458,6 +1458,11 @@ ul.breadcrumb{
 
 .news-items-list{
 	margin-left: 90px;
+}
+
+#footer li a:hover{
+	color: #777777;
+	cursor: default;
 }
 
 .btn-item-link {
