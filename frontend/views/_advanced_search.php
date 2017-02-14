@@ -46,9 +46,10 @@ use yii\widgets\ActiveForm;
 	<div class="grid_12">
 	
 		<div class="grid_1">
+			<?php $modelAdvancedSearchForm->year_from = $modelAdvancedSearchForm::CURRENT_FROM_YEAR;?>
 			<?= $form->field($modelAdvancedSearchForm,'year_from')->dropDownList($modelAdvancedSearchForm::getYearData(),['class'=>'tmSelect auto']);?>
-		</div>
-		
+		</div>		
+				
 		<div class="grid_1">	
 			<?= $form->field($modelAdvancedSearchForm,'year_to')->dropDownList($modelAdvancedSearchForm::getYearData(),['class'=>'tmSelect auto']);?>
 		</div>
@@ -107,7 +108,16 @@ use yii\widgets\ActiveForm;
 <?php
 
 $this->registerJs('
-    $("#searchadvancedform-make").on("change", function(){
+    /*$("#searchadvancedform-year_from option").each(function(idx, el){
+		var year = $(this).text();
+		year = $.trim(year);
+		if (year == 2007) {
+			$(this).attr("selected", true);
+		}
+	});*/
+	
+		
+	$("#searchadvancedform-make").on("change", function(){
         var make = $(this).val();
         sendRequest(make);
     });

@@ -94,6 +94,7 @@ class Search extends Model
                     $query->andWhere(['>=', 'year', static::$year_data[$this->year_from]]);
                     $query->andWhere(['<=', 'year', static::$year_data[$this->year_to]]);
                 }
+                //var_dump($this->year_from) . ' ' . var_dump(static::$year_data);exit;
                 if(isset($this->year_from) && !isset($this->year_to)){
                     $query->andWhere(['>=', 'year', static::$year_data[$this->year_from]]);
                 }
