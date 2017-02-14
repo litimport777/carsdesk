@@ -75,11 +75,11 @@ use yii\widgets\ActiveForm;
 							<?php echo Html::a($value['name'], '#');?>
 						</h4>
 						<div class="news-index-left">
-							<?php echo Html::img(Yii::$app->urlManagerBackend->createUrl('/uploads/' . $value['img']), 
-										['class' => 'wow fadeIn img-news-index-page', 'width' => '60%', 'height' => '60%']);?>
+							<?php echo Html::a(Html::img(Yii::$app->urlManagerBackend->createUrl('/uploads/' . $value['img']), 
+										['class' => 'wow fadeIn img-news-index-page', 'width' => '60%', 'height' => '60%']), '#');?>
 						</div>
 						<div class="news-index-right">
-							<?php echo mb_substr($value['data'], 0, 260) . '...';?>
+							<?php echo Html::a(mb_substr($value['data'], 0, 260) . '...', '#');?>
 						</div>
 						<div class="clearfix"></div>
 					</div>

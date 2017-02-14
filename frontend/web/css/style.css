@@ -1456,6 +1456,10 @@ ul.breadcrumb{
 	//float: right;
 }
 
+.news-items-list{
+	margin-left: 90px;
+}
+
 .btn-item-link {
   display: inline-block;
   font: 400 15px/32px "Lato", sans-serif;

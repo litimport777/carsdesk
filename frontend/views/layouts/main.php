@@ -75,7 +75,7 @@ $controller = Yii::$app->controller->id;
 				Find a car
 			  </a>
 		  </li>
-          <li class="<?= ($controller == 'site' && $action == 'news') ?'current' :'';?>"><a href="index-2.html">New cars</a></li>
+          <li class="<?= ($controller == 'site' && $action == 'news') ?'current' :'';?>"><a href="<?php echo Url::to(['site/news']);?>">Information</a></li>
 			<?php //if(!Yii::$app->user->isGuest):?>
 			  <li class="<?= ($controller == 'site' && $action == 'accaunt') ?'current' :'';?>"><a href="<?php echo Url::to(['site/accaunt']);?>">Accaunt</a></li>
 			  <li class="<?= ($controller == 'site' && $action == 'accaunt-save') ?'current' :'';?>"><a href="<?php echo Url::to(['site/accaunt-save']);?>">WatchList</a></li>

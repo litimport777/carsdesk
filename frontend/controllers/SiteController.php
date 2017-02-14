@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use Yii;
 use yii\helpers\VarDumper;
+use yii\web\NotFoundHttpException;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -241,8 +242,50 @@ class SiteController extends CommonController
     }
 
 
-    public function actionNews(){
+    public function actionNews($id = null){
 
+        $news = new News;
+
+        if ($id){
+            $model = News::findOne($id);
+        }
+
+        if ($id && ! isset($model)){
+            throw new  NotFoundHttpException();            
+        }
+
+        if ($id && $model !== false){
+            
+            $breadcrumbs = [
+                 ['label' => 'News', 'url' => ['site/news']],
+                 ['label' => isset($model->name) ? $model->name : null],
+            ];
+        
+        
+            return $this->render('newsitem', 
+                    ['model' => $model, 'breadcrumbs' => $breadcrumbs]
+                );           
+        }
+        
+        
+
+        $newsList = null;
+        $countNewsItemInColumns = null;
+
+       
+        $newsList = $news->getNewsToNewsPage();
+        $countNewsItemInColumns = ceil(count($newsList)/News::COUNT_COLUMN_NEWS_IN_NEWS_PAGE);
+
+
+        $breadcrumbs = [
+             ['label' => 'News'],
+        ];
+        
+        //VarDumper::dump($countNewsItemInColumns);Yii::$app->end();
+
+        return $this->render('news', 
+                ['newsList'=>$newsList, 'countNewsItemInColumns' => $countNewsItemInColumns, 'breadcrumbs' => $breadcrumbs]
+            );
     }
 
     

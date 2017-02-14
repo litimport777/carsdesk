@@ -17,6 +17,7 @@ class News extends \yii\db\ActiveRecord
 {
     
 	const COUNT_COLUMN_NEWS_IN_INDEX_PAGE = 2;
+	const COUNT_COLUMN_NEWS_IN_NEWS_PAGE = 2;
 	
 	/**
      * @var UploadedFile
@@ -77,6 +78,11 @@ class News extends \yii\db\ActiveRecord
 	
 	public function getNewsToIndexPage()
 	{
-		return News::find()->orderBy('id DESC')->limit(6)->asArray()->all();
+		return News::find()->orderBy('id DESC')->limit(4)->asArray()->all();
+	}
+	
+	public function getNewsToNewsPage()
+	{
+		return News::find()->orderBy('id DESC')->asArray()->all();
 	}
 }

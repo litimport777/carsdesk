@@ -44,6 +44,8 @@ return [
             'rules' => [
                 'accaunt' => 'site/accaunt',
                 'accaunt-save' => 'site/accaunt-save',
+                'news' => 'site/news',
+				'news/<id:\d+>' => 'site/news',
                 //'search' => 'car/search',
                 'used-<year:\d{4}>-<make:>-<model:>-<vin>' => 'car/item',
                 '<year:\d{4}>-<make:>-<model:>' => 'car/year',
