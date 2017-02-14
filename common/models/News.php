@@ -1,6 +1,7 @@
 <?php
 
 namespace common\models;
+use yii\web\UploadedFile;
 
 use Yii;
 
@@ -14,7 +15,13 @@ use Yii;
  */
 class News extends \yii\db\ActiveRecord
 {
-    /**
+    
+	/**
+     * @var UploadedFile
+     */
+    public $imageFile;
+	
+	/**
      * @inheritdoc
      */
     public static function tableName()
@@ -28,10 +35,11 @@ class News extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'data', 'img'], 'required'],
+            [['name', 'data'], 'required'],
             [['data'], 'string'],
             [['name'], 'string', 'max' => 255],
             [['img'], 'string', 'max' => 1028],
+			[['imageFile'], 'file', 'skipOnEmpty' => true],
         ];
     }
 
@@ -44,7 +52,28 @@ class News extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'data' => 'Data',
-            'img' => 'Img',
+            'imageFile' => 'Img',
         ];
     }
+		
+
+    public function upload()
+    {
+ 		if ($this->validate()) {
+            if($this->imageFile != null){
+				$this->imageFile->saveAs('uploads/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+				$this->img = $this->imageFile->baseName . time() . '.' . $this->imageFile->extension;
+			} else {
+				$this->img = '';
+			}
+            return true;
+        } else {
+            return false;
+        }
+    }
+	
+	public function getNewsToIndexPage()
+	{
+		return News::find()->orderBy('id DESC')->limit(6)->asArray()->all();
+	}
 }

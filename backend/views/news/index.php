@@ -22,22 +22,25 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'name',
+            
+            'name' => [
+				'attribute' => 'name',
+				'format'=>'text',
+				'options'=>['style' => 'width: 200px'],
+			],
             'data' => [
 				'attribute' => 'data',
 				'filter'=> false,
 				'format'=>'text',
-				'options'=>['width' => '50%'],
+				'options'=>['style' => 'width: 400px'],
 			],
             'img' =>[
 				'attribute' => 'img',
 				'filter'=> false,
-				'options'=>['width' => '10%'],
+				'options'=>['style' => 'width: 300px'],
 			],
 
-            ['class' => 'yii\grid\ActionColumn', 'template'=>'{update}{delete}', 'options'=>['width' => '5%']],
+            ['class' => 'yii\grid\ActionColumn', 'template'=>'{update}{delete}', 'options'=>['style' => 'width: 30px']],
         ],
     ]); ?>
 </div>

@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use yii\helpers\VarDumper;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -16,6 +17,7 @@ use frontend\models\MakeModel;
 use frontend\models\CarModel;
 use frontend\models\SearchForm;
 use frontend\models\AccauntForm;
+use common\models\News;
 
 /**
  * Site controller
@@ -87,8 +89,15 @@ class SiteController extends CommonController
         $model = new SearchForm();
         $makesSearch = $makeModel->getMakesToFormSearchForm();
 
+        $newsList = null;
+        $news = new News;
+        $newsList = $news->getNewsToIndexPage();
+        
+        //VarDumper::dump($newsList);Yii::$app->end();
+
         return $this->render('index', 
-                ['makes'=>$makes,'countItemInColumns'=>$countItemInColumns,'carsRandom'=>$carsRandom,'model'=>$model,'makesSearch'=>$makesSearch]
+                ['makes'=>$makes,'countItemInColumns'=>$countItemInColumns,'carsRandom'=>$carsRandom,'model'=>$model,
+                'makesSearch'=>$makesSearch, 'newsList'=>$newsList]
             );
     }
 
@@ -226,6 +235,11 @@ class SiteController extends CommonController
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+
+
+    public function actionNews(){
+
     }
 
     

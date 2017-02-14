@@ -317,7 +317,7 @@ PHP_EOL . var_dump($max) . ' ' . var_dump($temp_keys_array[$max]);exit;
 						
 						
 						<?php if(isset($description)):?>
-							<div class="grid_12 item_description">
+							<div class="grid_10 item_description">
 								<div class="item_parametr_description">
 									<strong class="item_parametr_strong">
 										Description

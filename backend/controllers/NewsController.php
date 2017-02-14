@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\News;
 use common\models\NewsSearch;
+use yii\web\UploadedFile;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -44,18 +45,7 @@ class NewsController extends Controller
         ]);
     }
 
-    /**
-     * Displays a single News model.
-     * @param string $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
+   
     /**
      * Creates a new News model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -64,14 +54,20 @@ class NewsController extends Controller
     public function actionCreate()
     {
         $model = new News();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
+		
+        if ($model->load(Yii::$app->request->post())) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+		} else{
+			return $this->render('create', ['model' => $model,]);
+		}
+		
+		if($model->upload()){
+			$model->save();
+			return $this->redirect(['index']);
+		} else{
+			return $this->render('create', ['model' => $model,]);
+		}
+        
     }
 
     /**
@@ -83,14 +79,19 @@ class NewsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
+		
+		if ($model->load(Yii::$app->request->post())) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+		} else{
+			return $this->render('update', ['model' => $model,]);
+		}
+		
+		if($model->upload()){
+			$model->save();
+			return $this->redirect(['index']);
+		} else{
+			return $this->render('update', ['model' => $model,]);
+		}
     }
 
     /**
@@ -121,4 +122,20 @@ class NewsController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+	
+	/*
+	public function actionUpload()
+    {
+        $model = new UploadForm();
+
+        if (Yii::$app->request->isPost) {
+            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
+            if ($model->upload()) {
+                // file is uploaded successfully
+                return;
+            }
+        }
+
+        return $this->render('upload', ['model' => $model]);
+    }*/
 }
