@@ -90,14 +90,17 @@ class SiteController extends CommonController
         $makesSearch = $makeModel->getMakesToFormSearchForm();
 
         $newsList = null;
+        $countNewsItemInColumns = null;
+
         $news = new News;
         $newsList = $news->getNewsToIndexPage();
+        $countNewsItemInColumns = ceil(count($newsList)/News::COUNT_COLUMN_NEWS_IN_INDEX_PAGE);
         
-        //VarDumper::dump($newsList);Yii::$app->end();
+        //VarDumper::dump($countNewsItemInColumns);Yii::$app->end();
 
         return $this->render('index', 
                 ['makes'=>$makes,'countItemInColumns'=>$countItemInColumns,'carsRandom'=>$carsRandom,'model'=>$model,
-                'makesSearch'=>$makesSearch, 'newsList'=>$newsList]
+                'makesSearch'=>$makesSearch, 'newsList'=>$newsList, 'countNewsItemInColumns' => $countNewsItemInColumns]
             );
     }
 

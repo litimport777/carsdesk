@@ -51,6 +51,13 @@ return [
                 '<make:>' => 'car/index',
               ],
         ],
+		
+		'urlManagerBackend' => [
+			'class' => 'yii\web\urlManager',
+			'baseUrl' => 'http://admin.car.dev',
+			'showScriptName' => false,
+			'enablePrettyUrl' => true,
+		],
         
     ],
     'params' => $params,

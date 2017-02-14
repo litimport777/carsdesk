@@ -16,6 +16,8 @@ use Yii;
 class News extends \yii\db\ActiveRecord
 {
     
+	const COUNT_COLUMN_NEWS_IN_INDEX_PAGE = 2;
+	
 	/**
      * @var UploadedFile
      */
@@ -61,8 +63,9 @@ class News extends \yii\db\ActiveRecord
     {
  		if ($this->validate()) {
             if($this->imageFile != null){
-				$this->imageFile->saveAs('uploads/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
-				$this->img = $this->imageFile->baseName . time() . '.' . $this->imageFile->extension;
+				$filename = $this->imageFile->baseName . time() . '.' . $this->imageFile->extension;
+				$this->imageFile->saveAs('uploads/' . $filename);
+				$this->img = $filename;
 			} else {
 				$this->img = '';
 			}

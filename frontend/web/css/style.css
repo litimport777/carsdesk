@@ -1440,6 +1440,21 @@ ul.breadcrumb{
 .item_parametr_description{
 	text-align: center;
 }
+.img-news-index-page{
+	float: left;
+}
+.news-item-index-page{
+	height: 200px;
+	overflow: hidden;
+}
+.news-index-left{
+	width: 40%;
+	//float: left;
+}
+.news-index-right{
+	width: 40%;
+	//float: right;
+}
 
 .btn-item-link {
   display: inline-block;
