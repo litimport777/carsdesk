@@ -77,7 +77,7 @@ $controller = Yii::$app->controller->id;
 		  </li>
           <li class="<?= ($controller == 'site' && $action == 'news') ?'current' :'';?>"><a href="<?php echo Url::to(['site/news']);?>">Information</a></li>
 			<?php //if(!Yii::$app->user->isGuest):?>
-			  <li class="<?= ($controller == 'site' && $action == 'accaunt') ?'current' :'';?>"><a href="<?php echo Url::to(['site/accaunt']);?>">Accaunt</a></li>
+			  <li class="<?= ($controller == 'site' && $action == 'accaunt') ?'current' :'';?>"><a href="<?php echo Url::to(['site/accaunt']);?>">Account</a></li>
 			  <li class="<?= ($controller == 'site' && $action == 'accaunt-save') ?'current' :'';?>"><a href="<?php echo Url::to(['site/accaunt-save']);?>">WatchList</a></li>
 			<?php //endif;?>  
          </ul>
@@ -160,6 +160,28 @@ $controller = Yii::$app->controller->id;
   </div>
 </footer>
 
+<?php
+
+$this->registerJs('
+
+	   var h_hght = 110; // высота шапки
+	   var h_mrg = 0;     // отступ когда шапка уже не видна
+	   $(function(){
+		$(window).scroll(function(){
+		   var top = $(this).scrollTop();
+		   var elem = $("#stuck_container");
+		   //elem.style.background=" url(../images/gradient3.png) repeat-x center bottom #ffffff";
+		   if (top+h_mrg < h_hght) {
+			elem.css("top", (h_hght-top));
+		   } else {
+			elem.css("top", h_mrg);
+		   }
+		 });
+	   });
+	   
+');
+
+?>
 
 <?php //$this->render('/_registration');?>
 

@@ -12,26 +12,28 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="grid_12">
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please choose your new password:</p>
+	
+	<div class="grid_6">
+		<p>Please choose your new password:</p>
+	</div>
 
     
             <?php $form = ActiveForm::begin(['id' => 'reset-password-form', 'options' => ['class' => 'bookingForm1 wow fadeIn'],]); ?>
 
-				<div class="grid_12">
+				<div class="grid_6">
 					<?= $form->field($model, 'password')->passwordInput(['autofocus' => true]) ?>
 				</div>	
                		
-				<div class="grid_12 advancedSearchButton">
+				<div class="grid_6 advancedSearchButton">
 					
-					<div class="grid_3">
+					<div class="grid_1">
 					</div>
 					
-					<div class="grid_4">
+					<div class="grid_3">
 						<?= Html::submitButton('Save', ['class' => 'btn-big btn-search-main-page', 'name' => 'login-button']) ?>
 					</div>
 						
-					<div class="grid_3">
+					<div class="grid_1">
 					</div>
 					
                 </div>

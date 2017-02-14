@@ -13,6 +13,9 @@ body {
   background: #ffffff;
   min-width: 1327px;
 }
+#content{
+	margin-top: 65px;
+}
 @media (max-width: 1199px) {
   body {
     min-width: 0;
@@ -364,7 +367,11 @@ h6 {
 }
 #header #stuck_container {
   background: url(../images/gradient3.png) repeat-x center bottom #ffffff;
-  position: relative;
+  //position: relative;
+  top: 110px;
+  padding-right: 2000px;
+  position: fixed;
+  z-index: 999;
 }
 #header #stuck_container:after {
   background: url(../images/box-shadow1.png) repeat-x center 0;
@@ -1397,7 +1404,7 @@ ul.breadcrumb{
 }
 
 .delete-item-image-position{
-	height: 100px;
+	height: 50px;
 }
 
 .deleteHeightcatalog {
