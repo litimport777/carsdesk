@@ -51,7 +51,7 @@ class ModelModel extends CommonCarModel
 
                       
         $provider = new SqlDataProvider([
-            'sql' => "SELECT `tbl_lots_temp`.`id`, price, model, make, year, odometer, hash, images_date, tbl_lots_temp_id,
+            'sql' => "SELECT `tbl_lots_temp`.`id`, price, model, make, year, odometer, hash, images_date, tbl_lots_temp_id, count_images,
                                                         CONCAT_WS('-',
                                                        'used',
                                                         year,

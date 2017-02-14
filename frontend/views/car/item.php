@@ -53,7 +53,10 @@ PHP_EOL . var_dump($max) . ' ' . var_dump($temp_keys_array[$max]);exit;
 			]);
 		
 		$thumbnails[($i - 1)] =  new \edofre\sliderpro\models\Thumbnail(['tag' => 'img', 'htmlOptions' => ['src' => $this->context->getImageUrl($i, $car['hash'], $car['images_date'], true)]]);
-	}	
+	}
+
+	$slides = array_reverse($slides);
+	$thumbnails = array_reverse($thumbnails);
 ?>
 	
 

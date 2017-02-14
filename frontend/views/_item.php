@@ -27,7 +27,7 @@ use yii\widgets\LinkPager;
 			<?php echo Html::a(ucwords(strtolower(substr($model['make'] . ' ' . $model['model'], 0, 30))), Url::to($model['alias'], true));?>
 		</h4>
 		<div class="item-left">
-			<?php echo Html::img($this->context->getImageUrl(1, $model['hash'], $model['images_date'], true),
+			<?php echo Html::img($this->context->getImageUrl($model['count_images'], $model['hash'], $model['images_date'], true),
 			['class' => 'wow fadeIn']);?>
 		</div>
 		
