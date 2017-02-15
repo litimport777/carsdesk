@@ -71,17 +71,19 @@ exit;*/
 		<div class="info2 wow fadeIn item-image-position" data-wow-duration="1s" data-wow-delay=".3s">
 				<?php echo Html::a('MORE', Url::to($model['alias'], true), ['class' =>'btn btn-big btn-item-link']);?>
 				
-				<span class="icon-item-save-container" href="#" onclick="return false">
-				  <?php if(!$model['tbl_lots_temp_id']):?>
-						<span class="save-car" data-url="<?= $model['id']; ?>">
-							<img src="/img/w128h128139396832520.png"  class="save-icon" />
-							<span class="save-icon-text">save</span>
-						</span>
-						<img src="/img/package_fovourite.png" style="display: none" class="save-icon" />
-				  <?php else:?>
-						<img src="/img/package_fovourite.png" class="save-icon" />
-				  <?php endif;?>
-				</span>
+				<?php if(! Yii::$app->user->isGuest):?>
+					<span class="icon-item-save-container" href="#" onclick="return false">
+					  <?php if(!$model['tbl_lots_temp_id']):?>
+							<span class="save-car" data-url="<?= $model['id']; ?>">
+								<img src="/img/w128h128139396832520.png"  class="save-icon" />
+								<span class="save-icon-text">save</span>
+							</span>
+							<img src="/img/package_fovourite.png" style="display: none" class="save-icon" />
+					  <?php else:?>
+							<img src="/img/package_fovourite.png" class="save-icon" />
+					  <?php endif;?>
+					</span>
+				<?php endif;?>	
 		</div>			
 	
 </div>

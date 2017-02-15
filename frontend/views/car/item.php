@@ -100,17 +100,19 @@ PHP_EOL . var_dump($max) . ' ' . var_dump($temp_keys_array[$max]);exit;
 							
 							
 							<div class="grid_12">
-								<span class="icon-item-item-save-container" href="#" onclick="return false">
-								  <?php if(!$car['tbl_lots_temp_id']):?>
-										<span class="save-car" data-url="<?= $car['id']; ?>">
-											<img src="/img/w128h128139396832520.png"  class="save-icon" />
-											<span class="save-icon-text">save</span>
-										</span>
-										<img src="/img/package_fovourite.png" style="display: none" class="save-item-icon" />
-								  <?php else:?>
-										<img src="/img/package_fovourite.png" class="save-icon" />
-								  <?php endif;?>
-								</span>
+								<?php if(! Yii::$app->user->isGuest):?>
+									<span class="icon-item-item-save-container" href="#" onclick="return false">
+									  <?php if(!$car['tbl_lots_temp_id']):?>
+											<span class="save-car" data-url="<?= $car['id']; ?>">
+												<img src="/img/w128h128139396832520.png"  class="save-icon" />
+												<span class="save-icon-text">save</span>
+											</span>
+											<img src="/img/package_fovourite.png" style="display: none" class="save-item-icon" />
+									  <?php else:?>
+											<img src="/img/package_fovourite.png" class="save-icon" />
+									  <?php endif;?>
+									</span>
+								<?php endif;?>
 							</div>
 							
 								<?php //if($car['vin']):?>
