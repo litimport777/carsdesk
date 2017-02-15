@@ -20,3 +20,5 @@ use yii\widgets\Breadcrumbs;
 <div class="grid_12 model-sort">
 	<?php echo $sort->link('year') . ' | ' . $sort->link('price');?>
 </div>
+
+<?php echo $this->render('/_item', ['carsList'=>$cityList, 'pages'=>$pages]);?>

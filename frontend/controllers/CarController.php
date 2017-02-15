@@ -219,11 +219,13 @@ class CarController extends CommonController
         $sort = $this->getSort();
 
         $cityList = $car->getListAutoFromCity($city);
+
+        $pages = new Pagination(['totalCount' => $cityList->totalCount, 'pageSize' => Yii::$app->params['frontendCatalogPageSize']]);
         //\yii\helpers\VarDumper::dump($cityList->getModels()); Yii::$app->end();
 
 
         return $this->render('city',['breadcrumbs'=>$breadcrumbs,'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch,
-            'sort'=>$sort,'cityList'=>$cityList]);
+            'sort'=>$sort,'cityList'=>$cityList,'pages'=>$pages]);
     }
 
 
