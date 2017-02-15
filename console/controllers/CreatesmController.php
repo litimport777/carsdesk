@@ -11,8 +11,11 @@ use yii\console\Controller;
 use GuzzleHttp\Client;
 use yii\helpers\Url;
 use yii\db\Schema;
+use yii\db\Query;
 use yii;
+use frontend\models\MakeModel;
 use frontend\models\CarModel;
+use common\models\News;
 
 /**
  * This command echoes the first argument that you have entered.
@@ -51,7 +54,19 @@ class CreatesmController extends Controller
 		
 		$fp = fopen(Yii::getAlias('@frontend/web/sitemap1.xml'), 'a');
 		fwrite($fp,$this->middleGenerateSitemap());
-		fclose($fp);		
+		fclose($fp);
+
+		$fp = fopen(Yii::getAlias('@frontend/web/sitemap1.xml'), 'a');
+		fwrite($fp,$this->newsGenerateSitemap());
+		fclose($fp);
+		
+		$fp = fopen(Yii::getAlias('@frontend/web/sitemap1.xml'), 'a');
+		fwrite($fp,$this->makesGenerateSitemap());
+		fclose($fp);
+		
+		$fp = fopen(Yii::getAlias('@frontend/web/sitemap1.xml'), 'a');
+		fwrite($fp,$this->modelsGenerateSitemap());
+		fclose($fp);
 		
 		$fp = fopen(Yii::getAlias('@frontend/web/sitemap1.xml'), 'a');
 		fwrite($fp,$this->generateCitySitemap());
@@ -70,7 +85,35 @@ class CreatesmController extends Controller
 		$xml .= '		<url><loc>' . $this->domen  . '/car/search' . '</loc></url>' . PHP_EOL;
 		$xml .= '		<url><loc>' . $this->domen  . '/news' . '</loc></url>' . PHP_EOL;
 		return $xml;
-	}	
+	}
+	
+	private function newsGenerateSitemap()
+	{
+		$xml = '';
+		foreach((new News)->getNewsToNewsPage() as $value){
+			$xml .= '		<url><loc>' . $this->domen  . '/news/' . $value['id'] . '</loc></url>' . PHP_EOL;
+		} 
+		return $xml;
+	}
+	
+	private function makesGenerateSitemap()
+	{
+		$xml = '';
+		foreach((new MakeModel)->getMakes() as $value){
+			$xml .= '		<url><loc>' . $this->domen  . '/' . $value['alias'] . '</loc></url>' . PHP_EOL;
+		} 
+		return $xml;
+	}
+	
+	private function modelsGenerateSitemap()
+	{
+		$xml = '';
+		$query = (new Query)->from('tbl_models');
+		foreach($query->each() as $value){
+			$xml .= '		<url><loc>' . $this->domen  . '/' . $value['alias'] . '</loc></url>' . PHP_EOL;
+		} 
+		return $xml;
+	}
 	
 	private function generateCitySitemap()
 	{
