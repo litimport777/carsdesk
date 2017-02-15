@@ -46,7 +46,7 @@ return [
                 'accaunt-save' => 'site/accaunt-save',
                 'news' => 'site/news',
 				'news/<id:\d+>' => 'site/news',
-                'city/<city:\w+>' => 'car/city',
+                'city/<city:>' => 'car/city',
                 //'search' => 'car/search',
                 'used-<year:\d{4}>-<make:>-<model:>-<vin>' => 'car/item',
                 '<year:\d{4}>-<make:>-<model:>' => 'car/year',

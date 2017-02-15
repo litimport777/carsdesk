@@ -131,7 +131,8 @@ $controller = Yii::$app->controller->id;
 						<ul class="list1">
 			<?php endif;?>
 							<li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
-								<?php echo Html::a($value['city'] . ' (' . $value['cnt'] . ')', '#', ['onclick'=>'return false']);?>
+								<?= Html::a($value['city'] . ' (' . $value['cnt'] . ')',
+											Url::to(['car/city','city'=>str_replace(' ','-',strtolower($value['city']))]));?>
 							</li>
 			<?php if(($cnt % $countItemInColumns == 0) || ($cnt == $cntItems)):?>
 						</ul>

@@ -1468,8 +1468,8 @@ ul.breadcrumb{
 }
 
 #footer li a:hover{
-	color: #777777;
-	cursor: default;
+	color: #8ad329;
+	cursor: pointer;
 }
 
 .btn-item-link {

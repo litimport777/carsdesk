@@ -225,7 +225,7 @@ class CarController extends CommonController
 
 
         return $this->render('city',['breadcrumbs'=>$breadcrumbs,'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch,
-            'sort'=>$sort,'cityList'=>$cityList,'pages'=>$pages]);
+            'sort'=>$sort,'carsList'=>$cityList,'pages'=>$pages]);
     }
 
 

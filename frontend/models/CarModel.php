@@ -111,10 +111,11 @@ class CarModel extends CommonCarModel
    {
    		$db = Yii::$app->db;
    		$result = $db->cache(function ($db){
-	   		return Yii::$app->db->createCommand('SELECT `tbl_lots_temp`.`city`, COUNT(*) as `cnt` 
+	   		return Yii::$app->db->createCommand('SELECT TRIM(`tbl_lots_temp`.`city`) as city, COUNT(*) as `cnt` 
 												FROM `tbl_lots_temp` INNER JOIN `tbl_makes`
 												ON `tbl_lots_temp`.`make` = `tbl_makes`.`make`
-												GROUP BY `tbl_lots_temp`.`city`  
+												WHERE city != "" 
+												GROUP BY `tbl_lots_temp`.`city`
 												ORDER BY `cnt`  DESC LIMIT 20')->queryAll();
 	   		}, 3600);
    		return $result;
