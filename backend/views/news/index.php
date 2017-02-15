@@ -10,6 +10,16 @@ use yii\grid\GridView;
 $this->title = 'News';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<?php
+
+$this->registerCss('
+.news-index .grid-view table tbody tr td:nth-child(2){
+	width: 400px !important;
+}
+');
+
+?>
 <div class="news-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
@@ -31,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'data' => [
 				'attribute' => 'data',
 				'filter'=> false,
-				'format'=>'text',
+				//'format'=>'text',
 				'options'=>['style' => 'width: 400px'],
 			],
             'img' =>[
