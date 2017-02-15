@@ -47,6 +47,20 @@ class CreatesmController extends Controller
 	//
 	private function createItemSitemap()
 	{
+		
+		$result =   Yii::$app->db->createCommand('SELECT COUNT(*)
+										FROM `tbl_lots_temp` INNER JOIN `tbl_makes`
+										ON `tbl_lots_temp`.`make` = `tbl_makes`.`make`
+										')->queryScalar();
+										
+		$count  =   ceil($result/$this->countRows);
+						
+			
+		for($i=1; $i <= $count; $i++){
+			unlink(Yii::getAlias('@frontend/web/sitemap' . ($i + 1) . '.xml'));
+		}			
+		
+		
 		$xml = '';
 		$query = (new Query)->select(["CONCAT_WS('-',
 									   'used',
@@ -58,6 +72,11 @@ class CreatesmController extends Controller
 										->innerJoin('tbl_makes','tbl_lots_temp.make = tbl_makes.make');
 		$cnt = 1;
 		$fileNum = 2;
+		
+		$fp = fopen(Yii::getAlias('@frontend/web/sitemap' . $fileNum . '.xml'), 'a');
+		fwrite($fp,$this->beginXmlSitemap());
+		fclose($fp);
+		
 		foreach($query->each() as $value){
 			
 			$xml .= '		<url><loc>' . $this->domen  . '/' . $value['alias'] . '</loc></url>' . PHP_EOL;
@@ -70,13 +89,25 @@ class CreatesmController extends Controller
 			}
 			
 			if(($cnt % $this->countRows) == 0){
+				
+				$fp = fopen(Yii::getAlias('@frontend/web/sitemap' . $fileNum . '.xml'), 'a');
+				fwrite($fp,$this->endXmlSitemap());
+				fclose($fp);
+				
 				$fileNum++;
+				
+				$fp = fopen(Yii::getAlias('@frontend/web/sitemap' . $fileNum . '.xml'), 'a');
+				fwrite($fp,$this->beginXmlSitemap());
+				fclose($fp);
 			}
 						
 						
 			$cnt++;
 		}
-		return $xml;
+		
+		$fp = fopen(Yii::getAlias('@frontend/web/sitemap' . $fileNum . '.xml'), 'a');
+		fwrite($fp,$this->endXmlSitemap());
+		fclose($fp);
 	}
 	
 	
