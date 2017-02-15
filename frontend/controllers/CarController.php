@@ -199,6 +199,8 @@ class CarController extends CommonController
 
     public function actionCity($city){
 
+        $city = ucwords(strtolower(str_replace('-', ' ', $city)));
+
         $car = new CarModel;
         $isExistCity = $car->findCity($city);
 
@@ -207,7 +209,7 @@ class CarController extends CommonController
         }
 
         $breadcrumbs = [
-              ['label' => ucwords(strtolower($city))],
+              ['label' => $city],
         ];
 
         $makeModel = new MakeModel();
