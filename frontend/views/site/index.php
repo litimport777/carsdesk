@@ -107,7 +107,7 @@ use yii\widgets\ActiveForm;
 						<?php echo Html::a(ucwords(strtolower(substr($carsRandom[$i]['make'] . ' ' . $carsRandom[$i]['model'], 0, 30))), Url::to($carsRandom[$i]['alias'], true));?>
 					</h4>
 					<div class="item-left">
-						<?php echo Html::img($this->context->getImageUrl(1, $carsRandom[$i]['hash'], $carsRandom[$i]['images_date'], true),
+						<?php echo Html::img($this->context->getImageUrl($carsRandom[$i]['count_images'],$carsRandom[$i]['hash'],$carsRandom[$i]['images_date'],true),
 						['class' => 'wow fadeIn']);?>
 					</div>
 		
@@ -156,7 +156,7 @@ use yii\widgets\ActiveForm;
 						<?php echo Html::a(ucwords(strtolower(substr($carsRandom[$i]['make'] . ' ' . $carsRandom[$i]['model'], 0, 30))), Url::to($carsRandom[$i]['alias'], true));?>
 					</h4>
 					<div class="item-left">
-						<?php echo Html::img($this->context->getImageUrl(1, $carsRandom[$i]['hash'], $carsRandom[$i]['images_date'], true),
+						<?php echo Html::img($this->context->getImageUrl($carsRandom[$i]['count_images'],$carsRandom[$i]['hash'],$carsRandom[$i]['images_date'],true),
 						['class' => 'wow fadeIn']);?>
 					</div>
 		

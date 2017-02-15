@@ -17,9 +17,31 @@ use yii\widgets\LinkPager;
 		 <div class="row">      
 			<?php endif;?>	
 		
-							
-			
 
+<?php
+/*
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, $this->context->getImageUrl($model['count_images'], $model['hash'], $model['images_date'], true));
+curl_setopt($ch, CURLOPT_HEADER, 1);
+curl_setopt($ch, CURLOPT_NOBODY, 1);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+$result = curl_exec($ch);
+
+$match;
+preg_match('/.403 Forbidden./', $result, $match);
+var_dump($match);
+
+curl_close($ch);
+exit;*/
+
+
+?>
+		
+<?php //var_dump($model['count_images']) . ' ' . var_dump($model['images_date']) . ' ' . var_dump($model['hash']);?>
+<?php //if(trim($this->context->getImageUrl($model['count_images'], $model['hash'], $model['images_date'], true)) != ''):?>
 <div class="grid_4">
 	
 	

@@ -91,7 +91,7 @@ class CreatedbController extends Controller
        $command->createCommand("CREATE TABLE `tbl_lots_temp` 
                                 SELECT *
                                 FROM `tbl_lots_new` 
-                                WHERE make != ''  AND `year` != '0' AND year != '' AND vin != ''"
+                                WHERE make != ''  AND `year` != '0' AND year != '' AND vin != '' AND count_images != 0"
                                 )->execute();
 
        $command->createCommand()->addPrimaryKey('pk_tbl_lots_temp', 'tbl_lots_temp', 'id')->execute();

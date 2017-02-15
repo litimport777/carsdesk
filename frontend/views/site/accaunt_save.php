@@ -37,7 +37,7 @@ use yii\widgets\ActiveForm;
 					
 						<div class="item-left">
 						
-							<?php echo Html::img($this->context->getImageUrl(1, $model['hash'], $model['images_date'], true),
+							<?php echo Html::img($this->context->getImageUrl($model['count_images'], $model['hash'], $model['images_date'], true),
 								['class' => 'wow fadeIn']);?>
 						</div>	
 						
