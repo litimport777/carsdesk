@@ -90,7 +90,7 @@ class CreatedbController extends Controller
             
        $command->createCommand("CREATE TABLE `tbl_lots_temp` 
                                 SELECT *
-                                FROM `tbl_lots_new` 
+                                FROM `tbl_lots` 
                                 WHERE make != ''  AND `year` != '0' AND year != '' AND vin != '' AND count_images != 0"
                                 )->execute();
 
