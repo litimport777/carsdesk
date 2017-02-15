@@ -2471,8 +2471,8 @@
 		<url><loc>http://car.dev/birmingham</loc></url>
 		<url><loc>http://car.dev/miami</loc></url>
 		<url><loc>http://car.dev/colorado-springs</loc></url>
-		<url><loc>http://car.dev/lancaster</loc></url>
 		<url><loc>http://car.dev/mesa</loc></url>
+		<url><loc>http://car.dev/lancaster</loc></url>
 		<url><loc>http://car.dev/norco</loc></url>
 		<url><loc>http://car.dev/gilbert</loc></url>
 		<url><loc>http://car.dev/sarasota</loc></url>
@@ -2482,5 +2482,5 @@
 		<url><loc>http://car.dev/sacramento</loc></url>
 		<url><loc>http://car.dev/cerritos</loc></url>
 		<url><loc>http://car.dev/riverside</loc></url>
-		<url><loc>http://car.dev/temecula</loc></url>
+		<url><loc>http://car.dev/benton</loc></url>
 	</urlset>

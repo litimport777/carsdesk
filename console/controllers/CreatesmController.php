@@ -30,7 +30,7 @@ class CreatesmController extends Controller
     
     private $domen = 'http://car.dev';
 	
-	private $countRows = 40000;
+	private $countRows = 10000;
 	
 	/**
      * This command echoes what you have entered as the message.
@@ -40,7 +40,44 @@ class CreatesmController extends Controller
     {
  	   $this->createIndexSitemap();
 	   $this->createSitemap();
+	   $this->createItemSitemap();
     }
+	
+	
+	//
+	private function createItemSitemap()
+	{
+		$xml = '';
+		$query = (new Query)->select(["CONCAT_WS('-',
+									   'used',
+										year,
+										LOWER(REPLACE(REPLACE(REPLACE(tbl_lots_temp.make, ' ', ''), '.', ''), '-', '')),
+										LOWER(REPLACE(REPLACE(REPLACE(model, ' ', ''), '.', ''), '-', '')),
+										vin
+										) AS alias"])->from('tbl_lots_temp')
+										->innerJoin('tbl_makes','tbl_lots_temp.make = tbl_makes.make');
+		$cnt = 1;
+		$fileNum = 2;
+		foreach($query->each() as $value){
+			
+			$xml .= '		<url><loc>' . $this->domen  . '/' . $value['alias'] . '</loc></url>' . PHP_EOL;
+			
+			if(($cnt % 100) == 0){
+				$fp = fopen(Yii::getAlias('@frontend/web/sitemap' . $fileNum . '.xml'), 'a');
+				fwrite($fp,$xml);
+				fclose($fp);
+				$xml = '';
+			}
+			
+			if(($cnt % $this->countRows) == 0){
+				$fileNum++;
+			}
+						
+						
+			$cnt++;
+		}
+		return $xml;
+	}
 	
 	
 	//
@@ -115,7 +152,7 @@ class CreatesmController extends Controller
 		$query = (new Query)->from('tbl_models');
 		foreach($query->each() as $value){
 			$xml .= '		<url><loc>' . $this->domen  . '/' . $value['alias'] . '</loc></url>' . PHP_EOL;
-		} 
+		}
 		return $xml;
 	}
 	
@@ -174,9 +211,9 @@ class CreatesmController extends Controller
 	//
 	private function middleIndexSitemap()
 	{
-		$xml = '<sitemap>' . PHP_EOL;
-		$xml .= '<loc>' . $this->domen  . '/sitemap1.xml</loc>' . PHP_EOL;
-		$xml .= '</sitemap>' . PHP_EOL;
+		$xml = '		<sitemap>' . PHP_EOL;
+		$xml .= '			<loc>' . $this->domen  . '/sitemap1.xml</loc>' . PHP_EOL;
+		$xml .= '		</sitemap>' . PHP_EOL;
 		
 		return $xml;		
 	}
@@ -195,9 +232,9 @@ class CreatesmController extends Controller
 			$xml = '';
 			
 			for($i=1; $i <= $count; $i++){
-				$xml .= '<sitemap>' . PHP_EOL;
-				$xml .= '<loc>' . $this->domen  . '/sitemap' . ($i + 1) . '.xml</loc>' . PHP_EOL;
-				$xml .= '</sitemap>' . PHP_EOL;
+				$xml .= '		<sitemap>' . PHP_EOL;
+				$xml .= '			<loc>' . $this->domen  . '/sitemap' . ($i + 1) . '.xml</loc>' . PHP_EOL;
+				$xml .= '		</sitemap>' . PHP_EOL;
 			}			
 			
 			return $xml;
@@ -215,7 +252,7 @@ class CreatesmController extends Controller
 	
 	private function endXmlIndexSitemap()
 	{
-		$xml = '</sitemapindex>' . PHP_EOL;
+		$xml = '	</sitemapindex>' . PHP_EOL;
 		
 		return $xml;
 	}
