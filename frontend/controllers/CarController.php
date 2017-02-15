@@ -197,6 +197,36 @@ class CarController extends CommonController
     }
 
 
+    public function actionCity($city){
+
+        $car = new CarModel;
+        $isExistCity = $car->findCity($city);
+
+        if ($isExistCity === false){
+            throw new  NotFoundHttpException();            
+        }
+
+        $breadcrumbs = [
+              ['label' => ucwords(strtolower($city))],
+        ];
+
+        $makeModel = new MakeModel();
+
+        $modelAdvancedSearchForm = new SearchAdvancedForm();
+        $makesSearch = $makeModel->getMakesToFormSearchForm();
+
+
+        $sort = $this->getSort();
+
+        $cityList = $car->getListAutoFromCity($city);
+        //\yii\helpers\VarDumper::dump($cityList->getModels()); Yii::$app->end();
+
+
+        return $this->render('city',['breadcrumbs'=>$breadcrumbs,'modelAdvancedSearchForm'=>$modelAdvancedSearchForm,'makesSearch'=>$makesSearch,
+            'sort'=>$sort,'cityList'=>$cityList]);
+    }
+
+
     public function actionItem($make, $model, $year, $vin){
 
         $carModel = new CarModel;

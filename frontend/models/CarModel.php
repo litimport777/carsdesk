@@ -5,6 +5,7 @@ namespace frontend\models;
 use Yii;
 use yii\db\Query;
 use yii\base\Model;
+use yii\data\SqlDataProvider;
 use frontend\models\CommonCarModel;
 
 /**
@@ -117,5 +118,74 @@ class CarModel extends CommonCarModel
 												ORDER BY `cnt`  DESC LIMIT 20')->queryAll();
 	   		}, 3600);
    		return $result;
+   }
+
+   public function findCity($city)
+   {
+   		$db = Yii::$app->db;
+   		return  Yii::$app->db->createCommand('SELECT    `tbl_lots_temp`.`city` 
+											FROM `tbl_lots_temp` 
+											INNER JOIN `tbl_makes`
+											ON `tbl_lots_temp`.`make` = `tbl_makes`.`make`
+											WHERE `tbl_lots_temp`.`city` = :city LIMIT 1',[':city' => $city])->queryScalar();
+   }
+
+   public function getListAutoFromCity($city)
+   {
+   		
+        $count = Yii::$app->db->createCommand('SELECT COUNT(*)
+												FROM `tbl_lots_temp` INNER JOIN `tbl_makes`
+												ON `tbl_lots_temp`.`make` = `tbl_makes`.`make`
+												WHERE `tbl_lots_temp`.`city` = :city',[':city'=>$city])->queryScalar();
+
+                      
+        
+       
+        
+        $provider = new SqlDataProvider([
+            'sql' => "SELECT `tbl_lots_temp`.`id`, price, model, `tbl_lots_temp`.`make`, year, odometer, hash, 
+            				 images_date, tbl_lots_temp_id, count_images,
+                                                            CONCAT_WS('-',
+                                                           'used',
+                                                            year,
+                                                            LOWER(REPLACE(REPLACE(REPLACE(`tbl_lots_temp`.`make`, ' ', ''), '.', ''), '-', '')),
+                                                            LOWER(REPLACE(REPLACE(REPLACE(model, ' ', ''), '.', ''), '-', '')),
+                                                            vin
+                                                        ) AS alias FROM {{tbl_lots_temp}} 
+
+                                                        INNER JOIN `tbl_makes` ON `tbl_lots_temp`.`make` = `tbl_makes`.`make`
+
+                                                        LEFT JOIN {{user_car}}   
+                                                        ON `tbl_lots_temp`.`id` = `user_car`.`tbl_lots_temp_id` 
+                                                        AND `user_car`.`user_id` = :user_id
+
+
+                                                        WHERE city=:city",
+            'params' => [':city' => $city, ':user_id' => Yii::$app->user->id],
+            'totalCount' => $count,
+            'pagination' => [
+                'pageSize' => Yii::$app->params['frontendCatalogPageSize'],
+            ],
+            'sort' => [
+                'attributes' => [
+                        
+                        'year' => [
+                            'asc' => ['year' => SORT_ASC],
+                            'desc' => ['year' => SORT_DESC],
+                            'default' => SORT_DESC,
+                        ],
+
+                        'price' => [
+                            'asc' => ['price' => SORT_ASC],
+                            'desc' => ['price' => SORT_DESC],
+                            'default' => SORT_DESC,
+                        ],
+
+                    ],
+                ],
+        ]);
+
+
+        return $provider;
    }
 }
