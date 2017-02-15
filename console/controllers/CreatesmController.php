@@ -69,6 +69,10 @@ class CreatesmController extends Controller
 		fclose($fp);
 		
 		$fp = fopen(Yii::getAlias('@frontend/web/sitemap1.xml'), 'a');
+		fwrite($fp,$this->yearsGenerateSitemap());
+		fclose($fp);
+		
+		$fp = fopen(Yii::getAlias('@frontend/web/sitemap1.xml'), 'a');
 		fwrite($fp,$this->generateCitySitemap());
 		fclose($fp);		
 		
@@ -109,6 +113,16 @@ class CreatesmController extends Controller
 	{
 		$xml = '';
 		$query = (new Query)->from('tbl_models');
+		foreach($query->each() as $value){
+			$xml .= '		<url><loc>' . $this->domen  . '/' . $value['alias'] . '</loc></url>' . PHP_EOL;
+		} 
+		return $xml;
+	}
+	
+	private function yearsGenerateSitemap()
+	{
+		$xml = '';
+		$query = (new Query)->from('tbl_models_as');
 		foreach($query->each() as $value){
 			$xml .= '		<url><loc>' . $this->domen  . '/' . $value['alias'] . '</loc></url>' . PHP_EOL;
 		} 
