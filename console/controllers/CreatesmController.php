@@ -30,7 +30,7 @@ class CreatesmController extends Controller
     
     private $domen = 'http://car.dev';
 	
-	private $countRows = 10000;
+	private $countRows = 40000;
 	
 	/**
      * This command echoes what you have entered as the message.
@@ -57,7 +57,7 @@ class CreatesmController extends Controller
 						
 			
 		for($i=1; $i <= $count; $i++){
-			unlink(Yii::getAlias('@frontend/web/sitemap' . ($i + 1) . '.xml'));
+			@unlink(Yii::getAlias('@frontend/web/sitemap' . ($i + 1) . '.xml'));
 		}			
 		
 		
@@ -114,7 +114,7 @@ class CreatesmController extends Controller
 	//
 	private function createSitemap()
 	{
-		unlink(Yii::getAlias('@frontend/web/sitemap1.xml'));
+		@unlink(Yii::getAlias('@frontend/web/sitemap1.xml'));
 		
 		$fp = fopen(Yii::getAlias('@frontend/web/sitemap1.xml'), 'a');
 		fwrite($fp,$this->beginXmlSitemap());
